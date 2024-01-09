@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PantallaEnviarMensajeJE">
+
+    <LinearLayout
+        android:id="@+id/lineaLayoutPantallaEnvioMensaje"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/blue_light">
+
+
+
+        <TextView
+            android:id="@+id/pantallaEMtipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tipoAviso"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp">
+        </TextView>
+
+        <Spinner
+            android:id="@+id/spinnerEM"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:textAlignment="center"
+            android:padding="5dp"
+            android:layout_marginBottom="10dp">
+
+        </Spinner>
+
+        <TextView
+            android:id="@+id/pantallaEMreceptores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pantallaEMreceptores"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            tools:ignore="DuplicateIds">
+        </TextView>
+        <EditText
+            android:id="@+id/pantallaEMlistaPersonas"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Lucia,Pepe..."
+            android:imeOptions="actionSearch"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            >
+        </EditText>
+
+
+        <TextView
+            android:id="@+id/fechaEnvioMensaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/EAfechaEnvio"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:textSize="18sp">
+        </TextView>
+        <Button
+            android:id="@+id/pantallaEMeligeFechaBoton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue_dark"
+            android:layout_marginBottom="10dp"
+            android:text="@string/eligeFecha">
+
+        </Button>
+
+        <TextView
+            android:id="@+id/pantallaEMfechaElegida"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/mensajeTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/escribeMensaje"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:textSize="18sp">
+        </TextView>
+        <EditText
+            android:id="@+id/mensajeEscrito"
+            android:layout_width="300dp"
+            android:background="@color/white"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:scrollbars="vertical"
+            android:gravity="top|start"
+            android:hint="Ingresa tu texto aquí">
+
+        </EditText>
+
+        <Button
+            android:id="@+id/botonPantallaEMenviar"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue_dark"
+            android:layout_marginTop="10dp"
+            android:text="@string/enviar"
+            >
+        </Button>
+
+
+    </LinearLayout>
+
+</LinearLayout>

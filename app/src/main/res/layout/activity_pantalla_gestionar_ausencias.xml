@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PantallaGestionarAusencias">
+
+    <LinearLayout
+        android:id="@+id/lineaLayoutPantallaGestionAusencias"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/blue_light">
+
+
+
+        <TextView
+            android:id="@+id/pantallaGAasunto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/GPasunto"
+            android:layout_marginBottom="5dp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp">
+        </TextView>
+        <Spinner
+            android:id="@+id/spinnerPantallaGA"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp">
+
+        </Spinner>
+
+
+        <TextView
+            android:id="@+id/pantallaGAfechas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pantallaGPfechaInicio"
+            android:layout_marginBottom="5dp"
+            android:textStyle="bold"
+            android:textSize="18sp">
+        </TextView>
+
+        <Button
+            android:id="@+id/pantallaGAeligeFecha"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue_dark"
+            android:text="@string/eligeFecha"></Button>
+
+        <TextView
+            android:id="@+id/GAfechaElegida"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="5dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/pantallaGAfechasFin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pantallaGPfechaFin"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="18sp">
+        </TextView>
+        <Button
+            android:id="@+id/pantallaGAeligeFechaFin"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/eligeFecha"
+            android:backgroundTint="@color/blue_dark"
+            >
+        </Button>
+        <TextView
+            android:id="@+id/GAfechaElegidaFinal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+
+            >
+        </TextView>
+
+
+
+
+        <TextView
+            android:id="@+id/pantallaGAhoras"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pantallaGPhoraInicio"
+            android:layout_marginBottom="5dp"
+            android:textStyle="bold"
+            android:textSize="18sp">
+        </TextView>
+        <Button
+            android:id="@+id/pantallaGAeligehorasInicio"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/eligeHora"
+            android:backgroundTint="@color/blue_dark"
+            >
+        </Button>
+        <TextView
+            android:id="@+id/GAhoraElegidaInicio"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/pantallaGAhorasFinal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pantallaGPhoraFin"
+            android:layout_marginBottom="5dp"
+            android:textStyle="bold"
+            android:textSize="18sp">
+        </TextView>
+        <Button
+            android:id="@+id/pantallaGAeligehorasFinal"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/eligeHora"
+            android:backgroundTint="@color/blue_dark"
+            >
+        </Button>
+        <TextView
+            android:id="@+id/GAhoraElegidaFinal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+            >
+        </TextView>
+
+        <Button
+            android:id="@+id/PAbotonAceptar"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/blue_dark"
+            android:text="@string/aceptar"
+            android:layout_marginBottom="20dp">
+
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

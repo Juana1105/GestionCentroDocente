@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PantallaRegistro"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-110dp">
+
+
+        <LinearLayout
+            android:id="@+id/lineaLayoutPantallaRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/blue"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/pantallaRegistroTextNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/nombreUsuario"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/pr_nombre"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:autofillHints="name"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:hint="@string/introduceNombre"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textAlignment="center"></EditText>
+
+            <TextView
+                android:id="@+id/pantallaRegistroTextApellidos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/apellidosUsuario"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/pr_apellidos"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:autofillHints="username"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:hint="@string/introduceApellidos"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textAlignment="center"></EditText>
+
+            <TextView
+                android:id="@+id/nombreDNI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/introduceDNItext"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/pr_dni"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:hint="@string/introduceDNItext"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textAlignment="center"></EditText>
+
+            <TextView
+                android:id="@+id/pantallaRegistroEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/introduceEmail"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/pr_email"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:autofillHints="emailAddress"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:hint="@string/email"
+                android:imeOptions="actionSearch"
+                android:inputType="textEmailAddress"
+                android:padding="7dp"
+                android:textAlignment="center"></EditText>
+
+            <TextView
+                android:id="@+id/pantallaRegistroPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/introducePassword"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/pr_password"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:hint="@string/textViewPassword"
+                android:imeOptions="actionSearch"
+                android:inputType="textPassword"
+                android:padding="7dp"
+                android:textAlignment="center"></EditText>
+
+            <TextView
+                android:id="@+id/pantallaRegistroCategoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/categoriaDocente"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"></TextView>
+
+            <Spinner
+                android:id="@+id/pr_rol"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="8dp"
+                android:textAlignment="center">
+
+            </Spinner>
+
+
+            <TextView
+                android:id="@+id/pantallaRegistroTitulacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/introduceTitulacion"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/pr_titulacion"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:hint="@string/titulacion"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:padding="7dp"
+                android:textAlignment="center"></EditText>
+
+            <TextView
+                android:id="@+id/pantallaRegistroTelefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/introduceTelefono"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/pr_telefono"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:hint="@string/telefono"
+                android:imeOptions="actionSearch"
+                android:inputType="number"
+                android:padding="7dp"
+                android:textAlignment="center"></EditText>
+
+
+            <Button
+                android:id="@+id/registroBotonRegistrarse"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:backgroundTint="@color/blue_dark"
+                android:padding="15dp"
+                android:text="@string/completaRegistro"
+                android:textColor="@color/white">
+
+            </Button>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

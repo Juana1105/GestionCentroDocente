@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PantallaGestionarPermisos">
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:max="100"
+        android:progress="50"
+        android:layout_marginBottom="20dp">
+
+    </ProgressBar>
+
+    <LinearLayout
+        android:id="@+id/lineaLayoutPantallaGestionPermisos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/blue_light">
+
+
+
+        <TextView
+            android:id="@+id/pantallaGPasunto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/GPasunto"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp">
+        </TextView>
+        <EditText
+            android:id="@+id/pantallaGPeditTextAsunto"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            >
+        </EditText>
+
+        <TextView
+            android:id="@+id/pantGPestadoSolicitud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pantallaGPestadoSolicitud"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            tools:ignore="DuplicateIds">
+        </TextView>
+        <ProgressBar
+            android:id="@+id/barraProgresoEstadoSolicitud"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:max="100"
+            android:progress="50"
+            android:layout_marginBottom="20dp"
+            >
+        </ProgressBar>
+
+        <TextView
+            android:id="@+id/pantallaGPermisosPendientes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pantallaGPpermPendientes"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:textSize="18sp">
+        </TextView>
+        <TextView
+            android:id="@+id/pantallaGnumPermisosPendientes"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:text="@string/numeroPrueba"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:background="@color/white"
+            android:textStyle="bold"
+            android:textSize="18sp">
+        </TextView>
+        <Button
+            android:id="@+id/pantallaGestPAceptar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="@string/aceptar"
+            >
+        </Button>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PantallaGestionGuardias">
+
+    <LinearLayout
+        android:id="@+id/lineaLayoutPantallaGestionGuardias"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/white">
+
+
+        <TextView
+            android:id="@+id/pantallaGfechaGuardia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fechaGuardia"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:textSize="18sp">
+        </TextView>
+        <Button
+            android:id="@+id/pantallaEAeligeFechaBoton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue_light"
+            android:layout_marginBottom="10dp"
+            android:text="@string/eligeFecha">
+        </Button>
+        <TextView
+            android:id="@+id/fechaSeleccionadaPantallaG"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="5dp"
+            android:textAlignment="center"
+            android:textColor="@color/gray_dark"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/pantallaGpersona"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/personaGuardia"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/pantallaGTeditDiasProrroga"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            >
+        </EditText>
+
+
+
+
+        <TextView
+            android:id="@+id/pantallaGTtipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tipoGuardia"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp">
+        </TextView>
+
+        <Spinner
+            android:id="@+id/spinnerTipoGuardia"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:textAlignment="center"
+            android:padding="5dp"
+            android:layout_marginBottom="20dp">
+
+        </Spinner>
+
+        <TextView
+            android:id="@+id/pantGobservaciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pantallaGobservaciones"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            tools:ignore="DuplicateIds">
+        </TextView>
+        <EditText
+            android:id="@+id/pantallaGTlistaPersonas"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            >
+        </EditText>
+
+
+
+
+        <Button
+            android:id="@+id/botonPantallaGguardar"
+            android:layout_width="200dp"
+            android:backgroundTint="@color/blue_light"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="@string/guardarInforme"
+            >
+        </Button>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+

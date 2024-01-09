@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/linearMenuInicio"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuInicio"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white">
+
+
+
+    <TextView
+        android:id="@+id/menuInicioTextInicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bienvenidoMain"
+        android:textAlignment="center"
+        android:layout_marginBottom="40dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/blue"
+        >
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/imagenLogoCentro"
+        android:layout_width="1700dp"
+        android:layout_height="170dp"
+        android:src="@drawable/logo"
+        android:scaleType="fitCenter"
+        android:layout_marginBottom="30dp">
+    </ImageView>
+
+
+    <TextView
+        android:id="@+id/menuInicioTextNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/emailText">
+
+    </TextView>
+    <EditText
+        android:id="@+id/menuInicioEditTextNombre"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/introduceEmail"
+        android:autofillHints="emailAddress"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:imeOptions="actionSearch"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:backgroundTint="@color/gray_light"
+        >
+    </EditText>
+
+    <TextView
+        android:id="@+id/menuInicioTextPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textViewPassword"
+        android:layout_marginTop="20dp"
+        >
+
+    </TextView>
+    <EditText
+        android:id="@+id/menuInicioEditTextPassword"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/introducePassword"
+        android:inputType="textPassword"
+        android:autofillHints="password"
+        android:textAlignment="center"
+        android:imeOptions="actionSearch"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:backgroundTint="@color/gray_light"
+        >
+    </EditText>
+
+    <Button
+
+        android:id="@+id/menuInicioBotonInicioSesion"
+        android:layout_marginTop="20dp"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="@string/iniciaSesion"
+        android:backgroundTint="@color/blue">
+
+    </Button>
+
+    <TextView
+        android:id="@+id/menuInicioTextRegistro"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registro"
+        android:textColor="@color/black"
+        >
+
+    </TextView>
+
+</LinearLayout>

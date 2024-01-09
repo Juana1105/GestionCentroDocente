@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1022374890360",
+    "project_id": "gestioncentrodocente",
+    "storage_bucket": "gestioncentrodocente.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022374890360:android:851f778661fb040362168d",
+        "android_client_info": {
+          "package_name": "com.example.gestioncentrodocente"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtV8qrdbG9WRph20PZTD7qQ6zOaURZi7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -34,13 +34,11 @@ public class Adaptador extends ArrayAdapter<Notificacion> {
 
         ImageView imagen =(ImageView) elemento.findViewById(R.id.imagenNotificacionLista);
         TextView textoNombreEmisor= (TextView) elemento.findViewById(R.id.textViewEmisor);
-        TextView textoTipoNotificacion= (TextView) elemento.findViewById(R.id.textViewTipoNot);
         TextView textoAsunto= (TextView) elemento.findViewById(R.id.textViewAsunto);
         TextView textoMensaje=(TextView) elemento.findViewById(R.id.textViewMensaje);
 
         imagen.setImageResource(lista.get(position).getFoto());
         textoNombreEmisor.setText(lista.get(position).getNombreEmisor());
-        textoTipoNotificacion.setText(lista.get(position).getTipoNotificacion());
         textoAsunto.setText(lista.get(position).getAsunto());
         textoMensaje.setText(lista.get(position).getMensaje());
 

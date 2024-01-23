@@ -3,16 +3,14 @@ package com.example.gestioncentrodocente;
 public class Notificacion {
 
     String nombreEmisor;
-    String tipoNotificacion;
     String asunto;
     String mensaje;
     int foto;
     public Notificacion(){
 
     }
-    public Notificacion(String nombreEmisor, String tipoNotificacion, String asunto, String mensaje, int foto) {
+    public Notificacion(String nombreEmisor, String asunto, String mensaje, int foto) {
         this.nombreEmisor = nombreEmisor;
-        this.tipoNotificacion = tipoNotificacion;
         this.asunto= asunto;
         this.mensaje=mensaje;
         this.foto=foto;
@@ -26,13 +24,6 @@ public class Notificacion {
         this.nombreEmisor = nombreEmisor;
     }
 
-    public String getTipoNotificacion() {
-        return tipoNotificacion;
-    }
-
-    public void setTipoNotificacion(String tipoNotificacion) {
-        this.tipoNotificacion = tipoNotificacion;
-    }
 
     public String getAsunto() {
         return asunto;

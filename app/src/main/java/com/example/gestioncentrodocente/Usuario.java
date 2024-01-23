@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 public class Usuario implements Serializable {
 
-    private String dni;
-
     private String nombre;
     private String apellidos;
     private String email;
@@ -18,8 +16,8 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(String dni, String nombre, String apellidos, String email, String password, String rol, String titulacion, String telefono) {
-        this.dni = dni;
+    public Usuario(String nombre, String apellidos, String email, String password, String rol, String titulacion, String telefono) {
+
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
@@ -86,12 +84,5 @@ public class Usuario implements Serializable {
     }
 
 
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
 
 }

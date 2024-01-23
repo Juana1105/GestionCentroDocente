@@ -11,8 +11,6 @@
     android:gravity="center"
     android:background="@color/white">
 
-
-
     <TextView
         android:id="@+id/menuInicioTextInicio"
         android:layout_width="match_parent"
@@ -37,66 +35,63 @@
     </ImageView>
 
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/menuInicioTextNombre"
-        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/emailText">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/emailText"
+        app:startIconDrawable="@drawable/user"
+        app:endIconMode="clear_text">
 
-    </TextView>
-    <EditText
-        android:id="@+id/menuInicioEditTextNombre"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/introduceEmail"
-        android:autofillHints="emailAddress"
-        android:inputType="text"
-        android:textAlignment="center"
-        android:imeOptions="actionSearch"
-        android:background="@color/white"
-        android:padding="10dp"
-        android:backgroundTint="@color/gray_light"
-        >
-    </EditText>
+        <EditText
+            android:id="@+id/menuInicioEditTextNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <TextView
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/menuInicioTextPassword"
-        android:layout_width="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/textViewPassword"
-        android:layout_marginTop="20dp"
-        >
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="40dp"
+        android:hint="@string/textViewPassword"
+        app:startIconDrawable="@drawable/lock"
+        app:endIconMode="password_toggle">
 
-    </TextView>
-    <EditText
-        android:id="@+id/menuInicioEditTextPassword"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/introducePassword"
-        android:inputType="textPassword"
-        android:autofillHints="password"
-        android:textAlignment="center"
-        android:imeOptions="actionSearch"
-        android:background="@color/white"
-        android:padding="10dp"
-        android:backgroundTint="@color/gray_light"
-        >
-    </EditText>
+        <EditText
+            android:id="@+id/menuInicioEditTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
 
-    <Button
+    </com.google.android.material.textfield.TextInputLayout>
 
+
+
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/menuInicioBotonInicioSesion"
-        android:layout_marginTop="20dp"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="@string/iniciaSesion"
-        android:backgroundTint="@color/blue">
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/blue"
+        android:text="@string/iniciaSesion"/>
 
-    </Button>
 
     <TextView
         android:id="@+id/menuInicioTextRegistro"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registro"

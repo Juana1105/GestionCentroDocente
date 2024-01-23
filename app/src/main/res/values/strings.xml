@@ -77,5 +77,6 @@
     <string name="emailText">Correo Electrónico</string>
     <string name="introduceEmail2">Introduce tu email</string>
     <string name="introduceDNItext">Introduce tu DNI</string>
+    <string name="registro">REGISTRO</string>
 
 </resources>

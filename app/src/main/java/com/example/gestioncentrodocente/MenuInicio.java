@@ -20,6 +20,9 @@ public class MenuInicio extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_inicio);
+        // Ocultar el ActionBar predeterminado
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().hide();
 
         Button botonInicioSesion = (Button)findViewById(R.id.menuInicioBotonInicioSesion);
         EditText editTextNombre=(EditText)findViewById(R.id.menuInicioEditTextNombre);

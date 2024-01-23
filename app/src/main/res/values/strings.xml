@@ -15,10 +15,10 @@
     <string name="saludoDocente">Bienvenido a su perfil privado</string>
     <string name="editarPerfil">Editar perfil</string>
     <string name="mostrarHorario">Horario</string>
-    <string name="gestionarPermisos"><u>Gestionar Permisos</u></string>
-    <string name="gestionarTareasAdmin"><u>Gestionar Tareas Administrativas</u></string>
-    <string name="gestionarAusencias"><u>Notificar ausencias</u></string>
-    <string name="mirarCalendario"><u>Consultar Reuniones</u></string>
+    <string name="gestionarPermisos">Gestionar Permisos</string>
+    <string name="gestionarTareasAdmin">Gestionar Tareas Administrativas</string>
+    <string name="gestionarAusencias">Notificar ausencias</string>
+    <string name="mirarCalendario">Consultar Reuniones</string>
     <string name="notificaciones">Notificaciones</string>
     <string name="completaRegistro">Completa tu registro</string>
     <string name="introduceTitulacion">Introduce tu titulación</string>
@@ -77,6 +77,9 @@
     <string name="emailText">Correo Electrónico</string>
     <string name="introduceEmail2">Introduce tu email</string>
     <string name="introduceDNItext">Introduce tu DNI</string>
-    <string name="registro">REGISTRO</string>
-
+    <string name="registroPR">REGISTRO</string>
+    <string name="guardar">GUARDAR</string>
+    <string name="textoAcercaDe">Acerca de...</string>
+    <string name="textoPerfil">Perfil</string>
+    <string name="textoCerrarSesion">Cerrar Sesión</string>
 </resources>

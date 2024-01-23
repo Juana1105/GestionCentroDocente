@@ -85,13 +85,11 @@ public class PantallaRegistro extends AppCompatActivity {
                         emailE=(EditText)findViewById(R.id.pr_email);
                         telefonoE=(EditText)findViewById(R.id.pr_telefono);
                         passwordE=(EditText)findViewById(R.id.pr_password);
-                        dniE=(EditText)findViewById(R.id.pr_dni);
                         titulacionE=(EditText)findViewById(R.id.pr_titulacion);
 
 
                         String nombre= String.valueOf(nombreE.getText());
                         String apellidos= String.valueOf(apellidosE.getText());
-                        String dni=String.valueOf(dniE.getText());
                         String email=String.valueOf(emailE.getText());
                         String telefono=String.valueOf(telefonoE.getText());
                         String titulacion=String.valueOf(titulacionE.getText());
@@ -104,7 +102,6 @@ public class PantallaRegistro extends AppCompatActivity {
 
                         datosUsuario.setNombre(nombre);
                         datosUsuario.setApellidos(apellidos);
-                        datosUsuario.setDni(dni);
                         datosUsuario.setEmail(email);
                         datosUsuario.setTelefono(telefono);
                         datosUsuario.setTitulacion(titulacion);

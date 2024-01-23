@@ -1,18 +1,22 @@
 package com.example.gestioncentrodocente;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.navigation.NavigationBarView;
+
 import java.util.ArrayList;
 
-public class PantallaPrincipal extends AppCompatActivity {
+public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnMenuItemClickListener{
 
     String rol = "";
 
@@ -21,6 +25,12 @@ public class PantallaPrincipal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_principal);
+        // Ocultar el ActionBar predeterminado
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().hide();
+
+
+
         //CAMBIAR ACTIVITY
         Intent intent = getIntent();
         if (intent != null) {
@@ -102,6 +112,7 @@ public class PantallaPrincipal extends AppCompatActivity {
             });
 
 
+
         } else if (rol.equals("coordinador")) {
 
 
@@ -116,9 +127,9 @@ public class PantallaPrincipal extends AppCompatActivity {
             TextView textCalendarioReuniones = (TextView) findViewById(R.id.calendarioReuniones);
             TextView textEnviarAvisos = (TextView) findViewById(R.id.gestionAvisosCoordinador);
 
-
-            Button botonCerrarSesion=(Button)findViewById(R.id.botonCerrarSesion);
-            Button botonEditarPerfil = (Button) findViewById(R.id.ppBotonEditarPerfil);
+/*CAMBIOS AQUI*/
+           // Button botonCerrarSesion=(Button)findViewById(R.id.botonCerrarSesion);
+          //  Button botonEditarPerfil = (Button) findViewById(R.id.ppBotonEditarPerfil);
             Button botonHorario = (Button) findViewById(R.id.ppBotonMirarHorario);
 
 
@@ -138,13 +149,6 @@ public class PantallaPrincipal extends AppCompatActivity {
                 }
             });
 
-            botonEditarPerfil.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent actividadPantallaEditarPerfil = new Intent(PantallaPrincipal.this, PantallaEditarPerfil.class);
-                    startActivity(actividadPantallaEditarPerfil);
-                }
-            });
 
             botonHorario.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -186,13 +190,7 @@ public class PantallaPrincipal extends AppCompatActivity {
                     startActivity(actividadPantallaEnviarAvisos);
                 }
             });
-            botonCerrarSesion.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent actividadPantallaInicio=new Intent(PantallaPrincipal.this,MenuInicio.class);
-                    startActivity(actividadPantallaInicio);
-                }
-            });
+
 
         }else if (rol.equals("jefeEstudios")) {
 
@@ -286,5 +284,31 @@ public class PantallaPrincipal extends AppCompatActivity {
 
 
 
+    }
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        boolean realizado = false;
+        if (item.getItemId() == R.id.itemPerfil) {
+            realizado = true;
+            Intent actividadPerfil = new Intent(PantallaPrincipal.this, PantallaRegistro.class);
+            //actividadPerfil.putExtras(usuario);
+            startActivity(actividadPerfil);
+        } else if (item.getItemId() == R.id.itemAceraDe) {
+            realizado = true;
+            Intent actividadAcercaDe = new Intent(PantallaPrincipal.this, AcercaDe.class);
+            //actividadAcercaDe.putExtras(usuario);
+            startActivity(actividadAcercaDe);
+        } else if (item.getItemId() == R.id.itemCerrarSesion) {
+            realizado = true;
+            /*Esta linea de codigo cierra sesion con el usuario actual para que
+            una vez seleccionada la opcion de cerrar sesion, se desvincule y pueda
+            dar paso a un nuevo usuario registrado para luego mostrar sus datos en
+            el perfil de usuario */
+           // FirebaseAuth.getInstance().signOut();
+            Intent actividadLogin = new Intent(PantallaPrincipal.this, MenuInicio.class);
+            startActivity(actividadLogin);
+            finish(); //para asegurarse de que el usuario no pueda volver atras
+        }
+        return realizado;
     }
 }

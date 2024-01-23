@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="50dp"
                 android:background="@color/blue"
-                app:title="@string/registro"
+                app:title="@string/registroPR"
                 app:titleCentered="true"
                 app:navigationIcon="@drawable/arrow_back"/>
 
@@ -191,7 +191,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="40dp"
                 android:backgroundTint="@color/blue"
-                android:text="@string/completaRegistro"/>
+                android:text="@string/guardar"/>
 
 
 

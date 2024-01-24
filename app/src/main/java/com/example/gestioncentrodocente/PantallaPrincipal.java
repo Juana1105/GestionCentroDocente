@@ -8,13 +8,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.android.material.navigation.NavigationBarView;
-
-import java.util.ArrayList;
 
 public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnMenuItemClickListener{
 
@@ -44,8 +39,6 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
             TextView textGestionarTareas = (TextView) findViewById(R.id.gestionTareasAdmin);
             TextView textNotificarAusencias = (TextView) findViewById(R.id.gestionAusencias);
             TextView textCalendarioReuniones = (TextView) findViewById(R.id.calendarioReuniones);
-            Button botonCerrarSesion=(Button)findViewById(R.id.botonCerrarSesion);
-            Button botonEditarPerfil = (Button) findViewById(R.id.ppBotonEditarPerfil);
             Button botonHorario = (Button) findViewById(R.id.ppBotonMirarHorario);
 
             imgNotificaciones.setOnClickListener(new View.OnClickListener() {
@@ -64,13 +57,7 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
                 }
             });
 
-            botonEditarPerfil.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent actividadPantallaEditarPerfil = new Intent(PantallaPrincipal.this, PantallaEditarPerfil.class);
-                    startActivity(actividadPantallaEditarPerfil);
-                }
-            });
+
 
             botonHorario.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,13 +90,7 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
                     startActivity(actividadPantallaCalendarioReuniones);
                 }
             });
-            botonCerrarSesion.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent actividadPantallaInicio=new Intent(PantallaPrincipal.this,MenuInicio.class);
-                    startActivity(actividadPantallaInicio);
-                }
-            });
+
 
 
 
@@ -204,14 +185,14 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
             TextView textCalendarioReuniones = (TextView) findViewById(R.id.calendarioReuniones);
             TextView textGestionGuardias=(TextView)findViewById(R.id.gestionInformeGuardias);
             TextView textAdjudicarTareasAdmin=(TextView)findViewById(R.id.adjudicarTareasAdmin);
-            Button botonCerrarSesion=(Button)findViewById(R.id.botonCerrarSesion);
-            Button botonEditarPerfil = (Button) findViewById(R.id.ppBotonEditarPerfil);
+            //Button botonCerrarSesion=(Button)findViewById(R.id.botonCerrarSesion);
+            //Button botonEditarPerfil = (Button) findViewById(R.id.ppBotonEditarPerfil);
             Button botonHorario = (Button) findViewById(R.id.ppBotonMirarHorario);
 
             textAdjudicarTareasAdmin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent pantallaGestionAdmin2=new Intent(PantallaPrincipal.this,PantallaGestionAdmin2.class);
+                    Intent pantallaGestionAdmin2=new Intent(PantallaPrincipal.this, PantallaGestionarTareasAdminJE.class);
                     startActivity(pantallaGestionAdmin2);
                 }
             });
@@ -224,19 +205,7 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
             });
 
 
-            botonEditarPerfil.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent actividadPantallaEditarPerfil = new Intent(PantallaPrincipal.this, PantallaEditarPerfil.class);
-                 /*   Bundle b=getIntent().getExtras();
-                    String nombre=b.getString("nombre");
-                    String apellidos=b.getString("apellidos");
-                    b.putString("nombre",nombre);
-                    b.putString("apellidos",apellidos);
-                    actividadPantallaEditarPerfil.putExtras(b);*/
-                    startActivity(actividadPantallaEditarPerfil);
-                }
-            });
+
 
             botonHorario.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -272,13 +241,7 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
             });
 
 
-            botonCerrarSesion.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent actividadPantallaInicio=new Intent(PantallaPrincipal.this,MenuInicio.class);
-                    startActivity(actividadPantallaInicio);
-                }
-            });
+
 
         }
 
@@ -290,7 +253,7 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
         boolean realizado = false;
         if (item.getItemId() == R.id.itemPerfil) {
             realizado = true;
-            Intent actividadPerfil = new Intent(PantallaPrincipal.this, PantallaRegistro.class);
+            Intent actividadPerfil = new Intent(PantallaPrincipal.this, Perfil.class);
             //actividadPerfil.putExtras(usuario);
             startActivity(actividadPerfil);
         } else if (item.getItemId() == R.id.itemAceraDe) {

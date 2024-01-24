@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class PantallaRegistro extends AppCompatActivity {
 
-    EditText nombreE,apellidosE,emailE,telefonoE,passwordE,dniE,titulacionE;
+    EditText nombreE,emailE,telefonoE,passwordE,dniE,titulacionE;
 
     DatabaseReference dbRef;
     Usuario datosUsuario;
@@ -81,7 +81,7 @@ public class PantallaRegistro extends AppCompatActivity {
                         datosUsuario=new Usuario();
 
                         nombreE=(EditText)findViewById(R.id.pr_nombre);
-                        apellidosE=(EditText)findViewById(R.id.pr_apellidos);
+
                         emailE=(EditText)findViewById(R.id.pr_email);
                         telefonoE=(EditText)findViewById(R.id.pr_telefono);
                         passwordE=(EditText)findViewById(R.id.pr_password);
@@ -89,7 +89,7 @@ public class PantallaRegistro extends AppCompatActivity {
 
 
                         String nombre= String.valueOf(nombreE.getText());
-                        String apellidos= String.valueOf(apellidosE.getText());
+
                         String email=String.valueOf(emailE.getText());
                         String telefono=String.valueOf(telefonoE.getText());
                         String titulacion=String.valueOf(titulacionE.getText());
@@ -101,7 +101,6 @@ public class PantallaRegistro extends AppCompatActivity {
                         //inserta los datos poniendo como clave el nombre del usuario
 
                         datosUsuario.setNombre(nombre);
-                        datosUsuario.setApellidos(apellidos);
                         datosUsuario.setEmail(email);
                         datosUsuario.setTelefono(telefono);
                         datosUsuario.setTitulacion(titulacion);

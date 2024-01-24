@@ -25,12 +25,12 @@
     <string name="titulacion">Titulación</string>
     <string name="introduceTelefono">Introduce tu teléfono</string>
     <string name="telefono">Teléfono de contacto</string>
-    <string name="enviarAvisos"><u>Enviar avisos</u></string>
+    <string name="enviarAvisos">Enviar avisos</string>
     <string name="cerrarSesion">Cerrar Sesión</string>
     <string name="femenino">Femenino</string>
     <string name="masculino">Masculino</string>
     <string name="neutro">Neutro</string>
-    <string name="informeGuardias"><u>Informe Guardias</u></string>
+    <string name="informeGuardias">Informe Guardias</string>
     <string name="eligeGenero">Selecciona tu género</string>
     <string name="sisGes">Sist.Gestión</string>
     <string name="accesoDatos">Acceso"\n"Datos</string>
@@ -55,7 +55,7 @@
     <string name="pantallaGPhoraFin">Hora Final</string>
     <string name="aceptar">Aceptar</string>
     <string name="calendario">Calendario</string>
-    <string name="fijarTareasAdmin"><u>Fijar tareas administrativas</u></string>
+    <string name="fijarTareasAdmin">Fijar tareas administrativas</string>
     <string name="tipoTarea">Tipo de tarea</string>
     <string name="diasProrroga">Días solicitud prórroga</string>
     <string name="enviar">ENVIAR</string>
@@ -70,7 +70,7 @@
     <string name="tipoGuardia">Tipo de guardia</string>
     <string name="pantallaGobservaciones">Observaciones</string>
     <string name="guardarInforme">Guardar informe</string>
-    <string name="enviarMensajes"><u>Enviar mensajes</u></string>
+    <string name="enviarMensajes">Enviar mensajes</string>
     <string name="pantallaEMreceptores">Destinatario/s:</string>
     <string name="escribeMensaje">Escribe tu mensaje:</string>
     <string name="defineAviso">Define tu aviso:</string>

@@ -10,17 +10,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class PantallaGestionAdmin2 extends AppCompatActivity {
+public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pantalla_gestion_admin2);
+        setContentView(R.layout.activity_pantalla_gestion_tareas_je);
         Button adjudicar=(Button)findViewById(R.id.botonPantallaGestTadjudicar);
         adjudicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent pantallaPrincipal=new Intent(PantallaGestionAdmin2.this,PantallaPrincipal.class);
+                Intent pantallaPrincipal=new Intent(PantallaGestionarTareasAdminJE.this,PantallaPrincipal.class);
                 startActivity(pantallaPrincipal);
             }
         });

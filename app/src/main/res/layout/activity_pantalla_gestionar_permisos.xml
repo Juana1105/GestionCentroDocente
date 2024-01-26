@@ -1,105 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".PantallaGestionarPermisos">
-    <ProgressBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:max="100"
-        android:progress="50"
-        android:layout_marginBottom="20dp">
 
-    </ProgressBar>
 
-    <LinearLayout
-        android:id="@+id/lineaLayoutPantallaGestionPermisos"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:background="@color/blue_light">
+
+<!--https://www.comunidad.madrid/servicios/educacion/manual-permisos-licencias-docentes-->
+
+    <!--dos spinner seleccionando el tipo de permiso, nombre y apellidos y enviar_ en notificacion meter x ejemplo estado del permiso o asi que le llegue mensaje-->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nombreGPtext"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/nombre"
+            app:startIconDrawable="@drawable/user"
+            app:endIconMode="clear_text">
+
+                <EditText
+                    android:id="@+id/nombreGP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/apellidosGPtext"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/apellidosUsuario"
+            app:startIconDrawable="@drawable/user"
+            app:endIconMode="clear_text">
+
+                <EditText
+                    android:id="@+id/apellidosGP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
 
 
 
         <TextView
-            android:id="@+id/pantallaGPasunto"
+            android:id="@+id/pantallaGPcriteriosComunes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/GPasunto"
+            android:text="@string/GPcriteriosComunes"
             android:layout_marginBottom="10dp"
             android:textStyle="bold"
             android:layout_marginTop="20dp"
             android:textSize="18sp">
         </TextView>
-        <EditText
-            android:id="@+id/pantallaGPeditTextAsunto"
-            android:layout_width="200dp"
+
+        <Spinner
+            android:id="@+id/spinnerCriteriosComunes"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:imeOptions="actionSearch"
-            android:background="@color/white"
-            android:padding="10dp"
-            android:layout_marginBottom="20dp"
             >
-        </EditText>
+
+        </Spinner>
+
 
         <TextView
-            android:id="@+id/pantGPestadoSolicitud"
+            android:id="@+id/pantallaGPcriteriosEspecificos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pantallaGPestadoSolicitud"
+            android:text="@string/GPcriteriosEspe"
             android:layout_marginBottom="10dp"
             android:textStyle="bold"
-            android:textSize="18sp"
-            tools:ignore="DuplicateIds">
+            android:layout_marginTop="20dp"
+            android:textSize="18sp">
         </TextView>
-        <ProgressBar
-            android:id="@+id/barraProgresoEstadoSolicitud"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:max="100"
-            android:progress="50"
-            android:layout_marginBottom="20dp"
-            >
-        </ProgressBar>
 
-        <TextView
-            android:id="@+id/pantallaGPermisosPendientes"
-            android:layout_width="wrap_content"
+        <Spinner
+            android:id="@+id/spinnerCriteriosEspecificos"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:text="@string/pantallaGPpermPendientes"
-            android:layout_marginBottom="10dp"
-            android:textStyle="bold"
-            android:textSize="18sp">
-        </TextView>
-        <TextView
-            android:id="@+id/pantallaGnumPermisosPendientes"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:text="@string/numeroPrueba"
-            android:layout_marginBottom="5dp"
-            android:gravity="center"
-            android:background="@color/white"
-            android:textStyle="bold"
-            android:textSize="18sp">
-        </TextView>
-        <Button
+            >
+
+        </Spinner>
+
+
+
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/pantallaGestPAceptar"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:text="@string/aceptar"
-            >
-        </Button>
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="@color/blue"
+            android:text="@string/enviar"/>
 
 
-    </LinearLayout>
 
-</RelativeLayout>
+
+</LinearLayout>

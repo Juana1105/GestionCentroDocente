@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,7 +34,7 @@ public class PantallaRegistro extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_registro);
 
 
-        Button botonRegistroCompletado= (Button)findViewById(R.id.registroBotonRegistrarse);
+        MaterialButton botonRegistroCompletado=findViewById(R.id.registroBotonRegistrarse);
 
 
         Spinner spinnerSimple = (Spinner)findViewById(R.id.pr_rol);

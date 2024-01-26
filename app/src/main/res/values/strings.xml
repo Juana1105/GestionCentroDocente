@@ -82,4 +82,7 @@
     <string name="textoAcercaDe">Acerca de...</string>
     <string name="textoPerfil">Perfil</string>
     <string name="textoCerrarSesion">Cerrar Sesión</string>
+    <string name="nombre">Nombre</string>
+    <string name="GPcriteriosComunes">Criterios Comunes</string>
+    <string name="GPcriteriosEspe">Criterios Específicos</string>
 </resources>

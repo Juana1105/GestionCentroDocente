@@ -85,4 +85,5 @@
     <string name="nombre">Nombre</string>
     <string name="GPcriteriosComunes">Criterios Comunes</string>
     <string name="GPcriteriosEspe">Criterios Específicos</string>
+    <string name="tipoNotificacionCard">Tipo Notificacion</string>
 </resources>

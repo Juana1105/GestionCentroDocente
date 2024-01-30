@@ -1,80 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/linearPadreElementosLista"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="#D3F1FF"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <!--4 atributos del alumno-->
 
-    <ImageView
-        android:id="@+id/imagenNotificacionLista"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:src="@android:drawable/ic_dialog_email"
-        android:scaleType="fitCenter">
-    </ImageView>
-
-    <LinearLayout
-        android:id="@+id/linearLayoutEmisorTipoN"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="match_parent">
 
-
-        >
-        <LinearLayout
-            android:id="@+id/SubLinear1"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            >
-        <TextView
-
-            android:id="@+id/textViewEmisor"
-            android:text="@string/emisor"
-            android:textColor="@color/black"
-            android:layout_width="130dp"
-
-            android:textSize="20sp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/contenedorCard"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
-            android:textStyle="bold">
-        </TextView>
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:backgroundTint="#EBF6FF">
 
-            <TextView
-                android:id="@+id/textViewAsunto"
+            <LinearLayout
+                android:id="@+id/contenedorSeccionesCard"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:textAlignment="center"
-                android:text="@string/asunto"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:textSize="15dp"></TextView>
-
-
-
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
 
 
 
-        <TextView
-        android:id="@+id/textViewMensaje"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:text="@string/mensaje"
-        android:layout_width="match_parent"
-        android:textAlignment="center"
-        android:layout_marginTop="15dp"
-        android:layout_height="wrap_content"
-        >
-    </TextView>
-    </LinearLayout>
+                <ImageView
+                    android:id="@+id/imagenNotificacionLista"
+                    android:layout_width="110dp"
+                    android:layout_height="80dp"
+                    android:src="@android:drawable/ic_dialog_email"
+                    android:scaleType="fitCenter"
+                    android:textAlignment="center">
+                </ImageView>
 
-</LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayoutEmisorTipoN"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <LinearLayout
+                        android:id="@+id/SubLinear1"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        >
+                    <TextView
+
+                        android:id="@+id/textViewEmisor"
+                        android:text="@string/emisor"
+                        android:textColor="@color/black"
+                        android:layout_width="130dp"
+                        android:textSize="22sp"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold">
+                    </TextView>
+
+                        <TextView
+                            android:id="@+id/tipoNotificacionCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/tipoNotificacionCard"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/black"
+                            android:textStyle="italic"
+                            android:textSize="15dp"></TextView>
+
+
+
+                    </LinearLayout>
+
+
+
+
+                    <TextView
+                    android:id="@+id/textViewMensaje"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:text="@string/mensaje"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                </TextView>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

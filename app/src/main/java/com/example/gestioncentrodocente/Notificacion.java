@@ -3,15 +3,15 @@ package com.example.gestioncentrodocente;
 public class Notificacion {
 
     String nombreEmisor;
-    String asunto;
+    String tipoNotificacion;
     String mensaje;
     int foto;
     public Notificacion(){
 
     }
-    public Notificacion(String nombreEmisor, String asunto, String mensaje, int foto) {
+    public Notificacion(String nombreEmisor, String tipoNotificacion, String mensaje, int foto) {
         this.nombreEmisor = nombreEmisor;
-        this.asunto= asunto;
+        this.tipoNotificacion = tipoNotificacion;
         this.mensaje=mensaje;
         this.foto=foto;
     }
@@ -25,12 +25,12 @@ public class Notificacion {
     }
 
 
-    public String getAsunto() {
-        return asunto;
+    public String getTipoNotificacion() {
+        return tipoNotificacion;
     }
 
-    public void setAsunto(String asunto) {
-        this.asunto = asunto;
+    public void setTipoNotificacion(String tipoNotificacion) {
+        this.tipoNotificacion = tipoNotificacion;
     }
 
     public String getMensaje() {

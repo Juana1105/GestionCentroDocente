@@ -8,6 +8,16 @@
     android:orientation="vertical"
     tools:context=".PantallaNotificaciones">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/encabezadoRegistro"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        app:title="@string/notificaciones"
+        app:titleCentered="true"
+        app:navigationIcon="@drawable/arrow_back"/>
+
     <ListView
         android:id="@+id/listadoNotificaciones"
         android:layout_width="match_parent"

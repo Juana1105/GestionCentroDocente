@@ -14,7 +14,7 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
 
 
     String seleccionado="";
-    String motivoPermiso="";
+
     String[] valores =null;
     String[] valores2 = null;
     @Override

@@ -37,7 +37,6 @@
             android:layout_height="50dp"
             android:backgroundTint="@color/gray_light"
             android:textColor="@color/black"
-
             android:text="@string/pantallaEAreceptores"
             android:layout_marginTop="15dp"/>
 
@@ -77,16 +76,15 @@
 
          </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/botonPantallaEAenviarAvisos"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue_dark"
-            android:layout_marginTop="70dp"
-            android:text="@string/enviarAvisos"
-            android:layout_marginBottom="60dp"
-            >
-        </Button>
+         <com.google.android.material.button.MaterialButton
+             android:id="@+id/botonPantallaEAenviarAvisos"
+             android:layout_width="300dp"
+             android:layout_height="60dp"
+             android:layout_marginTop="80dp"
+             android:backgroundTint="@color/blue"
+             android:text="@string/enviarAvisos"/>
+
+
 
         </LinearLayout>
 </LinearLayout>

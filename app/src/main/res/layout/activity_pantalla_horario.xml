@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:rowCount="9"
-    android:columnCount="6"
+    android:orientation="vertical"
     tools:context=".PantallaHorario"
-    android:background="#C4F5FC"
-    android:layout_gravity="center"
-    android:padding="20dp"
-
-
     >
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/encabezadoRegistro"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        app:title="@string/mostrarHorario"
+        app:titleCentered="true"
+        app:navigationIcon="@drawable/arrow_back"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:rowCount="9"
+        android:columnCount="6"
+        android:background="#BCE3F5"
+        android:layout_marginTop="100dp"
+        android:padding="20dp">
 
 
     <TextView
@@ -328,7 +341,7 @@
 
 
 
+    </GridLayout>
 
-
-</GridLayout>
+</LinearLayout>
 

@@ -86,4 +86,6 @@
     <string name="GPcriteriosComunes">Criterios Comunes</string>
     <string name="GPcriteriosEspe">Criterios Específicos</string>
     <string name="tipoNotificacionCard">Tipo Notificacion</string>
+    <string name="pantallaGTJEreceptores">RECEPTORES</string>
+    <string name="descripcionTarea">Descripción de la tarea</string>
 </resources>

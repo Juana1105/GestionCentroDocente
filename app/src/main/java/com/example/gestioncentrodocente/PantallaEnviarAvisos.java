@@ -24,6 +24,7 @@ public class PantallaEnviarAvisos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_enviar_avisos);
+        getSupportActionBar().hide();
 
         Button enviarAviso = findViewById(R.id.botonPantallaEAenviarAvisos);
         MaterialButton botonElige = findViewById(R.id.pantallaEAreceptores);

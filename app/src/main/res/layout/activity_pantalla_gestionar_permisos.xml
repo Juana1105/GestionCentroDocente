@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
 
             android:background="@color/blue"
-            app:title="@string/enviarAvisos"
+            app:title="@string/gestionarPermisos"
             app:titleCentered="true"
             app:navigationIcon="@drawable/arrow_back"/>
 
@@ -32,7 +32,7 @@
         <!--https://www.comunidad.madrid/servicios/educacion/manual-permisos-licencias-docentes-->
 
             <!--dos spinner seleccionando el tipo de permiso, nombre y apellidos y enviar_ en notificacion meter x ejemplo estado del permiso o asi que le llegue mensaje-->
-
+<!--
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/nombreGPtext"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -74,7 +74,7 @@
 
 
 
-
+-->
 
 
 
@@ -84,9 +84,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/GPcriteriosComunes"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="30dp"
                     android:textStyle="bold"
-                    android:layout_marginTop="20dp"
                     android:textSize="18sp">
                 </TextView>
 
@@ -94,6 +93,7 @@
                     android:id="@+id/spinnerCriteriosComunes"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="70dp"
                     >
 
                 </Spinner>
@@ -104,9 +104,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/GPcriteriosEspe"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="30dp"
                     android:textStyle="bold"
-                    android:layout_marginTop="20dp"
+
                     android:textSize="18sp">
                 </TextView>
 
@@ -123,11 +123,9 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/pantallaGestPAceptar"
-                    android:layout_width="match_parent"
+                    android:layout_width="350dp"
                     android:layout_height="65dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="80dp"
                     android:backgroundTint="@color/blue"
                     android:text="@string/enviar"/>
 

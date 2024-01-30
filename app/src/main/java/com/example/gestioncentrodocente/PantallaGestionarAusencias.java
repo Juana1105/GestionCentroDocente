@@ -28,6 +28,7 @@ public class PantallaGestionarAusencias extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_gestionar_ausencias);
+        getSupportActionBar().hide();
 
         LinearLayout linearPadre=(LinearLayout)findViewById(R.id.lineaLayoutPantallaGestionAusencias);
 

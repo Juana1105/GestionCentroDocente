@@ -13,6 +13,7 @@ public class PantallaNotificaciones extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_notificaciones);
+        getSupportActionBar().hide();
 
 
         ArrayList<Notificacion> listaNotificaciones=new ArrayList<>();

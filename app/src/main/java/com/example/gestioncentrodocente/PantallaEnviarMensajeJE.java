@@ -24,6 +24,7 @@ public class PantallaEnviarMensajeJE extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_enviar_mensaje_je);
+        getSupportActionBar().hide();
 
         LinearLayout linearPadre=(LinearLayout)findViewById(R.id.lineaLayoutPantallaEnvioMensaje);
 

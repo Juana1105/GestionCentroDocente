@@ -17,6 +17,9 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_gestion_tareas_je);
         Button adjudicar=(Button)findViewById(R.id.botonPantallaGestTadjudicar);
+
+        getSupportActionBar().hide();
+
         adjudicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -13,6 +13,7 @@ public class PantallaCalendarioReuniones extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_calendario_reuniones);
+        getSupportActionBar().hide();
 
         Button botonVolver=(Button)findViewById(R.id.botonAceptarPantallaCalendario);
         botonVolver.setOnClickListener(new View.OnClickListener() {

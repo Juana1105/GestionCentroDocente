@@ -17,6 +17,11 @@ public class PantallaGestionarTareasAdmin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_gestionar_tareas_admin);
 
+        getSupportActionBar().hide();
+
+
+
+
         Spinner spinnerTipo=(Spinner) findViewById(R.id.spinnerTipoTarea);
         String[] valores = {"Entrega Programación","Hoja mensual de Actividad","Firma de actas", "Otro"};
 

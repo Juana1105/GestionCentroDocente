@@ -24,6 +24,7 @@ public class PantallaGestionGuardias extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_gestion_guardias);
+        getSupportActionBar().hide();
 
         LinearLayout linearPadre=(LinearLayout)findViewById(R.id.lineaLayoutPantallaGestionGuardias);
 

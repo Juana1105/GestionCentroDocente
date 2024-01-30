@@ -32,6 +32,7 @@ public class PantallaRegistro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_registro);
+        getSupportActionBar().hide();
 
 
         MaterialButton botonRegistroCompletado=findViewById(R.id.registroBotonRegistrarse);

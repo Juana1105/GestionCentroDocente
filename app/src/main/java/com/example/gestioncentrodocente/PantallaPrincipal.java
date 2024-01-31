@@ -11,15 +11,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnMenuItemClickListener{
 
-    String rol = "";
+    String rol = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pantalla_principal);
+        //setContentView(R.layout.activity_pantalla_principal);
+
         // Ocultar el ActionBar predeterminado
         //getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().hide();
@@ -33,6 +36,7 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
         }
         if (rol.equals("docente")) {
 
+            setContentView(R.layout.activity_pantalla_principal);
 
             ImageView imgNotificaciones = (ImageView) findViewById(R.id.imagenNotificaciones);
             TextView textGestionarPermisos = (TextView) findViewById(R.id.gestionPermisos);
@@ -243,6 +247,10 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
 
 
 
+        }else {
+            View padre = findViewById(R.id.linearLayoutPantallaPrincipalPadre);
+            Snackbar barra= Snackbar.make(padre,"Rol de usuario no definido",Snackbar.LENGTH_SHORT);
+            barra.show();
         }
 
 

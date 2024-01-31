@@ -2,6 +2,8 @@ package com.example.gestioncentrodocente;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +11,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class PantallaGestionarPermisos extends AppCompatActivity {
 
@@ -26,7 +32,7 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
         getSupportActionBar().hide();
 
 
-        Button botonAceptar=(Button)findViewById(R.id.pantallaGestPAceptar);
+        MaterialButton botonAceptar=findViewById(R.id.pantallaGestPAceptar);
         Spinner spinnerCriteriosComunes=(Spinner)findViewById(R.id.spinnerCriteriosComunes);
         Spinner spinnerCriteriosEspecificos=(Spinner)findViewById(R.id.spinnerCriteriosEspecificos);
 
@@ -64,17 +70,63 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-        botonAceptar.setOnClickListener(new View.OnClickListener() {
+        MaterialToolbar toolbar=findViewById(R.id.encabezadoGestiPermisos);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 Intent pantallaPrincipal=new Intent(PantallaGestionarPermisos.this, PantallaPrincipal.class);
                 startActivity(pantallaPrincipal);
             }
         });
+
+
+
+        botonAceptar.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+
+
+                AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
+
+                builder.setTitle("Mensaje Informativo");
+                builder.setMessage("Para enviar el permiso solicitado haz clic en 'aceptar'");
+                builder.setIcon(android.R.drawable.btn_star_big_on);
+
+                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        View padre=(View) view.getParent();
+                        Snackbar barra= Snackbar.make(padre,"Permiso enviado correctamente",Snackbar.LENGTH_SHORT);
+                        barra.show();
+                        Intent pantallaPrincipal=new Intent(PantallaGestionarPermisos.this, PantallaPrincipal.class);
+                        startActivity(pantallaPrincipal);
+                    }
+
+                });
+
+                builder.setNegativeButton("No aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        View padre=(View) view.getParent();
+                        Snackbar barra= Snackbar.make(padre,"Si no aceptas modifica algún campo",Snackbar.LENGTH_SHORT);
+                        barra.show();
+                    }
+                });
+
+                builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        View padre=(View) view.getParent();
+                        Snackbar barra= Snackbar.make(padre,"Has cancelado la gestión del permiso",Snackbar.LENGTH_SHORT);
+                        barra.show();
+                    }
+                });
+                AlertDialog cuadroDialogo = builder.create();
+                cuadroDialogo.show();
+            }
+        });
+
     }
 }

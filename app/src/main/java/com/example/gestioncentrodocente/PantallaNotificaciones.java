@@ -2,8 +2,12 @@ package com.example.gestioncentrodocente;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
+
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 
@@ -15,6 +19,7 @@ public class PantallaNotificaciones extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_notificaciones);
         getSupportActionBar().hide();
 
+        MaterialToolbar toolbar=findViewById(R.id.encabezadoNotificaciones);
 
         ArrayList<Notificacion> listaNotificaciones=new ArrayList<>();
         listaNotificaciones.add(new Notificacion("Lucia","Tarea","Nueva tarea para entregar", R.drawable.gestionar_tareas));
@@ -29,5 +34,13 @@ public class PantallaNotificaciones extends AppCompatActivity {
 
         //Ahora juntamos los elementos declarados
         vistaLista.setAdapter(miAdaptador);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pantallaPrin=new Intent(PantallaNotificaciones.this, PantallaPrincipal.class);
+                startActivity(pantallaPrin);
+            }
+        });
     }
 }

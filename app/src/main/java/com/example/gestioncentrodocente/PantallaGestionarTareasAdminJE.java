@@ -14,7 +14,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -34,7 +36,8 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_gestion_tareas_je);
         getSupportActionBar().hide();
 
-        MaterialButton adjudicar=findViewById(R.id.botonPantallaGestTadjudicar);
+        MaterialButton botonAdjudicar=findViewById(R.id.botonPantallaGestTadjudicar);
+        MaterialToolbar toolbar=findViewById(R.id.encabezadoFijarTA);
 
         MaterialButton botonElige=findViewById(R.id.pantallaGTJEreceptores);
         TextView ponSeleccion=findViewById(R.id.seleccionTareasGT);
@@ -124,19 +127,54 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-        adjudicar.setOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 Intent pantallaPrincipal=new Intent(PantallaGestionarTareasAdminJE.this,PantallaPrincipal.class);
                 startActivity(pantallaPrincipal);
             }
         });
+
+
+
+        botonAdjudicar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
+
+                builder.setTitle("Mensaje Informativo");
+                builder.setMessage("Para adjudicar la tarea haz clic en 'aceptar'");
+                builder.setIcon(android.R.drawable.btn_star_big_on);
+
+                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        View padre=(View) view.getParent();
+                        Snackbar barra= Snackbar.make(padre,"Tarea/s asignada/s correctamente",Snackbar.LENGTH_SHORT);
+                        barra.show();
+                        Intent pantallaPrincipal=new Intent(PantallaGestionarTareasAdminJE.this,PantallaPrincipal.class);
+                        startActivity(pantallaPrincipal);
+                    }
+
+                });
+
+
+                builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        View padre=(View) view.getParent();
+                        Snackbar barra= Snackbar.make(padre,"Has cancelado el envío de tarea",Snackbar.LENGTH_SHORT);
+                        barra.show();
+                    }
+                });
+                AlertDialog cuadroDialogo = builder.create();
+                cuadroDialogo.show();
+
+            }
+        });
+
+
 
 
     }

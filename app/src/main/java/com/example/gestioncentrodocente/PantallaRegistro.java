@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +37,7 @@ public class PantallaRegistro extends AppCompatActivity {
 
 
         MaterialButton botonRegistroCompletado=findViewById(R.id.registroBotonRegistrarse);
+        MaterialToolbar toolbar=findViewById(R.id.encabezadoRegistro);
 
 
         Spinner spinnerSimple = (Spinner)findViewById(R.id.pr_rol);
@@ -143,6 +145,12 @@ public class PantallaRegistro extends AppCompatActivity {
             }
         });
 
-
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pantallaInicio=new Intent(PantallaRegistro.this, MenuInicio.class);
+                startActivity(pantallaInicio);
+            }
+        });
     }
 }

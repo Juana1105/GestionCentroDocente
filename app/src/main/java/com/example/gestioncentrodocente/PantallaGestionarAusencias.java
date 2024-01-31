@@ -17,7 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toolbar;
 
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
@@ -32,18 +35,21 @@ public class PantallaGestionarAusencias extends AppCompatActivity {
 
         LinearLayout linearPadre=(LinearLayout)findViewById(R.id.lineaLayoutPantallaGestionAusencias);
 
-        Button botonFechaInicio=(Button)findViewById(R.id.pantallaGAeligeFecha);
-        Button botonFechaFinal=(Button)findViewById(R.id.pantallaGAeligeFechaFin);
-        Button botonHoraInicio=(Button)findViewById(R.id.pantallaGAeligehorasInicio);
-        Button botonHoraFinal=(Button)findViewById(R.id.pantallaGAeligehorasFinal);
-        Button botonAceptar=(Button)findViewById(R.id.PAbotonAceptar);
+        MaterialButton botonFechaInicio=findViewById(R.id.pantallaGAeligeFecha);
+        MaterialButton botonFechaFinal=findViewById(R.id.pantallaGAeligeFechaFin);
+        MaterialButton botonHoraInicio=findViewById(R.id.pantallaGAeligehorasInicio);
+        MaterialButton botonHoraFinal=findViewById(R.id.pantallaGAeligehorasFinal);
+        MaterialButton botonAceptar=findViewById(R.id.PAbotonAceptar);
         TextView fechaInicioElegida=(TextView)findViewById(R.id.GAfechaElegida);
         TextView fechaFinalElegida=(TextView)findViewById(R.id.GAfechaElegidaFinal);
         TextView horaInicioElegida=(TextView)findViewById(R.id.GAhoraElegidaInicio);
         TextView horaFinalElegida=(TextView)findViewById(R.id.GAhoraElegidaFinal);
         Spinner spinnerSimple=(Spinner)findViewById(R.id.spinnerPantallaGA);
+        MaterialToolbar toolbar=findViewById(R.id.encabezadoGestionarAusencia);
 
-        String[] valores = {"Baja","Enfermedad", "Consulta Médica", "Otro"};
+
+
+        String[] valores = {"Baja","Enfermedad", "Consulta Médica", "Causa de fuerza mayor"};
 
         spinnerSimple.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,valores));
 
@@ -185,6 +191,14 @@ public class PantallaGestionarAusencias extends AppCompatActivity {
                 });
                 AlertDialog cuadroDialogo = builder.create();
                 cuadroDialogo.show();
+            }
+        });
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pantallaPrin=new Intent(PantallaGestionarAusencias.this,PantallaPrincipal.class);
+                startActivity(pantallaPrin);
             }
         });
     }

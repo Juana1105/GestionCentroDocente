@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
 public class PantallaEditarPerfil extends AppCompatActivity {
@@ -33,10 +35,18 @@ public class PantallaEditarPerfil extends AppCompatActivity {
         campoApellidos.setText(apellidos);*/
 
 
+        MaterialToolbar toolbar=findViewById(R.id.encabezadoEditarPerfil);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pantallaInicio=new Intent(PantallaEditarPerfil.this, MenuInicio.class);
+                startActivity(pantallaInicio);
+            }
+        });
 
 
-        Button botonGuardarCambios= (Button)findViewById(R.id.editarPerfilBotonGuardarCambios);
-        Spinner spinnerSimple = (Spinner)findViewById(R.id.SpinnerCategoriaDocente);
+        MaterialButton botonGuardarCambios=findViewById(R.id.EPBotonRegistrarse);
+        Spinner spinnerSimple = (Spinner)findViewById(R.id.pep_rol);
         String[] valores = {"Docente","Jefe de Estudios", "Coordinador de ciclo"};
         spinnerSimple.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,valores));
         spinnerSimple.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

@@ -88,4 +88,5 @@
     <string name="tipoNotificacionCard">Tipo Notificacion</string>
     <string name="pantallaGTJEreceptores">RECEPTORES</string>
     <string name="descripcionTarea">Descripción de la tarea</string>
+    <string name="appRealizada">Aplicación desarrollada por Juana Sierra</string>
 </resources>

@@ -8,7 +8,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class PantallaGestionarTareasAdmin extends AppCompatActivity {
 
@@ -19,15 +22,13 @@ public class PantallaGestionarTareasAdmin extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+        MaterialToolbar toolbar= findViewById(R.id.encabezadoGestionTareasD);
 
-
-
-        Spinner spinnerTipo=(Spinner) findViewById(R.id.spinnerTipoTarea);
-        String[] valores = {"Entrega Programación","Hoja mensual de Actividad","Firma de actas", "Otro"};
-
-        spinnerTipo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,valores));
-
-        spinnerTipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        Spinner spinnerEstadoTarea=findViewById(R.id.spinnerEstadoTarea);
+        Spinner spinnerNombreTarea=(Spinner) findViewById(R.id.spinnerTipoTarea);
+        String[] valores = {"Firma de actas","Circular informartiva a padres y estudiantes"};
+        spinnerNombreTarea.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,valores));
+        spinnerNombreTarea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             }
@@ -37,11 +38,37 @@ public class PantallaGestionarTareasAdmin extends AppCompatActivity {
 
             }
         });
+
+
         Button aceptar=(Button)findViewById(R.id.pantallaGestTAceptar);
+
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent pantallaPrincipal=(new Intent(PantallaGestionarTareasAdmin.this,PantallaPrincipal.class));
+                startActivity(pantallaPrincipal);
+            }
+        });
+
+        String[] estado = {"Firma de actas","Circular informartiva a padres y estudiantes"};
+        spinnerEstadoTarea.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,estado));
+        spinnerEstadoTarea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pantallaPrincipal=new Intent(PantallaGestionarTareasAdmin.this,PantallaPrincipal.class);
                 startActivity(pantallaPrincipal);
             }
         });

@@ -1,11 +1,11 @@
-package com.example.gestioncentrodocente;
+package com.example.gestioncentrodocente.entidades;
 
 public class Notificacion {
 
-    String nombreEmisor;
-    String tipoNotificacion;
-    String mensaje;
-    int foto;
+    private String nombreEmisor;
+    private String tipoNotificacion;
+    private String mensaje;
+    private int foto;
     public Notificacion(){
 
     }

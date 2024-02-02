@@ -2,7 +2,9 @@ package com.example.gestioncentrodocente;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,12 +16,15 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
 
 public class PantallaGestionGuardias extends AppCompatActivity {
 
+    private String seleccionado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,10 +32,44 @@ public class PantallaGestionGuardias extends AppCompatActivity {
         getSupportActionBar().hide();
 
         LinearLayout linearPadre=(LinearLayout)findViewById(R.id.lineaLayoutPantallaGestionGuardias);
+        MaterialButton botonElige=findViewById(R.id.pantallaGGreceptorGuardia);
+        MaterialToolbar toolbar=findViewById(R.id.encabezadoGuardias);
+
+        botonElige.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(PantallaGestionGuardias.this);
+                builder.setTitle("Elige a la persona que hará la guardia");
+                String[] participantes = {"Julian","Pepe","Jose","Marisa","Ginebra","Antonia"};
+
+
+                builder.setSingleChoiceItems(participantes, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        seleccionado=participantes[which];
+
+                    }
+                });
+                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
 
         Spinner spinnerSimple=(Spinner)findViewById(R.id.spinnerTipoGuardia);
         String[] valores = {"Urgente","Predeterminada", "Otro"};
-
         spinnerSimple.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,valores));
 
         spinnerSimple.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -72,6 +111,14 @@ public class PantallaGestionGuardias extends AppCompatActivity {
             public void onClick(View view) {
                 Intent pantallaP=new Intent(PantallaGestionGuardias.this,PantallaPrincipal.class);
                 startActivity(pantallaP);
+            }
+        });
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pantallaPrincipal=new Intent(PantallaGestionGuardias.this, PantallaPrincipal.class);
+                startActivity(pantallaPrincipal);
             }
         });
 

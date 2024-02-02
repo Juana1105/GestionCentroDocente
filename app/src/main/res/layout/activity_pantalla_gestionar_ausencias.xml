@@ -16,7 +16,7 @@
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
+        android:background="@color/blue_dark"
         app:title="@string/gestionarAusencias"
         app:titleCentered="true"
         app:navigationIcon="@drawable/arrow_back"/>
@@ -66,7 +66,7 @@
         android:id="@+id/pantallaGAeligeFecha"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/blue_dark"
         android:text="@string/eligeFecha"/>
 
 
@@ -77,6 +77,41 @@
             android:layout_marginBottom="5dp"
             android:textAlignment="center"
             android:textStyle="bold"></TextView>
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/pantallaGAhoras"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pantallaGPhoraInicio"
+            android:layout_marginBottom="5dp"
+            android:textStyle="bold"
+            android:textSize="18sp">
+        </TextView>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/pantallaGAeligehorasInicio"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/blue_dark"
+            android:text="@string/eligeHora"/>
+
+        <TextView
+            android:id="@+id/GAhoraElegidaInicio"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            >
+        </TextView>
+
+
+
+
+
 
         <TextView
             android:id="@+id/pantallaGAfechasFin"
@@ -91,7 +126,7 @@
         android:id="@+id/pantallaGAeligeFechaFin"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/blue_dark"
         android:text="@string/eligeFecha"/>
 
         <TextView
@@ -105,32 +140,6 @@
         </TextView>
 
 
-
-
-        <TextView
-            android:id="@+id/pantallaGAhoras"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pantallaGPhoraInicio"
-            android:layout_marginBottom="5dp"
-            android:textStyle="bold"
-            android:textSize="18sp">
-        </TextView>
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/pantallaGAeligehorasInicio"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:backgroundTint="@color/blue"
-        android:text="@string/eligeHora"/>
-
-        <TextView
-            android:id="@+id/GAhoraElegidaInicio"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            >
-        </TextView>
         <TextView
             android:id="@+id/pantallaGAhorasFinal"
             android:layout_width="wrap_content"
@@ -144,7 +153,7 @@
         android:id="@+id/pantallaGAeligehorasFinal"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/blue_dark"
         android:text="@string/eligeHora"/>
 
         <TextView
@@ -159,13 +168,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/PAbotonAceptar"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="65dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/blue_dark"
-        android:text="@string/aceptar"/>
+        android:text="@string/enviar"/>
 
 
     </LinearLayout>

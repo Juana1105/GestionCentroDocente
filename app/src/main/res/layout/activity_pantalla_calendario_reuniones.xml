@@ -10,33 +10,24 @@
     android:orientation="vertical"
     tools:context=".PantallaCalendarioReuniones">
 
-    <TextView
-        android:id="@+id/textViewCalendario"
-        android:layout_width="400dp"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/encabezadoReuniones"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/calendario"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:layout_marginBottom="40dp">
 
-    </TextView>
+        android:background="@color/blue_dark"
+        app:title="@string/reuniones"
+        app:titleCentered="true"
+        app:navigationIcon="@drawable/arrow_back"/>
 
-    <CalendarView
-        android:id="@+id/calendarioPantallaReuniones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp">
 
-    </CalendarView>
 
-    <Button
-        android:id="@+id/botonAceptarPantallaCalendario"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue"
-        android:text="@string/volver">
+    <ListView
+        android:id="@+id/listadoReuniones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    </Button>
+    </ListView>
 
 </LinearLayout>

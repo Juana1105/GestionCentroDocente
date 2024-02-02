@@ -17,7 +17,7 @@
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/blue"
+            android:background="@color/blue_dark"
             app:title="@string/enviarAvisos"
             app:titleCentered="true"
             app:navigationIcon="@drawable/arrow_back"/>
@@ -81,7 +81,7 @@
              android:layout_width="300dp"
              android:layout_height="60dp"
              android:layout_marginTop="80dp"
-             android:backgroundTint="@color/blue"
+             android:backgroundTint="@color/blue_dark"
              android:text="@string/enviarAvisos"/>
 
 

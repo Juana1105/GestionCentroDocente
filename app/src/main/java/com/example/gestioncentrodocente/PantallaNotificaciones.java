@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
+import com.example.gestioncentrodocente.entidades.Notificacion;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
@@ -30,10 +31,10 @@ public class PantallaNotificaciones extends AppCompatActivity {
 
         ListView vistaLista=(ListView) findViewById(R.id.listadoNotificaciones);
 
-        Adaptador miAdaptador =new Adaptador(this,listaNotificaciones);
+        AdaptadorNotificacion miAdaptadorNotificacion =new AdaptadorNotificacion(this,listaNotificaciones);
 
         //Ahora juntamos los elementos declarados
-        vistaLista.setAdapter(miAdaptador);
+        vistaLista.setAdapter(miAdaptadorNotificacion);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

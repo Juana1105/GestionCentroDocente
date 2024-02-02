@@ -8,13 +8,22 @@
     android:orientation="vertical"
     tools:context=".PantallaGestionarTareasAdmin">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/encabezadoGestionTareasD"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue_dark"
+        app:title="@string/gestionarTareasAdmin"
+        app:titleCentered="true"
+        app:navigationIcon="@drawable/arrow_back"/>
+
     <LinearLayout
         android:id="@+id/lineaLayoutPantallaGestionTareas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
-        android:background="@color/blue_light">
+        android:gravity="center">
 
 
 
@@ -22,7 +31,7 @@
             android:id="@+id/pantallaGTtipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tipoTarea"
+            android:text="@string/nombreTarea"
             android:layout_marginBottom="10dp"
             android:textStyle="bold"
             android:layout_marginTop="20dp"
@@ -36,8 +45,7 @@
             android:background="@color/white"
             android:textAlignment="center"
             android:padding="5dp"
-            android:layout_marginBottom="10dp">
-
+            android:layout_marginBottom="30dp">
         </Spinner>
 
         <TextView
@@ -45,57 +53,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pantallaGPestadoSolicitud"
-            android:layout_marginBottom="10dp"
             android:textStyle="bold"
             android:textSize="18sp"
             tools:ignore="DuplicateIds">
         </TextView>
-        <EditText
-            android:id="@+id/pantallaGTdefinirEstado"
+
+        <Spinner
+            android:id="@+id/spinnerEstadoTarea"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Finalizado/Necesito prórroga"
-            android:imeOptions="actionSearch"
             android:background="@color/white"
-            android:padding="10dp"
-            android:layout_marginBottom="20dp"
-            >
-        </EditText>
+            android:textAlignment="center"
+            android:padding="5dp"
+            android:layout_marginBottom="30dp">
+        </Spinner>
 
-
-        <TextView
-            android:id="@+id/pantallaGTdiasProrroga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/diasProrroga"
-
-            android:layout_marginBottom="10dp"
-            android:textStyle="bold"
-            android:textSize="18sp">
-        </TextView>
-        <EditText
-            android:id="@+id/pantallaGTeditDiasProrroga"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Solamente si los necesitas"
-            android:imeOptions="actionSearch"
-            android:background="@color/white"
-            android:padding="10dp"
-            android:layout_marginBottom="20dp"
-            >
-        </EditText>
-
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/pantallaGestTAceptar"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:text="@string/enviar"
-            >
-        </Button>
-
+            android:layout_width="350dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="80dp"
+            android:backgroundTint="@color/blue_dark"
+            android:text="@string/enviar"/>
 
     </LinearLayout>
 

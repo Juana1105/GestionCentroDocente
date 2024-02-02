@@ -1,4 +1,4 @@
-package com.example.gestioncentrodocente;
+package com.example.gestioncentrodocente.entidades;
 
 import java.io.Serializable;
 

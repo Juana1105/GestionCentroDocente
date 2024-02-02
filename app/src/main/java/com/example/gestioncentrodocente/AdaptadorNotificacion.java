@@ -11,15 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.gestioncentrodocente.entidades.Notificacion;
+
 import java.util.ArrayList;
 
-public class Adaptador extends ArrayAdapter<Notificacion> {
+public class AdaptadorNotificacion extends ArrayAdapter<Notificacion> {
 
     private ArrayList<Notificacion> lista;
 
-    public Adaptador(Context contexto, ArrayList<Notificacion> lista) {
+    public AdaptadorNotificacion(Context contexto, ArrayList<Notificacion> lista) {
 
-        super(contexto, R.layout.elemento_lista, lista);
+        super(contexto, R.layout.elemento_lista_notificacion, lista);
         this.lista=lista;
     }
 
@@ -29,7 +31,7 @@ public class Adaptador extends ArrayAdapter<Notificacion> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater mostrado= LayoutInflater.from(getContext());
-        View elemento= mostrado.inflate(R.layout.elemento_lista, parent, false);
+        View elemento= mostrado.inflate(R.layout.elemento_lista_notificacion, parent, false);
 
 
         ImageView imagen =(ImageView) elemento.findViewById(R.id.imagenNotificacionLista);

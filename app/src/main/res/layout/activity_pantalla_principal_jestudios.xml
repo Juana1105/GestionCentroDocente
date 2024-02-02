@@ -87,11 +87,11 @@
             android:text="@string/enviarMensajes"
             android:layout_marginTop="15dp"/>
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/calendarioReuniones"
+            android:id="@+id/fijarReunionesJE"
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/blue_dark"
-            android:text="@string/mirarCalendario"
+            android:text="@string/fijarReuniones"
             android:layout_marginTop="15dp"/>
 
         <com.google.android.material.button.MaterialButton

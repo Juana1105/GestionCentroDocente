@@ -26,7 +26,7 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
         // Ocultar el ActionBar predeterminado
         //getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().hide();
-
+        setContentView(R.layout.activity_pantalla_principal);
 
 
         //CAMBIAR ACTIVITY
@@ -36,7 +36,7 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
         }
         if (rol.equals("docente")) {
 
-            setContentView(R.layout.activity_pantalla_principal);
+
 
             ImageView imgNotificaciones = (ImageView) findViewById(R.id.imagenNotificaciones);
             TextView textGestionarPermisos = (TextView) findViewById(R.id.gestionPermisos);
@@ -112,9 +112,9 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
             TextView textCalendarioReuniones = (TextView) findViewById(R.id.calendarioReuniones);
             TextView textEnviarAvisos = (TextView) findViewById(R.id.gestionAvisosCoordinador);
 
-/*CAMBIOS AQUI*/
-           // Button botonCerrarSesion=(Button)findViewById(R.id.botonCerrarSesion);
-          //  Button botonEditarPerfil = (Button) findViewById(R.id.ppBotonEditarPerfil);
+            /*CAMBIOS AQUI*/
+            // Button botonCerrarSesion=(Button)findViewById(R.id.botonCerrarSesion);
+            //  Button botonEditarPerfil = (Button) findViewById(R.id.ppBotonEditarPerfil);
             Button botonHorario = (Button) findViewById(R.id.ppBotonMirarHorario);
 
 
@@ -186,7 +186,7 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
 
             ImageView imgNotificaciones = (ImageView) findViewById(R.id.imagenNotificaciones);
             TextView enviarMensajes = (TextView) findViewById(R.id.enviarMensajes);
-            TextView textCalendarioReuniones = (TextView) findViewById(R.id.calendarioReuniones);
+            TextView fijarReuniones = (TextView) findViewById(R.id.fijarReunionesJE);
             TextView textGestionGuardias=(TextView)findViewById(R.id.gestionInformeGuardias);
             TextView textAdjudicarTareasAdmin=(TextView)findViewById(R.id.adjudicarTareasAdmin);
             //Button botonCerrarSesion=(Button)findViewById(R.id.botonCerrarSesion);
@@ -236,11 +236,11 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
                 }
             });
 
-            textCalendarioReuniones.setOnClickListener(new View.OnClickListener() {
+            fijarReuniones.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent actividadPantallaCalendarioReuniones = new Intent(PantallaPrincipal.this, PantallaCalendarioReuniones.class);
-                    startActivity(actividadPantallaCalendarioReuniones);
+                    Intent actividadPantallaFijarReuniones = new Intent(PantallaPrincipal.this, PantallaFijarReunion.class);
+                    startActivity(actividadPantallaFijarReuniones);
                 }
             });
 
@@ -275,7 +275,7 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
             una vez seleccionada la opcion de cerrar sesion, se desvincule y pueda
             dar paso a un nuevo usuario registrado para luego mostrar sus datos en
             el perfil de usuario */
-           // FirebaseAuth.getInstance().signOut();
+            // FirebaseAuth.getInstance().signOut();
             Intent actividadLogin = new Intent(PantallaPrincipal.this, MenuInicio.class);
             startActivity(actividadLogin);
             finish(); //para asegurarse de que el usuario no pueda volver atras

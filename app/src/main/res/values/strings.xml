@@ -89,4 +89,12 @@
     <string name="pantallaGTJEreceptores">RECEPTORES</string>
     <string name="descripcionTarea">Descripción de la tarea</string>
     <string name="appRealizada">Aplicación desarrollada por Juana Sierra</string>
+    <string name="gestionGuardias">Gestión de Guardias</string>
+    <string name="fijarReuniones">FIJAR REUNIONES</string>
+    <string name="reuniones">REUNIONES</string>
+    <string name="fechaReunion">Fecha Reunion</string>
+    <string name="descripcionReunion">Descripción Reunión</string>
+    <string name="pantallaJEReunion">Receptores Reunión</string>
+    <string name="receptorGuardia">Receptor Guardia</string>
+    <string name="nombreTarea">Nombre Tarea</string>
 </resources>

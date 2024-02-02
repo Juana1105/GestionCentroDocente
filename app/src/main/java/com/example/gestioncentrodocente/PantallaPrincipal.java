@@ -26,7 +26,10 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
         // Ocultar el ActionBar predeterminado
         //getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);// QUE VUELVA AL HOME SIN NECEDIDAD DE IMPLEMENTAR EL TOOLBAR
+        getSupportActionBar().setTitle("PANTALLA PRINCIPAL");
         setContentView(R.layout.activity_pantalla_principal);
+
 
 
         //CAMBIAR ACTIVITY

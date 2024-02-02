@@ -15,52 +15,68 @@
         tools:targetApi="31">
         <activity
             android:name=".PantallaFijarReunion"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".Perfil"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".AcercaDe"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".PantallaEnviarMensajeJE"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".PantallaGestionarTareasAdminJE"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".PantallaGestionGuardias"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".PantallaEnviarAvisos"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".PantallaCalendarioReuniones"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".PantallaGestionarAusencias"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".PantallaGestionarTareasAdmin"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".PantallaHorario"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".PantallaEditarPerfil"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".PantallaGestionarPermisos"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".PantallaNotificaciones"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".PantallaRegistro"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".PantallaPrincipal"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AcercaDe"/>
         <activity
             android:name=".MenuInicio"
             android:exported="true">

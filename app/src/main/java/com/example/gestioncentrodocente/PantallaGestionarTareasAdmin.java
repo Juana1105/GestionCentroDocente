@@ -50,7 +50,7 @@ public class PantallaGestionarTareasAdmin extends AppCompatActivity {
             }
         });
 
-        String[] estado = {"Firma de actas","Circular informartiva a padres y estudiantes"};
+        String[] estado = {"Pendiente","En Proceso","Teminada"};
         spinnerEstadoTarea.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,estado));
         spinnerEstadoTarea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

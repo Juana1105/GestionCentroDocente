@@ -8,8 +8,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".PantallaCalendarioReuniones">
-
+    tools:context=".pantallas.PantallaCalendarioReuniones">
+<!--
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/encabezadoReuniones"
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
@@ -20,7 +20,7 @@
         app:title="@string/reuniones"
         app:titleCentered="true"
         app:navigationIcon="@drawable/arrow_back"/>
-
+-->
 
 
     <ListView

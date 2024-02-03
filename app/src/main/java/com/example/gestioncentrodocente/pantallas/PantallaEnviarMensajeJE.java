@@ -1,26 +1,19 @@
-package com.example.gestioncentrodocente;
+package com.example.gestioncentrodocente.pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.gestioncentrodocente.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,9 +25,11 @@ public class PantallaEnviarMensajeJE extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_enviar_mensaje_je);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("ENVIAR MENSAJE");
 
-        MaterialToolbar toolbar=findViewById(R.id.encabezadoEnviarMensajeJE);
+       // MaterialToolbar toolbar=findViewById(R.id.encabezadoEnviarMensajeJE);
         MaterialButton botonEnviar=findViewById(R.id.botonPantallaEMenviar);
         MaterialButton botonElige=findViewById(R.id.pantallaEMreceptores);
         TextView ponSeleccion = findViewById(R.id.pantallaEMlistaPersonas);
@@ -113,14 +108,14 @@ public class PantallaEnviarMensajeJE extends AppCompatActivity {
 
             }
         });
-
+/*
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent pantallaP=new Intent(PantallaEnviarMensajeJE.this,PantallaPrincipal.class);
                 startActivity(pantallaP);
             }
-        });
+        });*/
 
 
 

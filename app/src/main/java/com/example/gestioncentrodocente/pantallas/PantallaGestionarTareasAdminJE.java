@@ -1,4 +1,4 @@
-package com.example.gestioncentrodocente;
+package com.example.gestioncentrodocente.pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,11 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.gestioncentrodocente.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -34,10 +34,12 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_gestion_tareas_je);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("FIJAR TAREAS ADMINISTRATIVAS");
 
         MaterialButton botonAdjudicar=findViewById(R.id.botonPantallaGestTadjudicar);
-        MaterialToolbar toolbar=findViewById(R.id.encabezadoFijarTA);
+       // MaterialToolbar toolbar=findViewById(R.id.encabezadoFijarTA);
 
         MaterialButton botonElige=findViewById(R.id.pantallaGTJEreceptores);
         TextView ponSeleccion=findViewById(R.id.seleccionTareasGT);
@@ -126,14 +128,14 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
         });
 
 
-
+/*
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent pantallaPrincipal=new Intent(PantallaGestionarTareasAdminJE.this,PantallaPrincipal.class);
                 startActivity(pantallaPrincipal);
             }
-        });
+        });*/
 
 
 

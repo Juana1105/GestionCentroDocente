@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AcercaDe">
-
+    tools:context=".pantallas.AcercaDe">
+<!--
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/encabezadoAcercaDe"
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
@@ -18,7 +18,7 @@
         app:titleCentered="true"
         app:navigationIcon="@drawable/arrow_back"/>
 
-
+-->
     <TextView
         android:id="@+id/textoInformativoAD"
         android:layout_width="match_parent"

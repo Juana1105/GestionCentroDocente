@@ -1,4 +1,4 @@
-package com.example.gestioncentrodocente;
+package com.example.gestioncentrodocente.pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import com.example.gestioncentrodocente.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class PantallaGestionarTareasAdmin extends AppCompatActivity {
@@ -20,9 +20,11 @@ public class PantallaGestionarTareasAdmin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_gestionar_tareas_admin);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("GESTIÓN TAREAS ADMINISTRATIVAS");
 
-        MaterialToolbar toolbar= findViewById(R.id.encabezadoGestionTareasD);
+        //MaterialToolbar toolbar= findViewById(R.id.encabezadoGestionTareasD);
 
         Spinner spinnerEstadoTarea=findViewById(R.id.spinnerEstadoTarea);
         Spinner spinnerNombreTarea=(Spinner) findViewById(R.id.spinnerTipoTarea);
@@ -64,13 +66,13 @@ public class PantallaGestionarTareasAdmin extends AppCompatActivity {
         });
 
 
-
+/*
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent pantallaPrincipal=new Intent(PantallaGestionarTareasAdmin.this,PantallaPrincipal.class);
                 startActivity(pantallaPrincipal);
             }
-        });
+        });*/
     }
 }

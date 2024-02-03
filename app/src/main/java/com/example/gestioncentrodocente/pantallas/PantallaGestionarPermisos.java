@@ -1,4 +1,4 @@
-package com.example.gestioncentrodocente;
+package com.example.gestioncentrodocente.pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,9 +9,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 
+import com.example.gestioncentrodocente.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -29,7 +29,9 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_gestionar_permisos);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("GESTIÓN PERMISOS");
 
 
         MaterialButton botonAceptar=findViewById(R.id.pantallaGestPAceptar);
@@ -68,7 +70,7 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
 
             }
         });
-
+/*
 
         MaterialToolbar toolbar=findViewById(R.id.encabezadoGestiPermisos);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -77,7 +79,7 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
                 Intent pantallaPrincipal=new Intent(PantallaGestionarPermisos.this, PantallaPrincipal.class);
                 startActivity(pantallaPrincipal);
             }
-        });
+        });*/
 
 
 

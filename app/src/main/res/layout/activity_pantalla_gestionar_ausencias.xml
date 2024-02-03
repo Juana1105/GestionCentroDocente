@@ -7,173 +7,173 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PantallaGestionarAusencias">
+    tools:context=".pantallas.PantallaGestionarAusencias">
 
 
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/encabezadoGestionarAusencia"
-        style="@style/Widget.MaterialComponents.Toolbar.Primary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blue_dark"
-        app:title="@string/gestionarAusencias"
-        app:titleCentered="true"
-        app:navigationIcon="@drawable/arrow_back"/>
-
-
-    <LinearLayout
-        android:id="@+id/lineaLayoutPantallaGestionAusencias"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-
-
-        <TextView
-            android:id="@+id/pantallaGAasunto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/GPasunto"
-            android:layout_marginBottom="5dp"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:textSize="18sp">
-        </TextView>
-        <Spinner
-            android:id="@+id/spinnerPantallaGA"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:background="#EFF8FF"
-            android:textAlignment="center"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp">
-
-        </Spinner>
-
-
-        <TextView
-            android:id="@+id/pantallaGAfechas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pantallaGPfechaInicio"
-            android:layout_marginBottom="5dp"
-            android:textStyle="bold"
-            android:textSize="18sp">
-        </TextView>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/pantallaGAeligeFecha"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:backgroundTint="@color/blue_dark"
-        android:text="@string/eligeFecha"/>
-
-
-        <TextView
-            android:id="@+id/GAfechaElegida"
+    <!--
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/encabezadoGestionarAusencia"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:textAlignment="center"
-            android:textStyle="bold"></TextView>
-
-
-
-
-
-
-        <TextView
-            android:id="@+id/pantallaGAhoras"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pantallaGPhoraInicio"
-            android:layout_marginBottom="5dp"
-            android:textStyle="bold"
-            android:textSize="18sp">
-        </TextView>
+            android:background="@color/blue_dark"
+            app:title="@string/gestionarAusencias"
+            app:titleCentered="true"
+            app:navigationIcon="@drawable/arrow_back"/>
+    -->
+
+        <LinearLayout
+            android:id="@+id/lineaLayoutPantallaGestionAusencias"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/pantallaGAasunto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/GPasunto"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp">
+            </TextView>
+            <Spinner
+                android:id="@+id/spinnerPantallaGA"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="#EFF8FF"
+                android:textAlignment="center"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp">
+
+            </Spinner>
+
+
+            <TextView
+                android:id="@+id/pantallaGAfechas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pantallaGPfechaInicio"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:textSize="18sp">
+            </TextView>
+
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/pantallaGAeligehorasInicio"
+            android:id="@+id/pantallaGAeligeFecha"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/blue_dark"
+            android:text="@string/eligeFecha"/>
+
+
+            <TextView
+                android:id="@+id/GAfechaElegida"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginBottom="5dp"
+                android:textAlignment="center"
+                android:textStyle="bold"></TextView>
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/pantallaGAhoras"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pantallaGPhoraInicio"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:textSize="18sp">
+            </TextView>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/pantallaGAeligehorasInicio"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/blue_dark"
+                android:text="@string/eligeHora"/>
+
+            <TextView
+                android:id="@+id/GAhoraElegidaInicio"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                >
+            </TextView>
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/pantallaGAfechasFin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pantallaGPfechaFin"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="18sp">
+            </TextView>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/pantallaGAeligeFechaFin"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/blue_dark"
+            android:text="@string/eligeFecha"/>
+
+            <TextView
+                android:id="@+id/GAfechaElegidaFinal"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+
+                >
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/pantallaGAhorasFinal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pantallaGPhoraFin"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:textSize="18sp">
+            </TextView>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/pantallaGAeligehorasFinal"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:backgroundTint="@color/blue_dark"
             android:text="@string/eligeHora"/>
 
-        <TextView
-            android:id="@+id/GAhoraElegidaInicio"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            >
-        </TextView>
+            <TextView
+                android:id="@+id/GAhoraElegidaFinal"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"
+                >
+            </TextView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/PAbotonAceptar"
+            android:layout_width="350dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/blue_dark"
+            android:text="@string/enviar"/>
 
 
-
-
-
-
-        <TextView
-            android:id="@+id/pantallaGAfechasFin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pantallaGPfechaFin"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="18sp">
-        </TextView>
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/pantallaGAeligeFechaFin"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:backgroundTint="@color/blue_dark"
-        android:text="@string/eligeFecha"/>
-
-        <TextView
-            android:id="@+id/GAfechaElegidaFinal"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textAlignment="center"
-            android:textStyle="bold"
-
-            >
-        </TextView>
-
-
-        <TextView
-            android:id="@+id/pantallaGAhorasFinal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pantallaGPhoraFin"
-            android:layout_marginBottom="5dp"
-            android:textStyle="bold"
-            android:textSize="18sp">
-        </TextView>
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/pantallaGAeligehorasFinal"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:backgroundTint="@color/blue_dark"
-        android:text="@string/eligeHora"/>
-
-        <TextView
-            android:id="@+id/GAhoraElegidaFinal"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:layout_marginBottom="5dp"
-            >
-        </TextView>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/PAbotonAceptar"
-        android:layout_width="350dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/blue_dark"
-        android:text="@string/enviar"/>
-
-
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>

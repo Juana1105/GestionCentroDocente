@@ -14,71 +14,71 @@
         android:theme="@style/Theme.GestionCentroDocente"
         tools:targetApi="31">
         <activity
-            android:name=".PantallaFijarReunion"
+            android:name=".pantallas.PantallaFijarReunion"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".Perfil"
+            android:name=".pantallas.Perfil"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".AcercaDe"
+            android:name=".pantallas.AcercaDe"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".PantallaEnviarMensajeJE"
+            android:name=".pantallas.PantallaEnviarMensajeJE"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".PantallaGestionarTareasAdminJE"
+            android:name=".pantallas.PantallaGestionarTareasAdminJE"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".PantallaGestionGuardias"
+            android:name=".pantallas.PantallaGestionGuardias"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".PantallaEnviarAvisos"
+            android:name=".pantallas.PantallaEnviarAvisos"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".PantallaCalendarioReuniones"
+            android:name=".pantallas.PantallaCalendarioReuniones"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".PantallaGestionarAusencias"
+            android:name=".pantallas.PantallaGestionarAusencias"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".PantallaGestionarTareasAdmin"
+            android:name=".pantallas.PantallaGestionarTareasAdmin"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".PantallaHorario"
+            android:name=".pantallas.PantallaHorario"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".PantallaEditarPerfil"
+            android:name=".pantallas.PantallaEditarPerfil"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".PantallaGestionarPermisos"
+            android:name=".pantallas.PantallaGestionarPermisos"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".PantallaNotificaciones"
+            android:name=".pantallas.PantallaNotificaciones"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".PantallaRegistro"
+            android:name=".pantallas.PantallaRegistro"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".PantallaPrincipal"
+            android:name=".pantallas.PantallaPrincipal"
             android:exported="false"
-            android:parentActivityName=".AcercaDe"/>
+            android:parentActivityName=".pantallas.AcercaDe"/>
         <activity
-            android:name=".MenuInicio"
+            android:name=".pantallas.MenuInicio"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

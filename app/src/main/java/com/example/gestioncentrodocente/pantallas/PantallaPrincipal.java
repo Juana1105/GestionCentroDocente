@@ -1,4 +1,4 @@
-package com.example.gestioncentrodocente;
+package com.example.gestioncentrodocente.pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.gestioncentrodocente.R;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.snackbar.Snackbar;
 
 public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnMenuItemClickListener{
@@ -22,13 +24,13 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_pantalla_principal);
-
-        // Ocultar el ActionBar predeterminado
-        //getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().hide();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);// QUE VUELVA AL HOME SIN NECEDIDAD DE IMPLEMENTAR EL TOOLBAR
-        getSupportActionBar().setTitle("PANTALLA PRINCIPAL");
         setContentView(R.layout.activity_pantalla_principal);
+        // Ocultar el ActionBar predeterminado
+        getSupportActionBar().hide();
+
+        // Configurar la Toolbar como ActionBar
+        MaterialToolbar toolbar = findViewById(R.id.encabezadoMenuPrincipal);
+        toolbar.setOnMenuItemClickListener(this);
 
 
 

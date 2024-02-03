@@ -6,76 +6,76 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PantallaGestionarTareasAdmin">
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/encabezadoGestionTareasD"
-        style="@style/Widget.MaterialComponents.Toolbar.Primary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blue_dark"
-        app:title="@string/gestionarTareasAdmin"
-        app:titleCentered="true"
-        app:navigationIcon="@drawable/arrow_back"/>
-
-    <LinearLayout
-        android:id="@+id/lineaLayoutPantallaGestionTareas"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
-
-
-
-        <TextView
-            android:id="@+id/pantallaGTtipo"
-            android:layout_width="wrap_content"
+    tools:context=".pantallas.PantallaGestionarTareasAdmin">
+    <!--
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/encabezadoGestionTareasD"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/nombreTarea"
-            android:layout_marginBottom="10dp"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:textSize="18sp">
-        </TextView>
+            android:background="@color/blue_dark"
+            app:title="@string/gestionarTareasAdmin"
+            app:titleCentered="true"
+            app:navigationIcon="@drawable/arrow_back"/>
+    -->
+        <LinearLayout
+            android:id="@+id/lineaLayoutPantallaGestionTareas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <Spinner
-            android:id="@+id/spinnerTipoTarea"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:textAlignment="center"
-            android:padding="5dp"
-            android:layout_marginBottom="30dp">
-        </Spinner>
 
-        <TextView
-            android:id="@+id/pantGTestadoSolicitud"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pantallaGPestadoSolicitud"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            tools:ignore="DuplicateIds">
-        </TextView>
 
-        <Spinner
-            android:id="@+id/spinnerEstadoTarea"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:textAlignment="center"
-            android:padding="5dp"
-            android:layout_marginBottom="30dp">
-        </Spinner>
+            <TextView
+                android:id="@+id/pantallaGTtipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nombreTarea"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp">
+            </TextView>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/pantallaGestTAceptar"
-            android:layout_width="350dp"
-            android:layout_height="65dp"
-            android:layout_marginTop="80dp"
-            android:backgroundTint="@color/blue_dark"
-            android:text="@string/enviar"/>
+            <Spinner
+                android:id="@+id/spinnerTipoTarea"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:textAlignment="center"
+                android:padding="5dp"
+                android:layout_marginBottom="30dp">
+            </Spinner>
+
+            <TextView
+                android:id="@+id/pantGTestadoSolicitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pantallaGPestadoSolicitud"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                tools:ignore="DuplicateIds">
+            </TextView>
+
+            <Spinner
+                android:id="@+id/spinnerEstadoTarea"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:textAlignment="center"
+                android:padding="5dp"
+                android:layout_marginBottom="30dp">
+            </Spinner>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/pantallaGestTAceptar"
+                android:layout_width="350dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="80dp"
+                android:backgroundTint="@color/blue_dark"
+                android:text="@string/enviar"/>
+
+        </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>

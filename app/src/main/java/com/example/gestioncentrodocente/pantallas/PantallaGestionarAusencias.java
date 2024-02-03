@@ -1,4 +1,4 @@
-package com.example.gestioncentrodocente;
+package com.example.gestioncentrodocente.pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,14 +11,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toolbar;
 
+import com.example.gestioncentrodocente.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -31,7 +30,9 @@ public class PantallaGestionarAusencias extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_gestionar_ausencias);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("GESTIÓN AUSENCIAS");
 
         LinearLayout linearPadre=(LinearLayout)findViewById(R.id.lineaLayoutPantallaGestionAusencias);
 
@@ -45,7 +46,7 @@ public class PantallaGestionarAusencias extends AppCompatActivity {
         TextView horaInicioElegida=(TextView)findViewById(R.id.GAhoraElegidaInicio);
         TextView horaFinalElegida=(TextView)findViewById(R.id.GAhoraElegidaFinal);
         Spinner spinnerSimple=(Spinner)findViewById(R.id.spinnerPantallaGA);
-        MaterialToolbar toolbar=findViewById(R.id.encabezadoGestionarAusencia);
+        //MaterialToolbar toolbar=findViewById(R.id.encabezadoGestionarAusencia);
 
 
 
@@ -193,13 +194,13 @@ public class PantallaGestionarAusencias extends AppCompatActivity {
                 cuadroDialogo.show();
             }
         });
-
+/*
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent pantallaPrin=new Intent(PantallaGestionarAusencias.this,PantallaPrincipal.class);
                 startActivity(pantallaPrin);
             }
-        });
+        });*/
     }
 }

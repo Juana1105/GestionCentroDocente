@@ -1,4 +1,4 @@
-package com.example.gestioncentrodocente;
+package com.example.gestioncentrodocente.pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.gestioncentrodocente.R;
 import com.example.gestioncentrodocente.entidades.Usuario;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
@@ -33,11 +34,12 @@ public class PantallaRegistro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_registro);
-        getSupportActionBar().hide();
-
+        //getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("\tREGISTRO");
 
         MaterialButton botonRegistroCompletado=findViewById(R.id.registroBotonRegistrarse);
-        MaterialToolbar toolbar=findViewById(R.id.encabezadoRegistro);
+        //MaterialToolbar toolbar=findViewById(R.id.encabezadoRegistro);
 
 
         Spinner spinnerSimple = (Spinner)findViewById(R.id.pr_rol);
@@ -144,13 +146,13 @@ public class PantallaRegistro extends AppCompatActivity {
 
             }
         });
-
+/*
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent pantallaInicio=new Intent(PantallaRegistro.this, MenuInicio.class);
                 startActivity(pantallaInicio);
             }
-        });
+        });*/
     }
 }

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PantallaPrincipal">
+    tools:context=".pantallas.PantallaPrincipal">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/encabezadoMenuPrincipal"
@@ -23,7 +23,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
         android:gravity="start|center">
         <TextView
             android:id="@+id/notificaciones"
@@ -108,7 +107,7 @@
             android:backgroundTint="@color/blue_dark"
             android:text="@string/enviarAvisos"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="20dp"
             />
 
 

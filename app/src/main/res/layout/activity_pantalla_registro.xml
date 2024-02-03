@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PantallaRegistro"
+    tools:context=".pantallas.PantallaRegistro"
     >
 
     <ScrollView
@@ -22,183 +22,183 @@
             android:gravity="center"
             android:orientation="vertical">
 
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/encabezadoRegistro"
-                style="@style/Widget.MaterialComponents.Toolbar.Primary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                android:background="@color/blue_dark"
-                app:title="@string/registroPR"
-                app:titleCentered="true"
-                app:navigationIcon="@drawable/arrow_back"/>
-
-
+            <!--
+                        <com.google.android.material.appbar.MaterialToolbar
+                            android:id="@+id/encabezadoRegistro"
+                            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="50dp"
+                            android:background="@color/blue_dark"
+                            app:title="@string/registroPR"
+                            app:titleCentered="true"
+                            app:navigationIcon="@drawable/arrow_back"/>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pantallaRegistroTextNombre"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:hint="@string/nombreUsuario"
-                app:startIconDrawable="@drawable/user"
-                app:endIconMode="clear_text">
+            -->
 
-                <EditText
-                    android:id="@+id/pr_nombre"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/pantallaRegistroTextNombre"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:hint="@string/nombreUsuario"
+                            app:startIconDrawable="@drawable/user"
+                            app:endIconMode="clear_text">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                            <EditText
+                                android:id="@+id/pr_nombre"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pantallaRegistroTextApellidos"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:hint="@string/apellidosUsuario"
-                app:startIconDrawable="@drawable/user"
-                app:endIconMode="clear_text">
-
-                <EditText
-                    android:id="@+id/pr_apellidos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/pantallaRegistroTextApellidos"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:hint="@string/apellidosUsuario"
+                            app:startIconDrawable="@drawable/user"
+                            app:endIconMode="clear_text">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pantallaRegistroEmail"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:hint="@string/introduceEmail"
-                app:startIconDrawable="@drawable/mail"
-                app:endIconMode="clear_text">
+                            <EditText
+                                android:id="@+id/pr_apellidos"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
 
-                <EditText
-                    android:id="@+id/pr_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pantallaRegistroPassword"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:hint="@string/introducePassword"
-                app:startIconDrawable="@drawable/lock"
-                app:endIconMode="password_toggle">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/pantallaRegistroEmail"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:hint="@string/introduceEmail"
+                            app:startIconDrawable="@drawable/mail"
+                            app:endIconMode="clear_text">
 
-                <EditText
-                    android:id="@+id/pr_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
+                            <EditText
+                                android:id="@+id/pr_email"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pantallaRegistroCategoria"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:hint="@string/categoriaDocente"
-                app:endIconMode="@drawable/arrow_drop_down">
-
-                <Spinner
-                    android:id="@+id/pr_rol"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:spinnerMode="dropdown"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pantallaRegistroTitulacion"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:hint="@string/introduceTitulacion"
-                app:startIconDrawable="@drawable/titulacion"
-                app:endIconMode="clear_text">
-
-                <EditText
-                    android:id="@+id/pr_titulacion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pantallaRegistroTelefono"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:hint="@string/introduceTelefono"
-                app:startIconDrawable="@drawable/call"
-                app:endIconMode="clear_text">
-
-                <EditText
-                    android:id="@+id/pr_telefono"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/registroBotonRegistrarse"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="40dp"
-                android:backgroundTint="@color/blue_dark"
-                android:text="@string/guardar"/>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/pantallaRegistroPassword"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:hint="@string/introducePassword"
+                            app:startIconDrawable="@drawable/lock"
+                            app:endIconMode="password_toggle">
+
+                            <EditText
+                                android:id="@+id/pr_password"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textPassword"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/pantallaRegistroCategoria"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:hint="@string/categoriaDocente"
+                            app:endIconMode="@drawable/arrow_drop_down">
+
+                            <Spinner
+                                android:id="@+id/pr_rol"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:spinnerMode="dropdown"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/pantallaRegistroTitulacion"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:hint="@string/introduceTitulacion"
+                            app:startIconDrawable="@drawable/titulacion"
+                            app:endIconMode="clear_text">
+
+                            <EditText
+                                android:id="@+id/pr_titulacion"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/pantallaRegistroTelefono"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:hint="@string/introduceTelefono"
+                            app:startIconDrawable="@drawable/call"
+                            app:endIconMode="clear_text">
+
+                            <EditText
+                                android:id="@+id/pr_telefono"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/registroBotonRegistrarse"
+                            android:layout_width="match_parent"
+                            android:layout_height="65dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="40dp"
+                            android:backgroundTint="@color/blue_dark"
+                            android:text="@string/guardar"/>
 
 
 
 
-        </LinearLayout>
 
-    </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>

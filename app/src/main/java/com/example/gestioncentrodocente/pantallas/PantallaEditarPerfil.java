@@ -1,4 +1,4 @@
-package com.example.gestioncentrodocente;
+package com.example.gestioncentrodocente.pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,10 +9,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.gestioncentrodocente.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -23,7 +22,9 @@ public class PantallaEditarPerfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_editar_perfil);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("EDITAR PERFIL");
 
 
       /*  Bundle b=getIntent().getExtras();
@@ -34,7 +35,7 @@ public class PantallaEditarPerfil extends AppCompatActivity {
         campoNombre.setText(nombre);
         campoApellidos.setText(apellidos);*/
 
-
+/*
         MaterialToolbar toolbar=findViewById(R.id.encabezadoEditarPerfil);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +44,7 @@ public class PantallaEditarPerfil extends AppCompatActivity {
                 startActivity(pantallaInicio);
             }
         });
-
+*/
 
         MaterialButton botonGuardarCambios=findViewById(R.id.EPBotonRegistrarse);
         Spinner spinnerSimple = (Spinner)findViewById(R.id.pep_rol);

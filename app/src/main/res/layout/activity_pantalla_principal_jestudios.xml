@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PantallaPrincipal">
+    tools:context=".pantallas.PantallaPrincipal">
 
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -99,7 +99,7 @@
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/blue_dark"
-            android:text="@string/informeGuardias"
+            android:text="@string/gestionGuardias"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="20dp"
             />

@@ -1,4 +1,4 @@
-package com.example.gestioncentrodocente;
+package com.example.gestioncentrodocente.pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
+import com.example.gestioncentrodocente.R;
+import com.example.gestioncentrodocente.adaptadores.AdaptadorNotificacion;
 import com.example.gestioncentrodocente.entidades.Notificacion;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -18,9 +20,10 @@ public class PantallaNotificaciones extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_notificaciones);
-        getSupportActionBar().hide();
-
-        MaterialToolbar toolbar=findViewById(R.id.encabezadoNotificaciones);
+        //getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("\tNOTIFICACIONES");
+        //MaterialToolbar toolbar=findViewById(R.id.encabezadoNotificaciones);
 
         ArrayList<Notificacion> listaNotificaciones=new ArrayList<>();
         listaNotificaciones.add(new Notificacion("Lucia","Tarea","Nueva tarea para entregar", R.drawable.gestionar_tareas));
@@ -35,13 +38,13 @@ public class PantallaNotificaciones extends AppCompatActivity {
 
         //Ahora juntamos los elementos declarados
         vistaLista.setAdapter(miAdaptadorNotificacion);
-
+/*
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent pantallaPrin=new Intent(PantallaNotificaciones.this, PantallaPrincipal.class);
                 startActivity(pantallaPrin);
             }
-        });
+        });*/
     }
 }

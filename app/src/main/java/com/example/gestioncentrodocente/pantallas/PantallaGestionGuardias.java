@@ -1,4 +1,4 @@
-package com.example.gestioncentrodocente;
+package com.example.gestioncentrodocente.pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.gestioncentrodocente.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -29,11 +30,13 @@ public class PantallaGestionGuardias extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_gestion_guardias);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("GESTIÓN GUARDIAS");
 
         LinearLayout linearPadre=(LinearLayout)findViewById(R.id.lineaLayoutPantallaGestionGuardias);
         MaterialButton botonElige=findViewById(R.id.pantallaGGreceptorGuardia);
-        MaterialToolbar toolbar=findViewById(R.id.encabezadoGuardias);
+        //MaterialToolbar toolbar=findViewById(R.id.encabezadoGuardias);
 
         botonElige.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,14 +116,14 @@ public class PantallaGestionGuardias extends AppCompatActivity {
                 startActivity(pantallaP);
             }
         });
-
+/*
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent pantallaPrincipal=new Intent(PantallaGestionGuardias.this, PantallaPrincipal.class);
                 startActivity(pantallaPrincipal);
             }
-        });
+        });*/
 
     }
 }

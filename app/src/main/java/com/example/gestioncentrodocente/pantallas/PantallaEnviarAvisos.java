@@ -1,4 +1,4 @@
-package com.example.gestioncentrodocente;
+package com.example.gestioncentrodocente.pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,9 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.gestioncentrodocente.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -26,12 +26,14 @@ public class PantallaEnviarAvisos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_enviar_avisos);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("\tENVIAR AVISOS");
 
         MaterialButton enviarAviso = findViewById(R.id.botonPantallaEAenviarAvisos);
         MaterialButton botonElige = findViewById(R.id.pantallaEAreceptores);
         TextView ponSeleccion = findViewById(R.id.seleccionAvisoEA);
-        MaterialToolbar toolbar=findViewById(R.id.encabezadoEnviarAvisos);
+        //MaterialToolbar toolbar=findViewById(R.id.encabezadoEnviarAvisos);
 
         enviarAviso.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +71,7 @@ public class PantallaEnviarAvisos extends AppCompatActivity {
 
             }
         });
+
 
 
         botonElige.setOnClickListener(new View.OnClickListener() {
@@ -109,13 +112,13 @@ public class PantallaEnviarAvisos extends AppCompatActivity {
                 dialog.show();
             }
         });
-
+/*
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent pantallaPrincipal = new Intent(PantallaEnviarAvisos.this, PantallaPrincipal.class);
                 startActivity(pantallaPrincipal);
             }
-        });
+        });*/
     }
 }

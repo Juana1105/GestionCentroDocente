@@ -1,4 +1,4 @@
-package com.example.gestioncentrodocente;
+package com.example.gestioncentrodocente.pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
+import com.example.gestioncentrodocente.R;
+import com.example.gestioncentrodocente.adaptadores.AdaptadorReunion;
 import com.example.gestioncentrodocente.entidades.Reunion;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -18,9 +20,11 @@ public class PantallaCalendarioReuniones extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_calendario_reuniones);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("REUNIONES");
 
-        MaterialToolbar toolbar=findViewById(R.id.encabezadoReuniones);
+        //MaterialToolbar toolbar=findViewById(R.id.encabezadoReuniones);
 
         ArrayList<Reunion> listaReuniones=new ArrayList<>();
         listaReuniones.add(new Reunion("Lucia","12/02/2024","Reunion extraordinaria"));
@@ -40,13 +44,13 @@ public class PantallaCalendarioReuniones extends AppCompatActivity {
 
 
 
-
+/*
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent pantallaPrin=new Intent(PantallaCalendarioReuniones.this, PantallaPrincipal.class);
                 startActivity(pantallaPrin);
             }
-        });
+        });*/
     }
 }

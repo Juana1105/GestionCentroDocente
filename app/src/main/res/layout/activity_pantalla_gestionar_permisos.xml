@@ -6,29 +6,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PantallaGestionarPermisos">
+    tools:context=".pantallas.PantallaGestionarPermisos">
+
+        <!--
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/encabezadoGestiPermisos"
+                    style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/blue_dark"
+                    app:title="@string/gestionarPermisos"
+                    app:titleCentered="true"
+                    app:navigationIcon="@drawable/arrow_back"/>
+        -->
+                <LinearLayout
+                    android:id="@+id/contenedorGestionarP"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
 
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/encabezadoGestiPermisos"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/blue_dark"
-            app:title="@string/gestionarPermisos"
-            app:titleCentered="true"
-            app:navigationIcon="@drawable/arrow_back"/>
 
-        <LinearLayout
-            android:id="@+id/contenedorGestionarP"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
-
-
-
-        <!--https://www.comunidad.madrid/servicios/educacion/manual-permisos-licencias-docentes-->
+                <!--https://www.comunidad.madrid/servicios/educacion/manual-permisos-licencias-docentes-->
 
             <!--dos spinner seleccionando el tipo de permiso, nombre y apellidos y enviar_ en notificacion meter x ejemplo estado del permiso o asi que le llegue mensaje-->
 <!--

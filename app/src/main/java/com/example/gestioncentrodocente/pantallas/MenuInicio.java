@@ -1,5 +1,6 @@
 package com.example.gestioncentrodocente.pantallas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,8 +12,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gestioncentrodocente.R;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MenuInicio extends AppCompatActivity {
+
+    private EditText textoDni;
+    private EditText textoPassword;
+    private DatabaseReference dbRef;
+    private String dni, password;
 
 
     @Override
@@ -23,38 +36,65 @@ public class MenuInicio extends AppCompatActivity {
         //getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().hide();
 
-        Button botonInicioSesion = (Button)findViewById(R.id.menuInicioBotonInicioSesion);
-        EditText editTextNombre=(EditText)findViewById(R.id.menuInicioEditTextNombre);
-        EditText editTextPassword=(EditText)findViewById(R.id.menuInicioEditTextPassword);
+        MaterialButton botonInicioSesion =findViewById(R.id.menuInicioBotonInicioSesion);
+
+        textoDni=(EditText)findViewById(R.id.menuInicioEditTextDni);
+        textoPassword=(EditText)findViewById(R.id.menuInicioEditTextPassword);
+
         TextView textoRegistro=(TextView)findViewById(R.id.menuInicioTextRegistro);
-        ImageView imagenLogo=(ImageView) findViewById(R.id.imagenLogoCentro);
+        //ImageView imagenLogo=(ImageView) findViewById(R.id.imagenLogoCentro);
         //imagenLogo.setImageResource(@drawable/imagenLogo);
 
+
+        dbRef= FirebaseDatabase.getInstance().getReference().child("Usuarios");
 
 
         botonInicioSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent actividadPantallaPrincipal= new Intent(MenuInicio.this, PantallaPrincipal.class);
-                String nombreUsuario= editTextNombre.getText().toString();
-                String passwordUsuario= editTextPassword.getText().toString();
-                String rol="";
-                if (nombreUsuario.equals("Juana") && passwordUsuario.equals("root")) {
-                    rol = "docente";
-                } else if (nombreUsuario.equals("Pepe") && passwordUsuario.equals("root")) {
-                    rol = "coordinador";
-                } else if (nombreUsuario.equals("Lucia") && passwordUsuario.equals("root")) {
-                    rol = "jefeEstudios";
+                View padre=(View) view.getParent();
+                dni= textoDni.getText().toString();
+                password= textoPassword.getText().toString();
+
+
+                if (dni.isEmpty() || password.isEmpty()) {
+                    Snackbar.make(padre, "No puedes dejar ningún campo vacío", Snackbar.LENGTH_SHORT).show();
+
+                }else{
+                    //Mira en la base de datos si existe algún usuario con el nombre insertado
+                    dbRef.orderByChild("dni").equalTo(dni).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            //Si hay algún usuario con ese dni se ejecutará esta condición
+                            if (snapshot.exists()) {
+                                for (DataSnapshot ds : snapshot.getChildren()) {
+                                    String passwordDB = ds.child("password").getValue(String.class);
+
+                                /*Si la contraseña insertada es la misma que la de la base de datos se ejecutará
+                                esta condición*/
+                                    if (passwordDB.equals(password)) {
+                                        Intent actividadMenuPrincipal = new Intent(MenuInicio.this, PantallaPrincipal.class);
+                                        actividadMenuPrincipal.putExtra("dni", dni);
+                                        startActivity(actividadMenuPrincipal);
+
+                                        //Sino mostrará un mensaje de que la contraseña es incorrecta
+                                    } else {
+                                        Snackbar.make(padre, "Contraseña Incorrecta", Snackbar.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                //Sino mostrará un mensaje de que no existe ese usuario y que se registre
+                            }else{
+                                Snackbar.make(padre, "No existe un usuario con ese dni", Snackbar.LENGTH_SHORT).show();
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {}
+                    });
                 }
 
-                actividadPantallaPrincipal.putExtra("ROL_USUARIO", rol);
-              /*  Bundle b=getIntent().getExtras();
-                String nombre=b.getString("nombre");
-                String apellidos=b.getString("apellidos");
-                b.putString("nombre",nombre);
-                b.putString("apellidos",apellidos);
-                actividadPantallaPrincipal.putExtras(b);*/
-                startActivity(actividadPantallaPrincipal);
+
+
             }
         });
 

@@ -1,5 +1,6 @@
 package com.example.gestioncentrodocente.pantallas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -12,37 +13,48 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gestioncentrodocente.R;
+import com.example.gestioncentrodocente.entidades.Usuario;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMenuItemClickListener {
 
-public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnMenuItemClickListener{
-
+    private Bundle usuario;
     String rol = null;
-
+    private DatabaseReference dbRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_pantalla_principal);
         setContentView(R.layout.activity_pantalla_principal);
-        // Ocultar el ActionBar predeterminado
         getSupportActionBar().hide();
-
-        // Configurar la Toolbar como ActionBar
         MaterialToolbar toolbar = findViewById(R.id.encabezadoMenuPrincipal);
         toolbar.setOnMenuItemClickListener(this);
+        usuario = getIntent().getExtras();
+        dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
+        dbRef.orderByChild("dni").equalTo(usuario.getString("dni")).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds:snapshot.getChildren()){
+                    Usuario u=ds.getValue(Usuario.class);
+                    rol=u.getRol();
+                    // Aquí se verifica el rol del usuario después de obtenerlo de la base de datos
+                    verificarRol();
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+    }
 
-
-        //CAMBIAR ACTIVITY
-        Intent intent = getIntent();
-        if (intent != null) {
-            rol = intent.getStringExtra("ROL_USUARIO");
-        }
-        if (rol.equals("docente")) {
-
-
-
+    // Método para verificar el rol del usuario y realizar las acciones correspondientes
+    private void verificarRol() {
+        if (rol.equals("Docente")) {
             ImageView imgNotificaciones = (ImageView) findViewById(R.id.imagenNotificaciones);
             TextView textGestionarPermisos = (TextView) findViewById(R.id.gestionPermisos);
             TextView textGestionarTareas = (TextView) findViewById(R.id.gestionTareasAdmin);
@@ -100,12 +112,7 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
                 }
             });
 
-
-
-
-        } else if (rol.equals("coordinador")) {
-
-
+        } else if (rol.equals("Coordinador de ciclo")) {
             setContentView(R.layout.activity_pantalla_principal_coordinador);
             //CAMBIAR ACTIVITY
 
@@ -181,10 +188,7 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
                 }
             });
 
-
-        }else if (rol.equals("jefeEstudios")) {
-
-
+        } else if (rol.equals("Jefe de Estudios")) {
             setContentView(R.layout.activity_pantalla_principal_jestudios);
             //CAMBIAR ACTIVITY
 
@@ -249,41 +253,30 @@ public class PantallaPrincipal extends AppCompatActivity implements  Toolbar.OnM
                 }
             });
 
-
-
-
-        }else {
+        } else {
             View padre = findViewById(R.id.linearLayoutPantallaPrincipalPadre);
             Snackbar barra= Snackbar.make(padre,"Rol de usuario no definido",Snackbar.LENGTH_SHORT);
             barra.show();
         }
-
-
-
     }
+
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         boolean realizado = false;
         if (item.getItemId() == R.id.itemPerfil) {
             realizado = true;
             Intent actividadPerfil = new Intent(PantallaPrincipal.this, Perfil.class);
-            //actividadPerfil.putExtras(usuario);
+            actividadPerfil.putExtras(usuario);
             startActivity(actividadPerfil);
         } else if (item.getItemId() == R.id.itemAceraDe) {
             realizado = true;
             Intent actividadAcercaDe = new Intent(PantallaPrincipal.this, AcercaDe.class);
-            //actividadAcercaDe.putExtras(usuario);
             startActivity(actividadAcercaDe);
         } else if (item.getItemId() == R.id.itemCerrarSesion) {
             realizado = true;
-            /*Esta linea de codigo cierra sesion con el usuario actual para que
-            una vez seleccionada la opcion de cerrar sesion, se desvincule y pueda
-            dar paso a un nuevo usuario registrado para luego mostrar sus datos en
-            el perfil de usuario */
-            // FirebaseAuth.getInstance().signOut();
             Intent actividadLogin = new Intent(PantallaPrincipal.this, MenuInicio.class);
             startActivity(actividadLogin);
-            finish(); //para asegurarse de que el usuario no pueda volver atras
+            finish(); // Para asegurarse de que el usuario no pueda volver atrás
         }
         return realizado;
     }

@@ -36,7 +36,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/menuInicioTextNombre"
+        android:id="@+id/menuInicioTextDni"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,12 +44,12 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
-        android:hint="@string/nombreUsuario"
+        android:hint="@string/introduceDNItext"
         app:startIconDrawable="@drawable/user"
         app:endIconMode="clear_text">
 
         <EditText
-            android:id="@+id/menuInicioEditTextNombre"
+            android:id="@+id/menuInicioEditTextDni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

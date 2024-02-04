@@ -1,5 +1,6 @@
 package com.example.gestioncentrodocente.pantallas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -9,14 +10,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.gestioncentrodocente.R;
+import com.example.gestioncentrodocente.entidades.Usuario;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class PantallaEditarPerfil extends AppCompatActivity {
+
+    private Bundle usuario;
+    private DatabaseReference dbRef;
+    EditText nombreE,dniE,emailE,passwordE,titulacionE,telefonoE;
+    String rol=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,83 +42,148 @@ public class PantallaEditarPerfil extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("EDITAR PERFIL");
 
+        usuario = getIntent().getExtras();
 
-      /*  Bundle b=getIntent().getExtras();
-        String nombre= b.getString("nombre");
-        String apellidos=b.getString("apellidos");
-        EditText campoNombre=(EditText)findViewById(R.id.pantallaEditarPerfilEditTextNombre);
-        EditText campoApellidos=(EditText)findViewById(R.id.pantallaEditarPerfilEditTextApellidos);
-        campoNombre.setText(nombre);
-        campoApellidos.setText(apellidos);*/
-
-/*
-        MaterialToolbar toolbar=findViewById(R.id.encabezadoEditarPerfil);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pantallaInicio=new Intent(PantallaEditarPerfil.this, MenuInicio.class);
-                startActivity(pantallaInicio);
-            }
-        });
-*/
-
-        MaterialButton botonGuardarCambios=findViewById(R.id.EPBotonRegistrarse);
-        Spinner spinnerSimple = (Spinner)findViewById(R.id.pep_rol);
+        nombreE=findViewById(R.id.pep_nombre);
+        dniE=findViewById(R.id.pep_dni);
+        emailE=findViewById(R.id.pep_email);
+        passwordE=findViewById(R.id.pep_password);
+        titulacionE=findViewById(R.id.pep_titulacion);
+        telefonoE=findViewById(R.id.pep_telefono);
+        Spinner spinnerRol = (Spinner)findViewById(R.id.pep_rol);
         String[] valores = {"Docente","Jefe de Estudios", "Coordinador de ciclo"};
-        spinnerSimple.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,valores));
-        spinnerSimple.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerRol.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,valores));
+        spinnerRol.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // textViewSimple.setText(parent.getItemAtPosition(position).toString());
-
+                rol = valores[position];
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
+
+
+        dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
+        dbRef.orderByChild("dni").equalTo(usuario.getString("dni")).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds:snapshot.getChildren()){
+                    Usuario u=ds.getValue(Usuario.class);
+                    nombreE.setText(u.getNombre());
+                    dniE.setText(u.getDni());
+                    emailE.setText(u.getEmail());
+                    passwordE.setText(u.getPassword());
+                    titulacionE.setText(u.getTitulacion());
+                    telefonoE.setText(u.getTelefono());
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+
+
+
+
+
+
+        MaterialButton botonGuardarCambios=findViewById(R.id.EPBotonRegistrarse);
+
 
         botonGuardarCambios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent volverPerfil = new Intent(PantallaEditarPerfil.this, Perfil.class);
 
-                AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
+                View padre=(View) view.getParent();
 
-                builder.setTitle("Mensaje Informativo");
-                builder.setMessage("Para guardar tus datos tienes que hacer clic en 'aceptar'");
-                builder.setIcon(android.R.drawable.btn_star_big_on);
+                String nombre=nombreE.getText().toString();
+                String dni = dniE.getText().toString();
+                String email = emailE.getText().toString();
+                String password=passwordE.getText().toString();
+                String titulacion=titulacionE.getText().toString();
+                String telefono=telefonoE.getText().toString();
+                if (dni.isEmpty() || password.isEmpty()) {
+                   // RelativeLayout layout = findViewById(R.id.layoutEditarPerfil);
+                    Snackbar.make(padre, "No puedes dejar dni o contraseña vacios", Snackbar.LENGTH_SHORT).show();
+                } else {
+                    dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String dniOriginal=usuario.getString("dni");
+                            if(snapshot.exists()){
 
-                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        View padre=(View) view.getParent();
-                        Snackbar barra= Snackbar.make(padre,"Perfil modificado satisfactoriamente",Snackbar.LENGTH_SHORT);
-                        barra.show();
-                        Intent pantallaInicio=new Intent(PantallaEditarPerfil.this, MenuInicio.class);
-                        startActivity(pantallaInicio);
-                    }
 
-                });
+                                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                                builder.setTitle("Mensaje Informativo");
+                                builder.setMessage("Estás a punto de completar tu registro, para guardar tus datos tienes que hacer clic en 'aceptar'");
+                                builder.setIcon(android.R.drawable.ic_dialog_info);
 
-                builder.setNegativeButton("No aceptar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        View padre=(View) view.getParent();
-                        Snackbar barra= Snackbar.make(padre,"Si no aceptas modifica algún campo",Snackbar.LENGTH_SHORT);
-                        barra.show();
-                    }
-                });
+                                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dbRef.child(dniOriginal).child("dni").setValue(dni);
+                                        dbRef.child(dniOriginal).child("password").setValue(password);
+                                        dbRef.child(dniOriginal).child("nombre").setValue(nombre);
+                                        dbRef.child(dniOriginal).child("rol").setValue(rol);
+                                        dbRef.child(dniOriginal).child("email").setValue(email);
+                                        dbRef.child(dniOriginal).child("titulacion").setValue(titulacion);
+                                        dbRef.child(dniOriginal).child("telefono").setValue(telefono);
 
-                builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        View padre=(View) view.getParent();
-                        Snackbar barra= Snackbar.make(padre,"Has cancelado la edición de perfil de usuario",Snackbar.LENGTH_SHORT);
-                        barra.show();
-                    }
-                });
-                AlertDialog cuadroDialogo = builder.create();
-                cuadroDialogo.show();
+                                        // dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
+                                        //dbRef.child(dni).setValue(datosUsuario);
+
+                                        volverPerfil.putExtras(usuario);
+                                        startActivity(volverPerfil);
+                                    }
+                                });
+
+                                builder.setNegativeButton("No aceptar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Snackbar.make(padre, "Si no aceptas modifica algún campo", Snackbar.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                                builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Snackbar.make(padre, "Has cancelado el registro de usuario", Snackbar.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                                AlertDialog cuadroDialogo = builder.create();
+                                cuadroDialogo.show();
+
+
+
+
+
+
+
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {}
+                    });
+
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             }
         });

@@ -91,7 +91,7 @@ public class PantallaRegistro extends AppCompatActivity {
 
                 // Obteniendo los valores de los campos de texto al momento de hacer clic en el botón
                 String nombre = nombreE.getText().toString();
-                String dni=nombreE.getText().toString();
+                String dni=dniE.getText().toString();
                 String email = emailE.getText().toString();
                 String telefono = telefonoE.getText().toString();
                 String titulacion = titulacionE.getText().toString();
@@ -102,7 +102,7 @@ public class PantallaRegistro extends AppCompatActivity {
                 if (nombre.isEmpty() || email.isEmpty() || titulacion.isEmpty() || password.isEmpty()) {
                     Snackbar.make(padre, "No puedes dejar campos vacíos", Snackbar.LENGTH_SHORT).show();
                 } else {
-                    dbRef.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+                    dbRef.orderByChild("dni").equalTo(dni).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.exists()) {
@@ -111,7 +111,7 @@ public class PantallaRegistro extends AppCompatActivity {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                                 builder.setTitle("Mensaje Informativo");
                                 builder.setMessage("Estás a punto de completar tu registro, para guardar tus datos tienes que hacer clic en 'aceptar'");
-                                builder.setIcon(android.R.drawable.btn_star_big_on);
+                                builder.setIcon(android.R.drawable.ic_dialog_info);
 
                                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                                     @Override

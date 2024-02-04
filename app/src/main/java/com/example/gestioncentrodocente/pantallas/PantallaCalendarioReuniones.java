@@ -27,11 +27,11 @@ public class PantallaCalendarioReuniones extends AppCompatActivity {
         //MaterialToolbar toolbar=findViewById(R.id.encabezadoReuniones);
 
         ArrayList<Reunion> listaReuniones=new ArrayList<>();
-        listaReuniones.add(new Reunion("Lucia","12/02/2024","Reunion extraordinaria"));
-        listaReuniones.add(new Reunion("Lucia","12/02/2024","Reunion para simulacro de incendio"));
-        listaReuniones.add(new Reunion("Pepe","12/02/2024","Reunion organizacion trimestral"));
-        listaReuniones.add(new Reunion("Pepe","12/02/2024","Reunion excursión de abril"));
-        listaReuniones.add(new Reunion("Lucia","12/02/2024","Reunión fiesta escolar"));
+        listaReuniones.add(new Reunion("Reunion 1","Lucia","12/02/2024","Reunion extraordinaria"));
+        listaReuniones.add(new Reunion("Reunion 2","Lucia","12/02/2024","Reunion para simulacro de incendio"));
+        listaReuniones.add(new Reunion("Reunion 3","Pepe","12/02/2024","Reunion organizacion trimestral"));
+        listaReuniones.add(new Reunion("Reunion 4","Pepe","12/02/2024","Reunion excursión de abril"));
+        listaReuniones.add(new Reunion("Reunion 5","Lucia","12/02/2024","Reunión fiesta escolar"));
 
         ListView vistaLista=(ListView) findViewById(R.id.listadoReuniones);
 

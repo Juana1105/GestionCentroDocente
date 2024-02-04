@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,7 +41,7 @@ public class AdaptadorReunion extends ArrayAdapter<Reunion> {
         TextView textoDescripcion=(TextView) elemento.findViewById(R.id.descripcionReunion);
 
 
-        textoNombreEmisor.setText(lista.get(position).getNombreEmisor());
+        textoNombreEmisor.setText(lista.get(position).getReceptor());
         textoFecha.setText(lista.get(position).getFecha());
         textoDescripcion.setText(lista.get(position).getMotivo());
 

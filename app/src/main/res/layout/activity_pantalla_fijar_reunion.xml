@@ -30,7 +30,23 @@
             android:gravity="center"
             android:layout_height="match_parent">
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textNombreReunion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
 
+                    android:layout_marginBottom="20dp"
+                    android:hint="@string/nombreReunion"
+                    app:startIconDrawable="@drawable/edit"
+                    app:endIconMode="clear_text">
+
+                    <EditText
+                        android:id="@+id/fr_nombreReunion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
 
 
 

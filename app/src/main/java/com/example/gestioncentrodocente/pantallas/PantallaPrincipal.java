@@ -28,13 +28,17 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
     private DatabaseReference dbRef;
     private Usuario usu;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_principal);
         getSupportActionBar().hide();
-        MaterialToolbar toolbar = findViewById(R.id.encabezadoMenuPrincipal);
-        toolbar.setOnMenuItemClickListener(this);
+
+        /*MaterialToolbar toolbar = findViewById(R.id.encabezadoMenuPrincipal);
+        toolbar.setOnMenuItemClickListener(this);*/
+
+
         usuario = getIntent().getExtras();
         dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
         dbRef.orderByChild("dni").equalTo(usuario.getString("dni")).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -45,6 +49,9 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     rol=usu.getRol();
                     // Aquí se verifica el rol del usuario después de obtenerlo de la base de datos
                     verificarRol();
+
+                    // Aquí se verifica el rol del usuario después de obtenerlo de la base de datos
+                   // inflateLayoutBasedOnRole(rol);
                 }
             }
 
@@ -278,7 +285,14 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
             Snackbar barra= Snackbar.make(padre,"Rol de usuario no definido",Snackbar.LENGTH_SHORT);
             barra.show();
         }
+
+
+
+        // Configurar la toolbar después de inflar el layout
+        MaterialToolbar toolbar = findViewById(R.id.encabezadoMenuPrincipal);
+        toolbar.setOnMenuItemClickListener(this);
     }
+
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
@@ -298,7 +312,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
             Intent actividadLogin = new Intent(PantallaPrincipal.this, MenuInicio.class);
             actividadLogin.putExtras(usuario);
             startActivity(actividadLogin);
-            finish();
+            finish(); // Para asegurarse de que el usuario no pueda volver atrás
         }
         return realizado;
     }

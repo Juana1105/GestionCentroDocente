@@ -2,25 +2,27 @@ package com.example.gestioncentrodocente.entidades;
 
 public class Reunion {
 
-    private String nombreEmisor;
+    private String nombreReunion;
+    private String receptor;
     private String fecha;
     private String motivo;
 
     public Reunion() {
     }
 
-    public Reunion(String nombreEmisor, String fecha, String motivo) {
-        this.nombreEmisor = nombreEmisor;
+    public Reunion(String nombreReunion,String receptor, String fecha, String motivo) {
+        this.nombreReunion=nombreReunion;
+        this.receptor = receptor;
         this.fecha = fecha;
         this.motivo = motivo;
     }
 
-    public String getNombreEmisor() {
-        return nombreEmisor;
+    public String getReceptor() {
+        return receptor;
     }
 
-    public void setNombreEmisor(String nombreEmisor) {
-        this.nombreEmisor = nombreEmisor;
+    public void setReceptor(String receptor) {
+        this.receptor = receptor;
     }
 
     public String getFecha() {
@@ -37,5 +39,13 @@ public class Reunion {
 
     public void setMotivo(String motivo) {
         this.motivo = motivo;
+    }
+
+    public String getNombreReunion() {
+        return nombreReunion;
+    }
+
+    public void setNombreReunion(String nombreReunion) {
+        this.nombreReunion = nombreReunion;
     }
 }

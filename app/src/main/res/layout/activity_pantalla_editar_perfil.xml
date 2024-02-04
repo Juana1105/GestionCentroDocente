@@ -43,6 +43,7 @@
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="40dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="20dp"
@@ -59,19 +60,19 @@
 
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/pantallaEPTextApellidos"
+                            android:id="@+id/pantallaEPTextDNI"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="20dp"
-                            android:hint="@string/apellidosUsuario"
-                            app:startIconDrawable="@drawable/user"
+                            android:hint="@string/introduceDNItext"
+                            app:startIconDrawable="@drawable/edit"
                             app:endIconMode="clear_text">
 
                             <EditText
-                                android:id="@+id/pep_apellidos"
+                                android:id="@+id/pep_dni"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -190,6 +191,7 @@
                             android:layout_marginRight="30dp"
                             android:layout_marginLeft="30dp"
                             android:layout_marginTop="40dp"
+                            android:layout_marginBottom="40dp"
                             android:backgroundTint="@color/blue_dark"
                             android:text="@string/guardar"/>
 

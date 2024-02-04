@@ -1,5 +1,6 @@
 package com.example.gestioncentrodocente.pantallas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -17,8 +18,11 @@ import com.example.gestioncentrodocente.entidades.Usuario;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class PantallaRegistro extends AppCompatActivity {
 
@@ -65,87 +69,100 @@ public class PantallaRegistro extends AppCompatActivity {
 
         //Usuario u=new Usuario(dni,nombre,apellidos,email,password, rol[0],titulacion,telefono);
 
+        datosUsuario=new Usuario();
 
+        nombreE=(EditText)findViewById(R.id.pr_nombre);
+        dniE=findViewById(R.id.pr_dni);
+        emailE=(EditText)findViewById(R.id.pr_email);
+        telefonoE=(EditText)findViewById(R.id.pr_telefono);
+        passwordE=(EditText)findViewById(R.id.pr_password);
+        titulacionE=(EditText)findViewById(R.id.pr_titulacion);
+
+
+        dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
 
 
 
         botonRegistroCompletado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //ALERT DIALOG
-                AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
-
-                builder.setTitle("Mensaje Informativo");
-                builder.setMessage("Estás a punto de completar tu registro, para guardar tus datos tienes que hacer clic en 'aceptar'");
-                builder.setIcon(android.R.drawable.btn_star_big_on);
-
-                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        datosUsuario=new Usuario();
-
-                        nombreE=(EditText)findViewById(R.id.pr_nombre);
-
-                        emailE=(EditText)findViewById(R.id.pr_email);
-                        telefonoE=(EditText)findViewById(R.id.pr_telefono);
-                        passwordE=(EditText)findViewById(R.id.pr_password);
-                        titulacionE=(EditText)findViewById(R.id.pr_titulacion);
+                View padre=(View) view.getParent();
 
 
-                        String nombre= String.valueOf(nombreE.getText());
+                // Obteniendo los valores de los campos de texto al momento de hacer clic en el botón
+                String nombre = nombreE.getText().toString();
+                String dni=nombreE.getText().toString();
+                String email = emailE.getText().toString();
+                String telefono = telefonoE.getText().toString();
+                String titulacion = titulacionE.getText().toString();
+                String password = passwordE.getText().toString();
 
-                        String email=String.valueOf(emailE.getText());
-                        String telefono=String.valueOf(telefonoE.getText());
-                        String titulacion=String.valueOf(titulacionE.getText());
-                        String password=String.valueOf(passwordE.getText());
 
+                //Se verifica si están rellenados todos los datos
+                if (nombre.isEmpty() || email.isEmpty() || titulacion.isEmpty() || password.isEmpty()) {
+                    Snackbar.make(padre, "No puedes dejar campos vacíos", Snackbar.LENGTH_SHORT).show();
+                } else {
+                    dbRef.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
+                                Snackbar.make(padre, "Usuario ya existente", Snackbar.LENGTH_SHORT).show();
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                                builder.setTitle("Mensaje Informativo");
+                                builder.setMessage("Estás a punto de completar tu registro, para guardar tus datos tienes que hacer clic en 'aceptar'");
+                                builder.setIcon(android.R.drawable.btn_star_big_on);
 
+                                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        datosUsuario.setNombre(nombre);
+                                        datosUsuario.setDni(dni);
+                                        datosUsuario.setEmail(email);
+                                        datosUsuario.setTelefono(telefono);
+                                        datosUsuario.setTitulacion(titulacion);
+                                        datosUsuario.setPassword(password);
+                                        datosUsuario.setRol(rol);
 
+                                       // dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
+                                        dbRef.child(dni).setValue(datosUsuario);
 
-                        //inserta los datos poniendo como clave el nombre del usuario
+                                        Intent pantallaInicio = new Intent(PantallaRegistro.this, MenuInicio.class);
+                                        startActivity(pantallaInicio);
+                                    }
+                                });
 
-                        datosUsuario.setNombre(nombre);
-                        datosUsuario.setEmail(email);
-                        datosUsuario.setTelefono(telefono);
-                        datosUsuario.setTitulacion(titulacion);
-                        datosUsuario.setPassword(password);
-                        datosUsuario.setRol(rol);
+                                builder.setNegativeButton("No aceptar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Snackbar.make(padre, "Si no aceptas modifica algún campo", Snackbar.LENGTH_SHORT).show();
+                                    }
+                                });
 
-                        //dbRef.child(dni);
-                        //conexion con base de datos para crear usuario
-                        dbRef= FirebaseDatabase.getInstance().getReference().child("Usuarios");
+                                builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Snackbar.make(padre, "Has cancelado el registro de usuario", Snackbar.LENGTH_SHORT).show();
+                                    }
+                                });
 
-                        dbRef.push().setValue(datosUsuario);
+                                AlertDialog cuadroDialogo = builder.create();
+                                cuadroDialogo.show();
+                            }
+                        }
 
-                        Intent pantallaInicio=new Intent(PantallaRegistro.this, MenuInicio.class);
-                        startActivity(pantallaInicio);
-                    }
-                });
-
-                builder.setNegativeButton("No aceptar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        View padre=(View) view.getParent();
-                        Snackbar barra= Snackbar.make(padre,"Si no aceptas modifica algún campo",Snackbar.LENGTH_SHORT);
-                        barra.show();
-                    }
-                });
-
-                builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        View padre=(View) view.getParent();
-                        Snackbar barra= Snackbar.make(padre,"Has cancelado el registro de usuario",Snackbar.LENGTH_SHORT);
-                        barra.show();
-                    }
-                });
-                AlertDialog cuadroDialogo = builder.create();
-                cuadroDialogo.show();
-
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+                }
             }
         });
+
+
+
+
+
 /*
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

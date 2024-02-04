@@ -26,6 +26,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
     private Bundle usuario;
     String rol = null;
     private DatabaseReference dbRef;
+    private Usuario usu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,8 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds:snapshot.getChildren()){
-                    Usuario u=ds.getValue(Usuario.class);
-                    rol=u.getRol();
+                    usu=ds.getValue(Usuario.class);
+                    rol=usu.getRol();
                     // Aquí se verifica el rol del usuario después de obtenerlo de la base de datos
                     verificarRol();
                 }
@@ -66,6 +67,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaNotificaciones = new Intent(PantallaPrincipal.this, PantallaNotificaciones.class);
+                    actividadPantallaNotificaciones.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaNotificaciones);
                 }
             });
@@ -74,6 +76,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaGestionarPermisos = new Intent(PantallaPrincipal.this, PantallaGestionarPermisos.class);
+                    actividadPantallaGestionarPermisos.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaGestionarPermisos);
                 }
             });
@@ -84,6 +87,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaHorario = new Intent(PantallaPrincipal.this, PantallaHorario.class);
+                    actividadPantallaHorario.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaHorario);
                 }
             });
@@ -92,6 +96,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaGestionTareas = new Intent(PantallaPrincipal.this, PantallaGestionarTareasAdmin.class);
+                    actividadPantallaGestionTareas.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaGestionTareas);
                 }
             });
@@ -100,6 +105,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaGestionAusencias = new Intent(PantallaPrincipal.this, PantallaGestionarAusencias.class);
+                    actividadPantallaGestionAusencias.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaGestionAusencias);
                 }
             });
@@ -108,6 +114,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaCalendarioReuniones = new Intent(PantallaPrincipal.this, PantallaCalendarioReuniones.class);
+                    actividadPantallaCalendarioReuniones.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaCalendarioReuniones);
                 }
             });
@@ -134,6 +141,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaNotificaciones = new Intent(PantallaPrincipal.this, PantallaNotificaciones.class);
+                    actividadPantallaNotificaciones.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaNotificaciones);
                 }
             });
@@ -142,6 +150,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaGestionarPermisos = new Intent(PantallaPrincipal.this, PantallaGestionarPermisos.class);
+                    actividadPantallaGestionarPermisos.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaGestionarPermisos);
                 }
             });
@@ -151,6 +160,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaHorario = new Intent(PantallaPrincipal.this, PantallaHorario.class);
+                    actividadPantallaHorario.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaHorario);
                 }
             });
@@ -159,6 +169,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaGestionTareas = new Intent(PantallaPrincipal.this, PantallaGestionarTareasAdmin.class);
+                    actividadPantallaGestionTareas.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaGestionTareas);
                 }
             });
@@ -167,6 +178,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaGestionAusencias = new Intent(PantallaPrincipal.this, PantallaGestionarAusencias.class);
+                    actividadPantallaGestionAusencias.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaGestionAusencias);
                 }
             });
@@ -175,6 +187,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaCalendarioReuniones = new Intent(PantallaPrincipal.this, PantallaCalendarioReuniones.class);
+                    actividadPantallaCalendarioReuniones.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaCalendarioReuniones);
                 }
             });
@@ -184,6 +197,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaEnviarAvisos = new Intent(PantallaPrincipal.this, PantallaEnviarAvisos.class);
+                    actividadPantallaEnviarAvisos.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaEnviarAvisos);
                 }
             });
@@ -206,6 +220,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent pantallaGestionAdmin2=new Intent(PantallaPrincipal.this, PantallaGestionarTareasAdminJE.class);
+                    pantallaGestionAdmin2.putExtra("dni", usu.getDni());
                     startActivity(pantallaGestionAdmin2);
                 }
             });
@@ -213,6 +228,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaNotificaciones = new Intent(PantallaPrincipal.this, PantallaNotificaciones.class);
+                    actividadPantallaNotificaciones.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaNotificaciones);
                 }
             });
@@ -224,6 +240,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaHorario = new Intent(PantallaPrincipal.this, PantallaHorario.class);
+                    actividadPantallaHorario.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaHorario);
                 }
             });
@@ -233,6 +250,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent PantallaGestionGuardias=new Intent(PantallaPrincipal.this, PantallaGestionGuardias.class);
+                    PantallaGestionGuardias.putExtra("dni", usu.getDni());
                     startActivity(PantallaGestionGuardias);
                 }
             });
@@ -241,6 +259,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaEnvioMensaje = new Intent(PantallaPrincipal.this, PantallaEnviarMensajeJE.class);
+                    actividadPantallaEnvioMensaje.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaEnvioMensaje);
                 }
             });
@@ -249,6 +268,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                 @Override
                 public void onClick(View view) {
                     Intent actividadPantallaFijarReuniones = new Intent(PantallaPrincipal.this, PantallaFijarReunion.class);
+                    actividadPantallaFijarReuniones.putExtra("dni", usu.getDni());
                     startActivity(actividadPantallaFijarReuniones);
                 }
             });
@@ -271,12 +291,14 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
         } else if (item.getItemId() == R.id.itemAceraDe) {
             realizado = true;
             Intent actividadAcercaDe = new Intent(PantallaPrincipal.this, AcercaDe.class);
+            actividadAcercaDe.putExtras(usuario);
             startActivity(actividadAcercaDe);
         } else if (item.getItemId() == R.id.itemCerrarSesion) {
             realizado = true;
             Intent actividadLogin = new Intent(PantallaPrincipal.this, MenuInicio.class);
+            actividadLogin.putExtras(usuario);
             startActivity(actividadLogin);
-            finish(); // Para asegurarse de que el usuario no pueda volver atrás
+            finish();
         }
         return realizado;
     }

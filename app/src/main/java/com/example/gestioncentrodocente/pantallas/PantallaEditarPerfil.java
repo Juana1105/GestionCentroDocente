@@ -116,7 +116,7 @@ public class PantallaEditarPerfil extends AppCompatActivity {
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                                 builder.setTitle("Mensaje Informativo");
-                                builder.setMessage("Estás a punto de completar tu registro, para guardar tus datos tienes que hacer clic en 'aceptar'");
+                                builder.setMessage("Estás a punto de modificar tus datos, si estás seguro haz clic en 'aceptar'");
                                 builder.setIcon(android.R.drawable.ic_dialog_info);
 
                                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {

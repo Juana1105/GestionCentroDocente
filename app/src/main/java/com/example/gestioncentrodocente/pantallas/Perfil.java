@@ -32,6 +32,8 @@ public class Perfil extends AppCompatActivity {
         getSupportActionBar().setTitle("\tPERFIL");
 
         usuario = getIntent().getExtras();
+
+
         nombreE=findViewById(R.id.textViewNombre);
         dniE=findViewById(R.id.textViewDni);
         emailE=findViewById(R.id.textViewEmail);

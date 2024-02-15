@@ -57,7 +57,6 @@ public class PantallaFijarReunion extends AppCompatActivity {
         MaterialButton eligeFecha=findViewById(R.id.pantallaJEreunionEligeFecha);
         TextView ponSeleccion=findViewById(R.id.seleccionAvisoEA);
         TextView fechaElegida=findViewById(R.id.GAfechaElegida);
-        LinearLayout linearPadre=findViewById(R.id.contenedorElementosFijarReunion);
         MaterialButton botonEnviar=findViewById(R.id.botonFijarReunion);
 
 
@@ -75,7 +74,6 @@ public class PantallaFijarReunion extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Manejar errores de base de datos
             }
         });
 

@@ -7,10 +7,15 @@ public class Reunion {
     private String fecha;
     private String motivo;
 
+
+
+
+
+
     public Reunion() {
     }
 
-    public Reunion(String nombreReunion,String receptor, String fecha, String motivo) {
+    public Reunion(String nombreReunion,String receptor,String fecha, String motivo ) {
         this.nombreReunion=nombreReunion;
         this.receptor = receptor;
         this.fecha = fecha;

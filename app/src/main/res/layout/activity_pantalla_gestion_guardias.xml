@@ -68,7 +68,7 @@
 
 
             <TextView
-                android:id="@+id/pantallaGTeditDiasProrroga"
+                android:id="@+id/personaSeleccionadaGuardia"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:hint="Persona seleccionada"
@@ -116,7 +116,7 @@
                 tools:ignore="DuplicateIds">
             </TextView>
             <EditText
-                android:id="@+id/pantallaGTlistaPersonas"
+                android:id="@+id/observacionesFijarGuardia"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:inputType="text"

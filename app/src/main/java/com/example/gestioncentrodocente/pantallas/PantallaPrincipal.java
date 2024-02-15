@@ -25,7 +25,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
 
     private Bundle usuario;
     String rol = null;
-    private DatabaseReference dbRef;
+    private DatabaseReference dbRef,dbRefReuniones;
     private Usuario usu;
 
 
@@ -41,6 +41,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
 
         usuario = getIntent().getExtras();
         dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
+        //dbRefReuniones=FirebaseDatabase.getInstance().getReference().child("Reuniones");
         dbRef.orderByChild("dni").equalTo(usuario.getString("dni")).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -69,6 +70,7 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
             TextView textNotificarAusencias = (TextView) findViewById(R.id.gestionAusencias);
             TextView textCalendarioReuniones = (TextView) findViewById(R.id.calendarioReuniones);
             Button botonHorario = (Button) findViewById(R.id.ppBotonMirarHorario);
+
 
             imgNotificaciones.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -125,6 +127,21 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaCalendarioReuniones);
                 }
             });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         } else if (rol.equals("Coordinador de ciclo")) {
             setContentView(R.layout.activity_pantalla_principal_coordinador);

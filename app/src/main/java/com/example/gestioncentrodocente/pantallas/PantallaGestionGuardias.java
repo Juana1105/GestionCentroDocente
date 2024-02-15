@@ -1,5 +1,6 @@
 package com.example.gestioncentrodocente.pantallas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -12,20 +13,36 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.gestioncentrodocente.R;
+import com.example.gestioncentrodocente.entidades.Guardia;
+import com.example.gestioncentrodocente.entidades.Reunion;
+import com.example.gestioncentrodocente.entidades.Usuario;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class PantallaGestionGuardias extends AppCompatActivity {
 
-    private String seleccionado;
+    private Bundle usuario;
+    private DatabaseReference dbRef,dbRef2;
+    private ArrayList<String> participantes = new ArrayList<>();
+    private String seleccionado,tipoGuardia,fecha,idString,observaciones;
+    private Guardia crearGuardia;
+    private int id=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,30 +51,60 @@ public class PantallaGestionGuardias extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("GESTIÓN GUARDIAS");
 
-        LinearLayout linearPadre=(LinearLayout)findViewById(R.id.lineaLayoutPantallaGestionGuardias);
+        TextView personaSeleccionadaText=findViewById(R.id.personaSeleccionadaGuardia);
+        EditText observacionesE=findViewById(R.id.observacionesFijarGuardia);
         MaterialButton botonElige=findViewById(R.id.pantallaGGreceptorGuardia);
-        //MaterialToolbar toolbar=findViewById(R.id.encabezadoGuardias);
+
+
+        usuario = getIntent().getExtras();
+        dbRef= FirebaseDatabase.getInstance().getReference().child("Usuarios");
+
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {//para coger a todos los usuarios, no solamente el mio
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Limpiar la lista de participantes
+                participantes.clear();
+                // Recorrer los datos y agregar los nombres de los usuarios a la lista
+                for(DataSnapshot ds : snapshot.getChildren()) {
+                    Usuario u = ds.getValue(Usuario.class);
+                    if (u != null && u.getNombre() != null) {
+                        participantes.add(u.getNombre());
+                    }
+                }
+                // Notificar al adaptador de la lista de cambios
+                // (si tienes un adaptador que usa la lista)
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+
+
 
         botonElige.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(PantallaGestionGuardias.this);
                 builder.setTitle("Elige a la persona que hará la guardia");
-                String[] participantes = {"Julian","Pepe","Jose","Marisa","Ginebra","Antonia"};
+                //participantes = {"Julian","Pepe","Jose","Marisa","Ginebra","Antonia"};
 
-
-                builder.setSingleChoiceItems(participantes, -1, new DialogInterface.OnClickListener() {
+                // Convertir el ArrayList a un array de Strings para usarlo en setSingleChoiceItems
+                String[] participantesArray = participantes.toArray(new String[0]);
+                builder.setSingleChoiceItems(participantesArray, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        seleccionado=participantes[which];
+                        //seleccionado=participantes[which];
+                        seleccionado = participantes.get(which);
 
                     }
                 });
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        personaSeleccionadaText.setText(seleccionado);
                     }
                 });
                 builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
@@ -78,6 +125,7 @@ public class PantallaGestionGuardias extends AppCompatActivity {
         spinnerSimple.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                tipoGuardia=valores[position];
             }
 
             @Override
@@ -98,32 +146,98 @@ public class PantallaGestionGuardias extends AppCompatActivity {
                 DatePickerDialog selectorFecha = new DatePickerDialog(PantallaGestionGuardias.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        String fechaElegidaCadena=dayOfMonth+"/"+month+"/"+year;
-                        textoFecha.setText(fechaElegidaCadena);
-                        Snackbar barra=Snackbar.make(linearPadre,fechaElegidaCadena,Snackbar.LENGTH_SHORT);
-                        barra.show();
+                        month++; // Ajusta el valor del mes porque en Java los meses van de 0 a 11
+                        // Formatea la fecha utilizando SimpleDateFormat
+                        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                        Calendar fecha = Calendar.getInstance();
+                        fecha.set(year, month, dayOfMonth);
+                        String fechaFormateada = formato.format(fecha.getTime());
+
+                        // Actualiza el TextView con la fecha formateada
+                        textoFecha.setText(fechaFormateada);
                     }
                 },year,month,day);
                 selectorFecha.show();
             }
         });
 
+        fecha=textoFecha.getText().toString();
+        dbRef2= FirebaseDatabase.getInstance().getReference().child("Guardias");
+
         Button botonGuardar=(Button)findViewById(R.id.botonPantallaGguardar);
         botonGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent pantallaP=new Intent(PantallaGestionGuardias.this,PantallaPrincipal.class);
-                startActivity(pantallaP);
+
+            public void onClick(View v) {
+                fecha = textoFecha.getText().toString();
+                observaciones = observacionesE.getText().toString();
+
+                View padre=(View) v.getParent();
+
+                dbRef2.orderByChild("id").limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Guardia lastGuardia = dataSnapshot.getValue(Guardia.class);
+                            id = lastGuardia.getId() + 1;
+                        }
+
+                        dbRef2.orderByChild("id").equalTo(id).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()) {
+                                    Snackbar.make(padre, "Este id de guardia ya existe", Snackbar.LENGTH_SHORT).show();
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                                    builder.setTitle("Mensaje Informativo");
+                                    builder.setMessage("Para fijar la guardia tienes que hacer clic en 'aceptar'");
+                                    builder.setIcon(android.R.drawable.ic_dialog_info);
+
+                                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            crearGuardia=new Guardia(id,seleccionado,fecha,tipoGuardia,observaciones);
+                                            idString=String.valueOf(id);
+                                            dbRef2.child(idString).setValue(crearGuardia);
+                                            id++;
+
+                                            Intent pantallaP=new Intent(PantallaGestionGuardias.this,PantallaPrincipal.class);
+                                            pantallaP.putExtras(usuario);
+                                            startActivity(pantallaP);
+                                        }
+                                    });
+
+                                    builder.setNegativeButton("No aceptar", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            Snackbar.make(padre, "Si no aceptas modifica algún campo", Snackbar.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+                                    builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            Snackbar.make(padre, "Has cancelado el registro de usuario", Snackbar.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+                                    AlertDialog cuadroDialogo = builder.create();
+                                    cuadroDialogo.show();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        // Manejar el error
+                    }
+                });
             }
         });
-/*
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pantallaPrincipal=new Intent(PantallaGestionGuardias.this, PantallaPrincipal.class);
-                startActivity(pantallaPrincipal);
-            }
-        });*/
 
     }
 }

@@ -1,5 +1,6 @@
 package com.example.gestioncentrodocente.pantallas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -8,6 +9,7 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,13 +20,28 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.gestioncentrodocente.R;
+import com.example.gestioncentrodocente.entidades.Ausencia;
+import com.example.gestioncentrodocente.entidades.Guardia;
+import com.example.gestioncentrodocente.entidades.Permiso;
+import com.example.gestioncentrodocente.entidades.Usuario;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class PantallaGestionarAusencias extends AppCompatActivity {
+    private Bundle usuario;
+    private DatabaseReference dbRef,dbRef2;
+    String correoUsuario,motivo,idString;
+    private int id=0;
+    Ausencia crearAusencia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +51,7 @@ public class PantallaGestionarAusencias extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("GESTIÓN AUSENCIAS");
 
-        LinearLayout linearPadre=(LinearLayout)findViewById(R.id.lineaLayoutPantallaGestionAusencias);
-
+        LinearLayout linearPadre=findViewById(R.id.linearLayoutPantallaGestionAusencias);
         MaterialButton botonFechaInicio=findViewById(R.id.pantallaGAeligeFecha);
         MaterialButton botonFechaFinal=findViewById(R.id.pantallaGAeligeFechaFin);
         MaterialButton botonHoraInicio=findViewById(R.id.pantallaGAeligehorasInicio);
@@ -48,6 +64,21 @@ public class PantallaGestionarAusencias extends AppCompatActivity {
         Spinner spinnerSimple=(Spinner)findViewById(R.id.spinnerPantallaGA);
         //MaterialToolbar toolbar=findViewById(R.id.encabezadoGestionarAusencia);
 
+        usuario = getIntent().getExtras();
+        dbRef= FirebaseDatabase.getInstance().getReference().child("Usuarios");
+        dbRef.orderByChild("dni").equalTo(usuario.getString("dni")).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    Usuario u = ds.getValue(Usuario.class);
+                    correoUsuario=u.getEmail();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
 
         String[] valores = {"Baja","Enfermedad", "Consulta Médica", "Causa de fuerza mayor"};
@@ -57,6 +88,8 @@ public class PantallaGestionarAusencias extends AppCompatActivity {
         spinnerSimple.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                motivo=valores[position];
             }
 
             @Override
@@ -74,10 +107,15 @@ public class PantallaGestionarAusencias extends AppCompatActivity {
                 DatePickerDialog selectorFecha = new DatePickerDialog(PantallaGestionarAusencias.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        String fechaElegidaCadena="Fecha elegida: "+dayOfMonth+"/"+month+"/"+year;
-                        fechaInicioElegida.setText(fechaElegidaCadena);
-                        Snackbar barra=Snackbar.make(linearPadre,fechaElegidaCadena,Snackbar.LENGTH_SHORT);
-                        barra.show();
+                        month++; // Ajusta el valor del mes porque en Java los meses van de 0 a 11
+                        // Formatea la fecha utilizando SimpleDateFormat
+                        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                        Calendar fecha = Calendar.getInstance();
+                        fecha.set(year, month, dayOfMonth);
+                        String fechaFormateada = formato.format(fecha.getTime());
+
+                        // Actualiza el TextView con la fecha formateada
+                        fechaInicioElegida.setText(fechaFormateada);
                     }
                 },year,month,day);
                 selectorFecha.show();
@@ -117,10 +155,15 @@ public class PantallaGestionarAusencias extends AppCompatActivity {
                 DatePickerDialog selectorFecha = new DatePickerDialog(PantallaGestionarAusencias.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        String fechaElegidaCadena="Fecha elegida: "+dayOfMonth+"/"+month+"/"+year;
-                        fechaFinalElegida.setText(fechaElegidaCadena);
-                        Snackbar barra=Snackbar.make(linearPadre,fechaElegidaCadena,Snackbar.LENGTH_SHORT);
-                        barra.show();
+                        month++; // Ajusta el valor del mes porque en Java los meses van de 0 a 11
+                        // Formatea la fecha utilizando SimpleDateFormat
+                        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                        Calendar fecha = Calendar.getInstance();
+                        fecha.set(year, month, dayOfMonth);
+                        String fechaFormateada = formato.format(fecha.getTime());
+
+                        // Actualiza el TextView con la fecha formateada
+                        fechaFinalElegida.setText(fechaFormateada);
                     }
                 },year,month,day);
                 selectorFecha.show();
@@ -148,59 +191,78 @@ public class PantallaGestionarAusencias extends AppCompatActivity {
             }
         });
 
+
+        dbRef2= FirebaseDatabase.getInstance().getReference().child("Ausencias");
         botonAceptar.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View view) {
-
-
-                AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
-
-                builder.setTitle("Mensaje Informativo");
-                builder.setMessage("Para mandar tu ausencia tienes que hacer clic en 'aceptar'");
-                builder.setIcon(android.R.drawable.btn_star_big_on);
-
-                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                View padre = (View) view.getParent();
+                dbRef2.orderByChild("id").limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        View padre=(View) view.getParent();
-                        Snackbar barra= Snackbar.make(padre,"Ausencia notificada satisfactoriamente",Snackbar.LENGTH_SHORT);
-                        barra.show();
-                        Intent pantallaPrincipal= new Intent(PantallaGestionarAusencias.this, PantallaPrincipal.class);
-                        startActivity(pantallaPrincipal);
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Guardia lastGuardia = dataSnapshot.getValue(Guardia.class);
+                            id = lastGuardia.getId() + 1;
+                        }
+
+                        dbRef2.orderByChild("id").equalTo(id).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()) {
+                                    Snackbar.make(padre, "Este id de ausencia ya existe", Snackbar.LENGTH_SHORT).show();
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                                    builder.setTitle("Mensaje Informativo");
+                                    builder.setMessage("Para guardar la ausencia haz clic en 'aceptar'");
+                                    builder.setIcon(android.R.drawable.ic_dialog_info);
+
+                                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            crearAusencia = new Ausencia(id, correoUsuario, motivo,fechaInicioElegida.getText().toString(),horaInicioElegida.getText().toString(),fechaFinalElegida.getText().toString(),horaFinalElegida.getText().toString() );
+                                            idString = String.valueOf(id);
+                                            dbRef2.child(idString).setValue(crearAusencia);
+                                            id++;
+
+                                            Intent pantallaPrincipal= new Intent(PantallaGestionarAusencias.this, PantallaPrincipal.class);
+                                            pantallaPrincipal.putExtras(usuario);
+                                            startActivity(pantallaPrincipal);
+                                        }
+                                    });
+
+                                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            Snackbar.make(padre, "Has cancelado el proceso", Snackbar.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+
+                                    AlertDialog cuadroDialogo = builder.create();
+                                    cuadroDialogo.show();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
                     }
 
-                });
-
-                builder.setNegativeButton("No aceptar", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        View padre=(View) view.getParent();
-                        Snackbar barra= Snackbar.make(padre,"Si no aceptas modifica algún campo",Snackbar.LENGTH_SHORT);
-                        barra.show();
+                    public void onCancelled(@NonNull DatabaseError error) {
+
                     }
                 });
 
-                builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        View padre=(View) view.getParent();
-                        Snackbar barra= Snackbar.make(padre,"Has cancelado la gestión de ausencia",Snackbar.LENGTH_SHORT);
-                        barra.show();
-                    }
-                });
-                AlertDialog cuadroDialogo = builder.create();
-                cuadroDialogo.show();
+
+
+
+
             }
+
         });
-/*
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pantallaPrin=new Intent(PantallaGestionarAusencias.this,PantallaPrincipal.class);
-                startActivity(pantallaPrin);
-            }
-        });*/
     }
 }

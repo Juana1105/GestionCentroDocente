@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.gestioncentrodocente.R;
+import com.example.gestioncentrodocente.entidades.Reunion;
 import com.example.gestioncentrodocente.entidades.TareaAdministrativa;
 import com.example.gestioncentrodocente.entidades.Usuario;
 import com.google.android.material.button.MaterialButton;
@@ -35,7 +36,7 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
     private ArrayList<Usuario> listaPosibles = new ArrayList<>();
     private Set<String> seleccionados = new HashSet<>();
 
-    String seleccionado = "";
+    String seleccionado = "",seleccionado2="";
     String[] valores = null;
     String[] valores2 = null;
 
@@ -51,8 +52,8 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
         TextView ponSeleccion = findViewById(R.id.seleccionTareasGT);
         Spinner spinnerAsignacionTareas = findViewById(R.id.spinnerTipoTarea);
         Spinner spinnerTareaEspecifica = findViewById(R.id.spinnerTareaEspecifica);
-        EditText observacionesE = findViewById(R.id.observacionesJEtareas);
-        String observaciones=observacionesE.getText().toString();
+
+
         usuario = getIntent().getExtras();
         dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -132,6 +133,17 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
                 }
 
                 spinnerTareaEspecifica.setAdapter(new ArrayAdapter<String>(PantallaGestionarTareasAdminJE.this, android.R.layout.simple_spinner_item, valores2));
+                spinnerTareaEspecifica.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        seleccionado2=valores2[position];
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
             }
 
             @Override
@@ -142,29 +154,56 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
 
         botonAdjudicar.setOnClickListener(new View.OnClickListener() {
 
+
             @Override
             public void onClick(View view) {
+                View padre=(View) view.getParent();
+                EditText observacionesE = findViewById(R.id.observacionesJEtareas);
+                String observaciones=observacionesE.getText().toString();
+
                 if (seleccionados.isEmpty()) {
                     Snackbar.make(view, "Debes seleccionar al menos un receptor", Snackbar.LENGTH_SHORT).show();
                     return;
+                }else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                    builder.setTitle("Mensaje Informativo");
+                    builder.setMessage("Para fijar la tarea tienes que hacer clic en 'aceptar'");
+                    builder.setIcon(android.R.drawable.ic_dialog_info);
+
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            dbRefTareas = FirebaseDatabase.getInstance().getReference().child("Tareas");
+
+                            for (String participante : seleccionados) {
+                                TareaAdministrativa nuevaTarea = new TareaAdministrativa();
+                                nuevaTarea.setReceptor(participante);
+                                nuevaTarea.setDescripcion(seleccionado2);
+                                nuevaTarea.setEstado("");
+                                nuevaTarea.setObservaciones(observaciones);
+
+                                String key = dbRefTareas.push().getKey();
+                                dbRefTareas.child(key).setValue(nuevaTarea);
+                            }
+
+                            Intent pantallaPrincipal = new Intent(PantallaGestionarTareasAdminJE.this, PantallaPrincipal.class);
+                            pantallaPrincipal.putExtras(usuario);
+                            startActivity(pantallaPrincipal);
+                        }
+                    });
+
+                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Snackbar.make(padre, "Has cancelado el proceso", Snackbar.LENGTH_SHORT).show();
+                        }
+                    });
+                    AlertDialog cuadroDialogo = builder.create();
+                    cuadroDialogo.show();
                 }
 
-                dbRefTareas = FirebaseDatabase.getInstance().getReference().child("Tareas");
 
-                for (String participante : seleccionados) {
-                    TareaAdministrativa nuevaTarea = new TareaAdministrativa();
-                    nuevaTarea.setReceptor(participante);
-                   // nuevaTarea.setTipoTarea(valores); // Establecer el tipo de tarea seleccionado
-                    nuevaTarea.setDescripcion(seleccionado);
-                    nuevaTarea.setObservaciones(observaciones);
-
-                    String key = dbRefTareas.push().getKey();
-                    dbRefTareas.child(key).setValue(nuevaTarea);
-                }
-
-                Intent pantallaPrincipal = new Intent(PantallaGestionarTareasAdminJE.this, PantallaPrincipal.class);
-                pantallaPrincipal.putExtras(usuario);
-                startActivity(pantallaPrincipal);
             }
         });
     }

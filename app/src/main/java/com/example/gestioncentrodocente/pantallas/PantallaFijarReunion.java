@@ -39,7 +39,7 @@ import java.util.Set;
 public class PantallaFijarReunion extends AppCompatActivity {
     private Bundle usuario;
     private DatabaseReference dbRef,dbRef2;
-    ArrayList<Usuario> listaPosibles=new ArrayList<>();;
+    ArrayList<Usuario> listaPosibles=new ArrayList<>();
     Reunion crearReunion;
 
     private boolean[] checked = {false, false, false, false, false};
@@ -105,14 +105,14 @@ public class PantallaFijarReunion extends AppCompatActivity {
                             checked[which] = false;
                         }
 
-                        ponSeleccion.setText(seleccionados.toString());
+
                     }
                 });
 
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        ponSeleccion.setText(seleccionados.toString());
                     }
                 });
 

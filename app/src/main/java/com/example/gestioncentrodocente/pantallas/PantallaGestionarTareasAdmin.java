@@ -52,16 +52,15 @@ public class PantallaGestionarTareasAdmin extends AppCompatActivity {
         getSupportActionBar().setTitle("GESTIÓN TAREAS ADMINISTRATIVAS");
         Spinner spinnerNombreTarea = findViewById(R.id.spinnerNombreTarea);
         usuario = getIntent().getExtras();
-
         dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
+        //entramos a la base de datos sabiendo nuestro dni nos devuelve el valor de email y lo guardamos en una variable
         dbRef.orderByChild("dni").equalTo(usuario.getString("dni")).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     usu = ds.getValue(Usuario.class);
-
                     correoUsuario = usu.getEmail();
-                    Log.d("VALORES", "emailUSUARIO: " + correoUsuario);
+                    //Log.d("VALORES", "emailUSUARIO: " + correoUsuario);
                 }
             }
 
@@ -70,6 +69,7 @@ public class PantallaGestionarTareasAdmin extends AppCompatActivity {
             }
         });
 
+        //crear tareas en la base de dATo
         dbRefTareas = FirebaseDatabase.getInstance().getReference().child("Tareas");
         dbRefTareas.addListenerForSingleValueEvent(new ValueEventListener() {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -81,21 +81,17 @@ public class PantallaGestionarTareasAdmin extends AppCompatActivity {
                 }
 
                 String[] nombreTareas = valores.toArray(new String[0]);
-                Log.d("QUE HAY DENTRO", "info: " + Arrays.toString(nombreTareas));
-
                 spinnerNombreTarea.setAdapter(new ArrayAdapter<>(PantallaGestionarTareasAdmin.this, android.R.layout.simple_spinner_item, nombreTareas));
                 spinnerNombreTarea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         seleccionDescripcion = nombreTareas[position];
                     }
-
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
                     }
                 });
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
@@ -111,7 +107,6 @@ public class PantallaGestionarTareasAdmin extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 seleccionEstado = estado[position];
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -125,16 +120,13 @@ public class PantallaGestionarTareasAdmin extends AppCompatActivity {
                 builder.setTitle("Mensaje Informativo");
                 builder.setMessage("Para administrar la tarea haz clic en 'aceptar'");
                 builder.setIcon(android.R.drawable.ic_dialog_info);
-
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // Obtener la tarea seleccionada del Spinner spinnerNombreTarea
                         String tareaSeleccionada = spinnerNombreTarea.getSelectedItem().toString();
-
                         // Obtener el estado seleccionado del Spinner spinnerEstadoTarea
                         String estadoSeleccionado = spinnerEstadoTarea.getSelectedItem().toString();
-
                         // Actualizar el estado de la tarea seleccionada en la base de datos
                         dbRefTareas.addListenerForSingleValueEvent(new ValueEventListener() {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -145,7 +137,6 @@ public class PantallaGestionarTareasAdmin extends AppCompatActivity {
                                         ds.getRef().setValue(tarea);
                                         Snackbar.make(v, "Estado actualizado correctamente", Snackbar.LENGTH_SHORT).show();
 
-
                                         // Iniciar la actividad PantallaPrincipal
                                         Intent pantallaPrincipal = new Intent(PantallaGestionarTareasAdmin.this, PantallaPrincipal.class);
                                         pantallaPrincipal.putExtras(usuario);
@@ -153,15 +144,12 @@ public class PantallaGestionarTareasAdmin extends AppCompatActivity {
                                     }
                                 }
                             }
-
-
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
                                 // Manejar errores de cancelación si es necesario
                             }
                         });
                     }
-
                 });
 
                 builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

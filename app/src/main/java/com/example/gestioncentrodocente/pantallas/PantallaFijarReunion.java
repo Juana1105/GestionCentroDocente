@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.gestioncentrodocente.R;
+import com.example.gestioncentrodocente.SQLite.GestionCentroDocenteDBHelper;
 import com.example.gestioncentrodocente.entidades.Reunion;
 import com.example.gestioncentrodocente.entidades.Usuario;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -41,6 +44,8 @@ public class PantallaFijarReunion extends AppCompatActivity {
     private DatabaseReference dbRef,dbRef2;
     ArrayList<Usuario> listaPosibles=new ArrayList<>();
     Reunion crearReunion;
+    SQLiteDatabase baseDatos;
+    GestionCentroDocenteDBHelper dbHelper;
 
     private boolean[] checked = {false, false, false, false, false};
     private Set<String> seleccionados = new HashSet<>();
@@ -48,22 +53,21 @@ public class PantallaFijarReunion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_fijar_reunion);
-        //getSupportActionBar().hide();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("CREAR REUNIÓN");
 
-       // MaterialToolbar toolbar=findViewById(R.id.encabezadoFijarReuniones);
+        dbHelper = new GestionCentroDocenteDBHelper(this);
+        baseDatos=dbHelper.getWritableDatabase();
         MaterialButton botonElige=findViewById(R.id.pantallaFRreceptores);
         MaterialButton eligeFecha=findViewById(R.id.pantallaJEreunionEligeFecha);
         TextView ponSeleccion=findViewById(R.id.seleccionAvisoEA);
         TextView fechaElegida=findViewById(R.id.GAfechaElegida);
         MaterialButton botonEnviar=findViewById(R.id.botonFijarReunion);
 
-
         usuario = getIntent().getExtras();
         dbRef= FirebaseDatabase.getInstance().getReference().child("Usuarios");
-
-        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {//para coger a todos los usuarios, no solamente el mio
+        //consultamos en la base de datos y cogemos a todos los usuarios, no solamente el mio
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()) {
@@ -71,12 +75,10 @@ public class PantallaFijarReunion extends AppCompatActivity {
                     listaPosibles.add(u);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-
 
 
         botonElige.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +86,6 @@ public class PantallaFijarReunion extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(PantallaFijarReunion.this);
                 builder.setTitle("Elige a quienes vas a enviar el aviso de la reunion");
-
                 // Crear un array para almacenar los correos electrónicos de los usuarios
                 String[] correosElectronicos = new String[listaPosibles.size()];
 
@@ -92,7 +93,6 @@ public class PantallaFijarReunion extends AppCompatActivity {
                 for (int i = 0; i < listaPosibles.size(); i++) {
                     correosElectronicos[i] = listaPosibles.get(i).getEmail();
                 }
-
                 // Usar el array de correos electrónicos para construir el diálogo de selección
                 builder.setMultiChoiceItems(correosElectronicos, checked, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
@@ -104,41 +104,32 @@ public class PantallaFijarReunion extends AppCompatActivity {
                             seleccionados.remove(correosElectronicos[which]);
                             checked[which] = false;
                         }
-
-
                     }
                 });
-
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ponSeleccion.setText(seleccionados.toString());
                     }
                 });
-
                 builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
                 });
-
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
         });
 
-
         eligeFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 Calendar calendario = Calendar.getInstance();
                 int year = calendario.get(Calendar.YEAR);
                 int month = calendario.get(Calendar.MONTH);
                 int day = calendario.get(Calendar.DAY_OF_MONTH);
-
                 DatePickerDialog selectorFecha = new DatePickerDialog(PantallaFijarReunion.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
@@ -148,43 +139,26 @@ public class PantallaFijarReunion extends AppCompatActivity {
                         Calendar fecha = Calendar.getInstance();
                         fecha.set(year, month, dayOfMonth);
                         String fechaFormateada = formato.format(fecha.getTime());
-
                         // Actualiza el TextView con la fecha formateada
                         fechaElegida.setText(fechaFormateada);
                     }
                 }, year, month, day);
                 selectorFecha.show();
-
-
             }
         });
-
-
 
         crearReunion=new Reunion();
         TextView fechaE=findViewById(R.id.GAfechaElegida);
         EditText motivoE=findViewById(R.id.motivoReunion);
         EditText nombreReunionE=findViewById(R.id.fr_nombreReunion);
-
-
         dbRef2= FirebaseDatabase.getInstance().getReference().child("Reuniones");
-
-
-
-
         botonEnviar.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 View padre=(View) v.getParent();
-
                 String fecha=fechaE.getText().toString();
                 String motivo=motivoE.getText().toString();
                 String nombre=nombreReunionE.getText().toString();
-
-
-
                 dbRef2.orderByChild("nombre").equalTo(nombre).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -195,26 +169,31 @@ public class PantallaFijarReunion extends AppCompatActivity {
                             builder.setTitle("Mensaje Informativo");
                             builder.setMessage("Para fijar la reunión tienes que hacer clic en 'aceptar'");
                             builder.setIcon(android.R.drawable.ic_dialog_info);
-
                             builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-
                                     for (String participante : seleccionados) {
                                         // Crear un nombre único para la reunión que incluya el nombre y el participante
                                         String nombreUnicoReunion = nombre + "_" + participante.replace(".", "");
-
                                         // Crear un nuevo objeto Reunion para cada participante
                                         Reunion nuevaReunion = new Reunion();
                                         nuevaReunion.setNombreReunion(nombreUnicoReunion);
                                         nuevaReunion.setFecha(fecha);
                                         nuevaReunion.setMotivo(motivo);
                                         nuevaReunion.setReceptor(participante);
-
                                         // Guardar el objeto Reunion en la base de datos
                                         dbRef2.child(nombreUnicoReunion).setValue(nuevaReunion);
-                                    }
 
+
+                                        //SQLITE
+                                        ContentValues contenido=new ContentValues();
+                                        contenido.put("nombreReunion",nombre);
+                                        contenido.put("receptor",participante);
+                                        contenido.put("fecha",fecha);
+                                        contenido.put("motivo",motivo);
+                                        baseDatos.insert("reunion",null,contenido);
+                                    }
+                                    //VOLVER A PANTALLA PRINCIPAL
                                     Intent pantallaPrincipal= new Intent(PantallaFijarReunion.this, PantallaPrincipal.class);
                                     pantallaPrincipal.putExtras(usuario);
                                     startActivity(pantallaPrincipal);
@@ -244,9 +223,6 @@ public class PantallaFijarReunion extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
                 });
-
-
-
 
             }
 

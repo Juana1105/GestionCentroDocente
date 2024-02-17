@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.gestioncentrodocente.R;
+import com.example.gestioncentrodocente.SQLite.GestionCentroDocenteDBHelper;
 import com.example.gestioncentrodocente.entidades.Guardia;
 import com.example.gestioncentrodocente.entidades.Permiso;
 import com.example.gestioncentrodocente.entidades.Reunion;
@@ -39,12 +42,15 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
     String[] valores2 = null;
     private int id=0;
     Permiso crearPermiso;
+    SQLiteDatabase baseDatos;
+    GestionCentroDocenteDBHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_gestionar_permisos);
-
+        dbHelper = new GestionCentroDocenteDBHelper(this);
+        baseDatos=dbHelper.getWritableDatabase();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("GESTIÓN PERMISOS");
         usuario = getIntent().getExtras();
@@ -58,21 +64,16 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
                     Log.d("INFO", "EMAIL: " + correoUsuario);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
 
-
         MaterialButton botonAceptar=findViewById(R.id.pantallaGestPAceptar);
         Spinner spinnerCriteriosComunes=(Spinner)findViewById(R.id.spinnerCriteriosComunes);
         Spinner spinnerCriteriosEspecificos=(Spinner)findViewById(R.id.spinnerCriteriosEspecificos);
-
         valores = new String[]{"Familia", "Nacimiento/Otros", "Personal", "Formación del docente", "Deberes Civiles"};
-
         spinnerCriteriosComunes.setAdapter(new ArrayAdapter<String>(PantallaGestionarPermisos.this, android.R.layout.simple_spinner_item,valores));
-
         spinnerCriteriosComunes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -96,14 +97,12 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         seleccionado2=valores2[position];
                     }
-
                     @Override
                     public void onNothingSelected(AdapterView<?> adapterView) {
 
                     }
                 });
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -111,10 +110,9 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
         });
 
 
-
+        //conectar a base de datos para crear permisos
         dbRef2= FirebaseDatabase.getInstance().getReference().child("Permisos");
         botonAceptar.setOnClickListener(new View.OnClickListener() {
-
 
             @Override
             public void onClick(View view) {
@@ -126,7 +124,6 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
                             Guardia lastGuardia = dataSnapshot.getValue(Guardia.class);
                             id = lastGuardia.getId() + 1;
                         }
-
                         dbRef2.orderByChild("id").equalTo(id).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -137,7 +134,6 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
                                     builder.setTitle("Mensaje Informativo");
                                     builder.setMessage("Para guardar el permiso haz clic en 'aceptar'");
                                     builder.setIcon(android.R.drawable.ic_dialog_info);
-
                                     builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -146,6 +142,13 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
                                             dbRef2.child(idString).setValue(crearPermiso);
                                             id++;
 
+                                            //SQLITE
+                                            ContentValues contenido=new ContentValues();
+                                            contenido.put("email",correoUsuario);
+                                            contenido.put("criterioComun",seleccionado);
+                                            contenido.put("criterioEspecifico",seleccionado2);
+                                            baseDatos.insert("permiso",null,contenido);
+                                            //VOLVER A PANTALLA PRINCIPAL
                                             Intent pantallaPrincipal = new Intent(PantallaGestionarPermisos.this, PantallaPrincipal.class);
                                             pantallaPrincipal.putExtras(usuario);
                                             startActivity(pantallaPrincipal);
@@ -158,13 +161,10 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
                                             Snackbar.make(padre, "Has cancelado el proceso", Snackbar.LENGTH_SHORT).show();
                                         }
                                     });
-
-
                                     AlertDialog cuadroDialogo = builder.create();
                                     cuadroDialogo.show();
                                 }
                             }
-
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
                             }
@@ -176,9 +176,6 @@ public class PantallaGestionarPermisos extends AppCompatActivity {
 
                     }
                 });
-
-
-
             }
 
         });

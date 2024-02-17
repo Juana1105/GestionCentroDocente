@@ -32,22 +32,14 @@ public class MenuInicio extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_inicio);
-        // Ocultar el ActionBar predeterminado
-        //getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().hide();
 
         MaterialButton botonInicioSesion =findViewById(R.id.menuInicioBotonInicioSesion);
-
         textoDni=(EditText)findViewById(R.id.menuInicioEditTextDni);
         textoPassword=(EditText)findViewById(R.id.menuInicioEditTextPassword);
-
         TextView textoRegistro=(TextView)findViewById(R.id.menuInicioTextRegistro);
-        //ImageView imagenLogo=(ImageView) findViewById(R.id.imagenLogoCentro);
-        //imagenLogo.setImageResource(@drawable/imagenLogo);
-
 
         dbRef= FirebaseDatabase.getInstance().getReference().child("Usuarios");
-
 
         botonInicioSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,10 +48,8 @@ public class MenuInicio extends AppCompatActivity {
                 dni= textoDni.getText().toString();
                 password= textoPassword.getText().toString();
 
-
                 if (dni.isEmpty() || password.isEmpty()) {
                     Snackbar.make(padre, "No puedes dejar ningún campo vacío", Snackbar.LENGTH_SHORT).show();
-
                 }else{
                     //Mira en la base de datos si existe algún usuario con el nombre insertado
                     dbRef.orderByChild("dni").equalTo(dni).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -68,23 +58,19 @@ public class MenuInicio extends AppCompatActivity {
                             //Si hay algún usuario con ese dni se ejecutará esta condición
                             if (snapshot.exists()) {
                                 for (DataSnapshot ds : snapshot.getChildren()) {
+                                    //recoge de la base de datos el password
                                     String passwordDB = ds.child("password").getValue(String.class);
-
-                                /*Si la contraseña insertada es la misma que la de la base de datos se ejecutará
-                                esta condición*/
+                                    //compara y si la contraseña es la misma te muestra la activity principal
                                     if (passwordDB.equals(password)) {
                                         Intent actividadMenuPrincipal = new Intent(MenuInicio.this, PantallaPrincipal.class);
                                         actividadMenuPrincipal.putExtra("dni", dni);
                                         startActivity(actividadMenuPrincipal);
-
-                                        //Sino mostrará un mensaje de que la contraseña es incorrecta
                                     } else {
                                         Snackbar.make(padre, "Contraseña Incorrecta", Snackbar.LENGTH_SHORT).show();
                                     }
                                 }
-
-                                //Sino mostrará un mensaje de que no existe ese usuario y que se registre
                             }else{
+                                //Sino mostrará un mensaje de que no existe ese usuario y que se registre
                                 Snackbar.make(padre, "No existe un usuario con ese dni", Snackbar.LENGTH_SHORT).show();
                             }
                         }
@@ -92,12 +78,10 @@ public class MenuInicio extends AppCompatActivity {
                         public void onCancelled(@NonNull DatabaseError error) {}
                     });
                 }
-
-
-
             }
         });
 
+        //PARA REGISTRARSE
         textoRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +89,5 @@ public class MenuInicio extends AppCompatActivity {
                 startActivity(actividadPantallaRegistro);
             }
         });
-
-
     }
 }

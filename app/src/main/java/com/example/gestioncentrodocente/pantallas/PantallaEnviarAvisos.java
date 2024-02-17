@@ -26,25 +26,19 @@ public class PantallaEnviarAvisos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_enviar_avisos);
-        //getSupportActionBar().hide();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("\tENVIAR AVISOS");
 
         MaterialButton enviarAviso = findViewById(R.id.botonPantallaEAenviarAvisos);
         MaterialButton botonElige = findViewById(R.id.pantallaEAreceptores);
         TextView ponSeleccion = findViewById(R.id.seleccionAvisoEA);
-        //MaterialToolbar toolbar=findViewById(R.id.encabezadoEnviarAvisos);
-
         enviarAviso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
-
                 builder.setTitle("Mensaje Informativo");
                 builder.setMessage("Para enviar el aviso haz clic en 'aceptar'");
                 builder.setIcon(android.R.drawable.btn_star_big_on);
-
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -56,8 +50,6 @@ public class PantallaEnviarAvisos extends AppCompatActivity {
                     }
 
                 });
-
-
                 builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -68,10 +60,8 @@ public class PantallaEnviarAvisos extends AppCompatActivity {
                 });
                 AlertDialog cuadroDialogo = builder.create();
                 cuadroDialogo.show();
-
             }
         });
-
 
 
         botonElige.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +70,6 @@ public class PantallaEnviarAvisos extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(PantallaEnviarAvisos.this);
                 builder.setTitle("Elige a quienes vas a enviar el aviso");
                 String[] participantes = {"Ana", "Ricardo", "Lucia", "Juana", "Pepe"};
-
                 builder.setMultiChoiceItems(participantes, checked, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
@@ -95,7 +84,6 @@ public class PantallaEnviarAvisos extends AppCompatActivity {
                         ponSeleccion.setText(seleccionados.toString());
                     }
                 });
-
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -112,13 +100,5 @@ public class PantallaEnviarAvisos extends AppCompatActivity {
                 dialog.show();
             }
         });
-/*
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pantallaPrincipal = new Intent(PantallaEnviarAvisos.this, PantallaPrincipal.class);
-                startActivity(pantallaPrincipal);
-            }
-        });*/
     }
 }

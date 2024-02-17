@@ -43,7 +43,6 @@ public class PantallaEditarPerfil extends AppCompatActivity {
         getSupportActionBar().setTitle("EDITAR PERFIL");
 
         usuario = getIntent().getExtras();
-
         nombreE=findViewById(R.id.pep_nombre);
         dniE=findViewById(R.id.pep_dni);
         emailE=findViewById(R.id.pep_email);
@@ -63,7 +62,7 @@ public class PantallaEditarPerfil extends AppCompatActivity {
             }
         });
 
-
+        //Vamos a consultar en la base de datos al usuario que corresponda con nuestro DNI, y vamos a capturar en variables toda la información para mostrarla en los campos de texto(EditText) y que el usuario pueda modificar algun dato si quiere
         dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
         dbRef.orderByChild("dni").equalTo(usuario.getString("dni")).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -84,19 +83,12 @@ public class PantallaEditarPerfil extends AppCompatActivity {
 
 
 
-
-
-
         MaterialButton botonGuardarCambios=findViewById(R.id.EPBotonRegistrarse);
-
-
         botonGuardarCambios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent volverPerfil = new Intent(PantallaEditarPerfil.this, Perfil.class);
-
                 View padre=(View) view.getParent();
-
                 String nombre=nombreE.getText().toString();
                 String dni = dniE.getText().toString();
                 String email = emailE.getText().toString();
@@ -104,7 +96,6 @@ public class PantallaEditarPerfil extends AppCompatActivity {
                 String titulacion=titulacionE.getText().toString();
                 String telefono=telefonoE.getText().toString();
                 if (dni.isEmpty() || password.isEmpty()) {
-                   // RelativeLayout layout = findViewById(R.id.layoutEditarPerfil);
                     Snackbar.make(padre, "No puedes dejar dni o contraseña vacios", Snackbar.LENGTH_SHORT).show();
                 } else {
                     dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -112,13 +103,11 @@ public class PantallaEditarPerfil extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             String dniOriginal=usuario.getString("dni");
                             if(snapshot.exists()){
-
-
+                                //AlertDialog para confirmar los cambios
                                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                                 builder.setTitle("Mensaje Informativo");
                                 builder.setMessage("Estás a punto de modificar tus datos, si estás seguro haz clic en 'aceptar'");
                                 builder.setIcon(android.R.drawable.ic_dialog_info);
-
                                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -129,61 +118,31 @@ public class PantallaEditarPerfil extends AppCompatActivity {
                                         dbRef.child(dniOriginal).child("email").setValue(email);
                                         dbRef.child(dniOriginal).child("titulacion").setValue(titulacion);
                                         dbRef.child(dniOriginal).child("telefono").setValue(telefono);
-
-                                        // dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
-                                        //dbRef.child(dni).setValue(datosUsuario);
-
                                         volverPerfil.putExtras(usuario);
                                         startActivity(volverPerfil);
                                     }
                                 });
-
                                 builder.setNegativeButton("No aceptar", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         Snackbar.make(padre, "Si no aceptas modifica algún campo", Snackbar.LENGTH_SHORT).show();
                                     }
                                 });
-
                                 builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         Snackbar.make(padre, "Has cancelado el registro de usuario", Snackbar.LENGTH_SHORT).show();
                                     }
                                 });
-
                                 AlertDialog cuadroDialogo = builder.create();
                                 cuadroDialogo.show();
-
-
-
-
-
-
-
                             }
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {}
                     });
 
-
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             }
         });

@@ -35,27 +35,18 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
         setContentView(R.layout.activity_pantalla_principal);
         getSupportActionBar().hide();
 
-        /*MaterialToolbar toolbar = findViewById(R.id.encabezadoMenuPrincipal);
-        toolbar.setOnMenuItemClickListener(this);*/
-
-
         usuario = getIntent().getExtras();
         dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
-        //dbRefReuniones=FirebaseDatabase.getInstance().getReference().child("Reuniones");
+        //A traves del bundle conocemos nuestro dni, hacemos una consulta a la base de datos para recuperar nuestro rol
         dbRef.orderByChild("dni").equalTo(usuario.getString("dni")).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds:snapshot.getChildren()){
                     usu=ds.getValue(Usuario.class);
                     rol=usu.getRol();
-                    // Aquí se verifica el rol del usuario después de obtenerlo de la base de datos
                     verificarRol();
-
-                    // Aquí se verifica el rol del usuario después de obtenerlo de la base de datos
-                   // inflateLayoutBasedOnRole(rol);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         });
@@ -71,7 +62,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
             TextView textCalendarioReuniones = (TextView) findViewById(R.id.calendarioReuniones);
             Button botonHorario = (Button) findViewById(R.id.ppBotonMirarHorario);
 
-
             imgNotificaciones.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -80,7 +70,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaNotificaciones);
                 }
             });
-
             textGestionarPermisos.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -89,9 +78,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaGestionarPermisos);
                 }
             });
-
-
-
             botonHorario.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -100,7 +86,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaHorario);
                 }
             });
-
             textGestionarTareas.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -109,7 +94,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaGestionTareas);
                 }
             });
-
             textNotificarAusencias.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -118,7 +102,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaGestionAusencias);
                 }
             });
-
             textCalendarioReuniones.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -127,18 +110,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaCalendarioReuniones);
                 }
             });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -147,20 +118,13 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
             setContentView(R.layout.activity_pantalla_principal_coordinador);
             //CAMBIAR ACTIVITY
 
-
             ImageView imgNotificaciones = (ImageView) findViewById(R.id.imagenNotificaciones);
             TextView textGestionarPermisos = (TextView) findViewById(R.id.gestionPermisos);
             TextView textGestionarTareas = (TextView) findViewById(R.id.gestionTareasAdmin);
             TextView textNotificarAusencias = (TextView) findViewById(R.id.gestionAusencias);
             TextView textCalendarioReuniones = (TextView) findViewById(R.id.calendarioReuniones);
             TextView textEnviarAvisos = (TextView) findViewById(R.id.gestionAvisosCoordinador);
-
-            /*CAMBIOS AQUI*/
-            // Button botonCerrarSesion=(Button)findViewById(R.id.botonCerrarSesion);
-            //  Button botonEditarPerfil = (Button) findViewById(R.id.ppBotonEditarPerfil);
             Button botonHorario = (Button) findViewById(R.id.ppBotonMirarHorario);
-
-
             imgNotificaciones.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -169,7 +133,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaNotificaciones);
                 }
             });
-
             textGestionarPermisos.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -178,8 +141,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaGestionarPermisos);
                 }
             });
-
-
             botonHorario.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -188,7 +149,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaHorario);
                 }
             });
-
             textGestionarTareas.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -197,7 +157,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaGestionTareas);
                 }
             });
-
             textNotificarAusencias.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -206,7 +165,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaGestionAusencias);
                 }
             });
-
             textCalendarioReuniones.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -215,8 +173,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaCalendarioReuniones);
                 }
             });
-
-
             textEnviarAvisos.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -227,17 +183,12 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
             });
 
         } else if (rol.equals("Jefe de Estudios")) {
-            setContentView(R.layout.activity_pantalla_principal_jestudios);
-            //CAMBIAR ACTIVITY
-
-
+            setContentView(R.layout.activity_pantalla_principal_jestudios);//CAMBIAR ACTIVITY
             ImageView imgNotificaciones = (ImageView) findViewById(R.id.imagenNotificaciones);
             TextView enviarMensajes = (TextView) findViewById(R.id.enviarMensajes);
             TextView fijarReuniones = (TextView) findViewById(R.id.fijarReunionesJE);
             TextView textGestionGuardias=(TextView)findViewById(R.id.gestionInformeGuardias);
             TextView textAdjudicarTareasAdmin=(TextView)findViewById(R.id.adjudicarTareasAdmin);
-            //Button botonCerrarSesion=(Button)findViewById(R.id.botonCerrarSesion);
-            //Button botonEditarPerfil = (Button) findViewById(R.id.ppBotonEditarPerfil);
             Button botonHorario = (Button) findViewById(R.id.ppBotonMirarHorario);
 
             textAdjudicarTareasAdmin.setOnClickListener(new View.OnClickListener() {
@@ -256,10 +207,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaNotificaciones);
                 }
             });
-
-
-
-
             botonHorario.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -268,8 +215,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaHorario);
                 }
             });
-
-
             textGestionGuardias.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -278,7 +223,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(PantallaGestionGuardias);
                 }
             });
-
             enviarMensajes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -287,7 +231,6 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaEnvioMensaje);
                 }
             });
-
             fijarReuniones.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -296,20 +239,16 @@ public class PantallaPrincipal extends AppCompatActivity implements Toolbar.OnMe
                     startActivity(actividadPantallaFijarReuniones);
                 }
             });
-
         } else {
             View padre = findViewById(R.id.linearLayoutPantallaPrincipalPadre);
             Snackbar barra= Snackbar.make(padre,"Rol de usuario no definido",Snackbar.LENGTH_SHORT);
             barra.show();
         }
 
-
-
         // Configurar la toolbar después de inflar el layout
         MaterialToolbar toolbar = findViewById(R.id.encabezadoMenuPrincipal);
         toolbar.setOnMenuItemClickListener(this);
     }
-
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {

@@ -15,14 +15,9 @@ public class PantallaHorario extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_horario);
-        //getSupportActionBar().hide();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("\tHORARIO");
         getSupportActionBar().setDisplayShowCustomEnabled(true);
-
-        //MaterialToolbar toolbarcito=findViewById(R.id.encabezadoHorario);
-
-       // toolbarcito.setNavigationOnClickListener(this);
 
     }
 

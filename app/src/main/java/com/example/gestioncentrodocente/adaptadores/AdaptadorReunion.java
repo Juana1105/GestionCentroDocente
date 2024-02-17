@@ -35,7 +35,6 @@ public class AdaptadorReunion extends ArrayAdapter<Reunion> {
 
 
 
-
         TextView textoNombreEmisor= (TextView) elemento.findViewById(R.id.textViewEmisor);
         TextView textoFecha= (TextView) elemento.findViewById(R.id.fechaReunion);
         TextView textoDescripcion=(TextView) elemento.findViewById(R.id.descripcionReunion);

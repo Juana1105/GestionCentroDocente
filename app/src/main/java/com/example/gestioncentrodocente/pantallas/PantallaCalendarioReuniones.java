@@ -34,17 +34,16 @@ public class PantallaCalendarioReuniones extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_calendario_reuniones);
-        //getSupportActionBar().hide();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("REUNIONES");
-
         listaReuniones=new ArrayList<>();
         ListView vistaLista=(ListView) findViewById(R.id.listadoReuniones);
         AdaptadorReunion miAdaptadorReunion =new AdaptadorReunion(this,listaReuniones);
 
         usuario = getIntent().getExtras();
-
+        //CONEXION A LA BASE DE DATOS
         dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
+        //con el campo del DNI del bundle, vamos a capturar el objeto y meter en una variable su email
         dbRef.orderByChild("dni").equalTo(usuario.getString("dni")).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -53,7 +52,6 @@ public class PantallaCalendarioReuniones extends AppCompatActivity {
                     correoUsuario=usu.getEmail();
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         });
@@ -62,14 +60,8 @@ public class PantallaCalendarioReuniones extends AppCompatActivity {
 
 
 
-
-
-
-        //dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
+        //Para crear la reunion instanciamos una nueva conexion a la base de datos
         dbRefReuniones=FirebaseDatabase.getInstance().getReference().child("Reuniones");
-        //primero hago una consulta para obtener el email del usuario
-
-        //y aqui entramos en la base de datos y comparamos el nombre de la reunion con el email del usuario para agregarlo a la lista
         dbRefReuniones.orderByChild("nombreReunion").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -80,12 +72,6 @@ public class PantallaCalendarioReuniones extends AppCompatActivity {
                     String receptor = ds.child("receptor").getValue(String.class);
                     String fecha = ds.child("fecha").getValue(String.class);
                     String motivo = ds.child("motivo").getValue(String.class);
-
-
-                    //String correoUsuario = usuario.getString("email");
-
-                    Log.d("DEBUG", "Valor de receptor: " + receptor);
-                    Log.d("DEBUG", "Valor de correoUsuario: " + correoUsuario);
                     if (reunion.getReceptor().equals(correoUsuario)) {
                         // Agregar la reunión a la lista
                         listaReuniones.add(new Reunion(nombreReunion, receptor, fecha, motivo));
@@ -94,30 +80,13 @@ public class PantallaCalendarioReuniones extends AppCompatActivity {
                 // Notificar al adaptador que los datos han cambiado
                 miAdaptadorReunion.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
-
-
-/*
-        listaReuniones.add(new Reunion("Reunion 1","Lucia","12/02/2024","Reunion extraordinaria"));
-        listaReuniones.add(new Reunion("Reunion 2","Lucia","12/02/2024","Reunion para simulacro de incendio"));
-        listaReuniones.add(new Reunion("Reunion 3","Pepe","12/02/2024","Reunion organizacion trimestral"));
-        listaReuniones.add(new Reunion("Reunion 4","Pepe","12/02/2024","Reunion excursión de abril"));
-        listaReuniones.add(new Reunion("Reunion 5","Lucia","12/02/2024","Reunión fiesta escolar"));
-*/
-
-
         //Ahora juntamos los elementos declarados
         vistaLista.setAdapter(miAdaptadorReunion);
-
-
-
-
 
     }
 }

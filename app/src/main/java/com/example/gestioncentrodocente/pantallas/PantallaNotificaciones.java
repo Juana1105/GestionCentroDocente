@@ -51,7 +51,7 @@ public class PantallaNotificaciones extends AppCompatActivity {
         usuario = getIntent().getExtras();
         listaNotificaciones = new ArrayList<>();
 
-        //PARA CONSEGUIR EL NOMBRE Y EMAIL DEL USUARIO
+        //ACCEDEMOS A LA BASE DE DATOS Y COMPARANDO CON NUESTRO DNI DEL BUNDLE, RECOGEMOS LA INFORMACION QUE NECESITAMOS Y LA GUARDAMOS EN VARIABLES
         dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
         dbRef.orderByChild("dni").equalTo(usuario.getString("dni")).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -61,9 +61,6 @@ public class PantallaNotificaciones extends AppCompatActivity {
                     correoUsuario=usu.getEmail();
                     nombreUsuario=usu.getNombre();
                     rol=usu.getRol();
-
-                    Log.d("DEBUG", "rol: " + rol);
-
 
 
 
@@ -88,7 +85,6 @@ public class PantallaNotificaciones extends AppCompatActivity {
                             }
                         });
 
-
                         //NOTIFICACIONES PARA MOSTRAR PERMISOS
                         dbRefPermisos = FirebaseDatabase.getInstance().getReference().child("Permisos");
                         dbRefPermisos.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -104,12 +100,10 @@ public class PantallaNotificaciones extends AppCompatActivity {
                                 permisoCargado = true;
                                 actualizarListaNotificacionesSiEsNecesario();
                             }
-
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
                             }
                         });
-
                         //NOTIFICACIONES PARA MOSTRAR AUSENCIAS
                         dbRefAusencias = FirebaseDatabase.getInstance().getReference().child("Ausencias");
                         dbRefAusencias.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -131,15 +125,11 @@ public class PantallaNotificaciones extends AppCompatActivity {
                             }
                         });
 
-
-
+                    //EN CASO DE NO SER JEFE DE ESTUDIOS
                     }else {
-
 
                         //COGEMOS LAS GUARDIAS DE LA BASE DE DATOS QUE COINCIDAN CON EL NOMBRE DEL USUARIO COMO RECEPTOR
                         dbRefGuardias = FirebaseDatabase.getInstance().getReference().child("Guardias");
-                        Log.d("DEBUG", "Valor de receptor: " + nombreUsuario);
-
                         dbRefGuardias.orderByChild("receptor").equalTo(nombreUsuario).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot guardiasSnapshot) {
@@ -185,7 +175,6 @@ public class PantallaNotificaciones extends AppCompatActivity {
                         //COGEMOS LAS TAREAS DE LAS BASES DE DATOS QUE CONTENGAN NUESTRO EMAIL COMO RECEPTOR
                         dbRefTareas = FirebaseDatabase.getInstance().getReference().child("Tareas");
                         dbRefTareas.addListenerForSingleValueEvent(new ValueEventListener() {
-
                             @Override
                             public void onDataChange(@NonNull DataSnapshot tareasSnapshot) {
                                 for (DataSnapshot tareaSnapshot : tareasSnapshot.getChildren()) {
@@ -203,11 +192,7 @@ public class PantallaNotificaciones extends AppCompatActivity {
                             public void onCancelled(@NonNull DatabaseError error) {
                             }
                         });
-
-
                     }
-
-
                 }
                 actualizarListaNotificacionesSiEsNecesario();
             }
@@ -220,10 +205,10 @@ public class PantallaNotificaciones extends AppCompatActivity {
 
     }
 
-    // Método para actualizar la lista de notificaciones solo si tanto las guardias como las reuniones han sido cargadas
+    // Método para actualizar la lista de notificaciones
     private void actualizarListaNotificacionesSiEsNecesario() {
         if (guardiasCargadas && reunionesCargadas && tareasCargadas) {
-            // Ambas consultas han sido completadas, entonces podemos actualizar la lista de notificaciones
+            // las consultas han sido completadas, entonces podemos actualizar la lista de notificaciones
             actualizarListaNotificaciones(listaNotificaciones);
         }else if(tareas2Cargadas&& permisoCargado&&ausenciaCargada){
             actualizarListaNotificaciones(listaNotificaciones);

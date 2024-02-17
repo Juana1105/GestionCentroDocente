@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.gestioncentrodocente.R;
+import com.example.gestioncentrodocente.SQLite.GestionCentroDocenteDBHelper;
 import com.example.gestioncentrodocente.entidades.Guardia;
 import com.example.gestioncentrodocente.entidades.Reunion;
 import com.example.gestioncentrodocente.entidades.Usuario;
@@ -43,23 +46,25 @@ public class PantallaGestionGuardias extends AppCompatActivity {
     private String seleccionado,tipoGuardia,fecha,idString,observaciones;
     private Guardia crearGuardia;
     private int id=0;
+    SQLiteDatabase baseDatos;
+    GestionCentroDocenteDBHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_gestion_guardias);
-        //getSupportActionBar().hide();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("GESTIÓN GUARDIAS");
 
+        dbHelper = new GestionCentroDocenteDBHelper(this);
+        baseDatos=dbHelper.getWritableDatabase();
         TextView personaSeleccionadaText=findViewById(R.id.personaSeleccionadaGuardia);
         EditText observacionesE=findViewById(R.id.observacionesFijarGuardia);
         MaterialButton botonElige=findViewById(R.id.pantallaGGreceptorGuardia);
 
-
         usuario = getIntent().getExtras();
         dbRef= FirebaseDatabase.getInstance().getReference().child("Usuarios");
-
-        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {//para coger a todos los usuarios, no solamente el mio
+        //Accedemos a la base de datos para coger a todos los usuarios, no solamente el mio
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // Limpiar la lista de participantes
@@ -71,34 +76,23 @@ public class PantallaGestionGuardias extends AppCompatActivity {
                         participantes.add(u.getNombre());
                     }
                 }
-                // Notificar al adaptador de la lista de cambios
-                // (si tienes un adaptador que usa la lista)
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-
-
-
 
         botonElige.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(PantallaGestionGuardias.this);
                 builder.setTitle("Elige a la persona que hará la guardia");
-                //participantes = {"Julian","Pepe","Jose","Marisa","Ginebra","Antonia"};
-
                 // Convertir el ArrayList a un array de Strings para usarlo en setSingleChoiceItems
                 String[] participantesArray = participantes.toArray(new String[0]);
                 builder.setSingleChoiceItems(participantesArray, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-                        //seleccionado=participantes[which];
                         seleccionado = participantes.get(which);
-
                     }
                 });
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -121,7 +115,6 @@ public class PantallaGestionGuardias extends AppCompatActivity {
         Spinner spinnerSimple=(Spinner)findViewById(R.id.spinnerTipoGuardia);
         String[] valores = {"Urgente","Predeterminada", "Otro"};
         spinnerSimple.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,valores));
-
         spinnerSimple.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -152,7 +145,6 @@ public class PantallaGestionGuardias extends AppCompatActivity {
                         Calendar fecha = Calendar.getInstance();
                         fecha.set(year, month, dayOfMonth);
                         String fechaFormateada = formato.format(fecha.getTime());
-
                         // Actualiza el TextView con la fecha formateada
                         textoFecha.setText(fechaFormateada);
                     }
@@ -163,16 +155,12 @@ public class PantallaGestionGuardias extends AppCompatActivity {
 
         fecha=textoFecha.getText().toString();
         dbRef2= FirebaseDatabase.getInstance().getReference().child("Guardias");
-
         Button botonGuardar=(Button)findViewById(R.id.botonPantallaGguardar);
         botonGuardar.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
                 fecha = textoFecha.getText().toString();
                 observaciones = observacionesE.getText().toString();
-
                 View padre=(View) v.getParent();
-
                 dbRef2.orderByChild("id").limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -180,7 +168,6 @@ public class PantallaGestionGuardias extends AppCompatActivity {
                             Guardia lastGuardia = dataSnapshot.getValue(Guardia.class);
                             id = lastGuardia.getId() + 1;
                         }
-
                         dbRef2.orderByChild("id").equalTo(id).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -191,7 +178,6 @@ public class PantallaGestionGuardias extends AppCompatActivity {
                                     builder.setTitle("Mensaje Informativo");
                                     builder.setMessage("Para fijar la guardia tienes que hacer clic en 'aceptar'");
                                     builder.setIcon(android.R.drawable.ic_dialog_info);
-
                                     builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -200,6 +186,14 @@ public class PantallaGestionGuardias extends AppCompatActivity {
                                             dbRef2.child(idString).setValue(crearGuardia);
                                             id++;
 
+                                            //SQLITE
+                                            ContentValues contenido=new ContentValues();
+                                            contenido.put("receptor",seleccionado);
+                                            contenido.put("fecha",fecha);
+                                            contenido.put("tipoGuardia",tipoGuardia);
+                                            contenido.put("observaciones",observaciones);
+                                            baseDatos.insert("guardia",null,contenido);
+                                            //VOLVER A PANTALLA PRINCIPAL
                                             Intent pantallaP=new Intent(PantallaGestionGuardias.this,PantallaPrincipal.class);
                                             pantallaP.putExtras(usuario);
                                             startActivity(pantallaP);

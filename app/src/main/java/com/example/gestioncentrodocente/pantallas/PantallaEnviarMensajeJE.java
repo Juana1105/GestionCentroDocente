@@ -25,11 +25,9 @@ public class PantallaEnviarMensajeJE extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_enviar_mensaje_je);
-        //getSupportActionBar().hide();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("ENVIAR MENSAJE");
 
-       // MaterialToolbar toolbar=findViewById(R.id.encabezadoEnviarMensajeJE);
         MaterialButton botonEnviar=findViewById(R.id.botonPantallaEMenviar);
         MaterialButton botonElige=findViewById(R.id.pantallaEMreceptores);
         TextView ponSeleccion = findViewById(R.id.pantallaEMlistaPersonas);
@@ -39,7 +37,6 @@ public class PantallaEnviarMensajeJE extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(PantallaEnviarMensajeJE.this);
                 builder.setTitle("Elige a quienes vas a enviar el aviso");
                 String[] participantes = {"Ana", "Ricardo", "Lucia", "Juana", "Pepe"};
-
                 builder.setMultiChoiceItems(participantes, checked, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
@@ -50,38 +47,31 @@ public class PantallaEnviarMensajeJE extends AppCompatActivity {
                             seleccionados.remove(participantes[which]);
                             checked[which] = false;
                         }
-
-                        ponSeleccion.setText(seleccionados.toString());
                     }
                 });
 
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        ponSeleccion.setText(seleccionados.toString());
                     }
                 });
                 builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                     }
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
         });
-
         botonEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
-
                 builder.setTitle("Mensaje Informativo");
                 builder.setMessage("Para enviar el mensaje haz clic en 'aceptar'");
                 builder.setIcon(android.R.drawable.btn_star_big_on);
-
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -91,10 +81,7 @@ public class PantallaEnviarMensajeJE extends AppCompatActivity {
                         Intent pantallaP=new Intent(PantallaEnviarMensajeJE.this,PantallaPrincipal.class);
                         startActivity(pantallaP);
                     }
-
                 });
-
-
                 builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -108,16 +95,6 @@ public class PantallaEnviarMensajeJE extends AppCompatActivity {
 
             }
         });
-/*
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pantallaP=new Intent(PantallaEnviarMensajeJE.this,PantallaPrincipal.class);
-                startActivity(pantallaP);
-            }
-        });*/
-
-
 
     }
 }

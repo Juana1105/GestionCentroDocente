@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.gestioncentrodocente.R;
+import com.example.gestioncentrodocente.SQLite.GestionCentroDocenteDBHelper;
 import com.example.gestioncentrodocente.entidades.Reunion;
 import com.example.gestioncentrodocente.entidades.TareaAdministrativa;
 import com.example.gestioncentrodocente.entidades.Usuario;
@@ -39,6 +42,8 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
     String seleccionado = "",seleccionado2="";
     String[] valores = null;
     String[] valores2 = null;
+    SQLiteDatabase baseDatos;
+    GestionCentroDocenteDBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +52,13 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("FIJAR TAREAS ADMINISTRATIVAS");
 
+        dbHelper = new GestionCentroDocenteDBHelper(this);
+        baseDatos=dbHelper.getWritableDatabase();
         MaterialButton botonAdjudicar = findViewById(R.id.botonPantallaGestTadjudicar);
         MaterialButton botonElige = findViewById(R.id.pantallaGTJEreceptores);
         TextView ponSeleccion = findViewById(R.id.seleccionTareasGT);
         Spinner spinnerAsignacionTareas = findViewById(R.id.spinnerTipoTarea);
         Spinner spinnerTareaEspecifica = findViewById(R.id.spinnerTareaEspecifica);
-
 
         usuario = getIntent().getExtras();
         dbRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
@@ -64,7 +70,6 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
                     listaPosibles.add(u);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
@@ -75,9 +80,7 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(PantallaGestionarTareasAdminJE.this);
                 builder.setTitle("Elige a quienes vas a la tarea administrativa");
-
                 String[] correosElectronicos = new String[listaPosibles.size()];
-
                 for (int i = 0; i < listaPosibles.size(); i++) {
                     correosElectronicos[i] = listaPosibles.get(i).getEmail();
                 }
@@ -92,14 +95,12 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
                         }
                     }
                 });
-
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ponSeleccion.setText(seleccionados.toString());
                     }
                 });
-
                 builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -112,9 +113,7 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
         });
 
         valores = new String[]{"Preparación de Informes", "Organización de Eventos", "Gestión de Recursos", "Supervision de Proyectos Educativos", "Comunicación y Correspondencia"};
-
         spinnerAsignacionTareas.setAdapter(new ArrayAdapter<String>(PantallaGestionarTareasAdminJE.this, android.R.layout.simple_spinner_item, valores));
-
         spinnerAsignacionTareas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -145,7 +144,6 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
                     }
                 });
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -153,8 +151,6 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
         });
 
         botonAdjudicar.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View view) {
                 View padre=(View) view.getParent();
@@ -185,8 +181,18 @@ public class PantallaGestionarTareasAdminJE extends AppCompatActivity {
 
                                 String key = dbRefTareas.push().getKey();
                                 dbRefTareas.child(key).setValue(nuevaTarea);
-                            }
 
+                                //SQLITE
+                                ContentValues contenido=new ContentValues();
+                                contenido.put("receptor",participante);
+                                contenido.put("descripcion",seleccionado2);
+                                contenido.put("observaciones",observaciones);
+                                contenido.put("estado","");
+                                contenido.put("fecha","");
+                                baseDatos.insert("tarea",null,contenido);
+
+                            }
+                            //VOLVER A PANTALLA PRINCIPAL
                             Intent pantallaPrincipal = new Intent(PantallaGestionarTareasAdminJE.this, PantallaPrincipal.class);
                             pantallaPrincipal.putExtras(usuario);
                             startActivity(pantallaPrincipal);

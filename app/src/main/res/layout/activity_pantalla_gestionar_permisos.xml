@@ -8,72 +8,12 @@
     android:orientation="vertical"
     tools:context=".pantallas.PantallaGestionarPermisos">
 
-        <!--
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/encabezadoGestiPermisos"
-                    style="@style/Widget.MaterialComponents.Toolbar.Primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/blue_dark"
-                    app:title="@string/gestionarPermisos"
-                    app:titleCentered="true"
-                    app:navigationIcon="@drawable/arrow_back"/>
-        -->
                 <LinearLayout
                     android:id="@+id/contenedorGestionarP"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center">
-
-
-
-                <!--https://www.comunidad.madrid/servicios/educacion/manual-permisos-licencias-docentes-->
-
-            <!--dos spinner seleccionando el tipo de permiso, nombre y apellidos y enviar_ en notificacion meter x ejemplo estado del permiso o asi que le llegue mensaje-->
-<!--
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/nombreGPtext"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="350dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:hint="@string/nombre"
-                    app:startIconDrawable="@drawable/user"
-                    app:endIconMode="clear_text">
-
-                        <EditText
-                            android:id="@+id/nombreGP"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/apellidosGPtext"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="350dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:hint="@string/apellidosUsuario"
-                    app:startIconDrawable="@drawable/user"
-                    app:endIconMode="clear_text">
-
-                        <EditText
-                            android:id="@+id/apellidosGP"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
--->
 
 
 
